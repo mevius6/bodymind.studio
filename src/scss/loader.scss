@@ -1,0 +1,26 @@
+@keyframes fadeIn {
+  from { fill-opacity: 0; }
+  to   { fill-opacity: 1; }
+}
+
+#loader {
+  position: absolute;
+  display: grid;
+  place-content: center;
+  z-index: 9999999;
+  opacity: var(--alpha);
+  transition: opacity 0.2s ease-in-out;
+  width: 100vw;
+  min-height: 100vh;
+  background: hsl(0 0% 87.8%);
+
+  .svg__el {
+    --speed: 200ms;
+    --delay: calc(var(--i, 1) * var(--speed));
+    fill: hsl(288.8 27.7% 58.2%);
+    animation: fadeIn 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) var(--delay) both;
+
+    &:nth-child(2) { --i: 2; }
+    &:nth-child(3) { --i: 3; }
+  }
+}

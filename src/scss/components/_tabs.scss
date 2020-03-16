@@ -1,0 +1,132 @@
+.c-tabs {
+  --tab-h: #{rem(48)};
+  position: relative;
+  margin-block-start: rem(32);
+  width: 100%;
+  min-height: rem(448);
+}
+
+.c-tabs__tab {
+  display: flex;
+  flex-direction: column;
+  @include fvar($exa, $semibold);
+
+  label {
+    border: none;
+    border-radius: rem(6) rem(6) 0 0;
+    background: var(--gray-20);
+    padding: 1em;
+    color: var(--gray-90);
+    font-size: 1em;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  [type="radio"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+
+    &:checked ~ label {
+      z-index: 2;
+      background: var(--white);
+      color: var(--gray-100);
+    }
+
+    &:checked ~ label ~ .c-tabs__content {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    &:focus + label {
+      outline: 2px dotted var(--purple-40);
+    }
+
+    &:focus:not(:focus-visible) + label {
+      outline: 2px dotted transparent;
+    }
+  }
+}
+
+.c-tabs__content {
+  position: absolute;
+  top: calc(var(--tab-h) * 5);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(min-content, auto));
+  gap: rem(16);
+  align-content: start;
+  opacity: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  border-radius: 0 0 6px 6px;
+  padding: 1em 1.2em;
+  box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.3);
+  background: var(--white);
+  color: var(--gray-100);
+  @include fvar($exa, $regular);
+
+  p,
+  b { @include fvar($exa, $medium); }
+
+  p { margin: 0; }
+
+  b {
+    grid-column: span 2;
+    gap: inherit;
+    border-bottom: 1px solid var(--gray-20);
+    padding-block-end: rem(16);
+  }
+
+  a {
+    box-shadow: 0 4px 12px hsla(263.8, 96.9%, 61.8%, 0.2);
+    text-align: center;
+    @include cta-set-02(
+      linear-gradient(
+        135deg,
+        var(--magenta-30),
+        var(--purple-40)
+      )
+    );
+  }
+
+  .purchase,
+  .quantity {
+    display: grid;
+    align-items: center;
+    @extend %tabular-nums;
+  }
+
+  .purchase {
+    grid-template-columns: inherit;
+    column-gap: rem(8);
+    justify-content: end;
+  }
+
+  .quantity {
+    @include fvar($exa, $medium);
+  }
+}
+
+
+@media (min-width: $tablet) {
+  .c-tabs {
+    display: flex;
+    align-items: flex-start;
+    max-width: max-content;
+    min-height: rem(448);
+
+    &__content {
+      position: absolute;
+      top: var(--tab-h);
+      grid-template-columns: repeat(2, minmax(min-content, 1fr));
+      row-gap: rem(16);
+      place-content: start;
+    }
+  }
+}

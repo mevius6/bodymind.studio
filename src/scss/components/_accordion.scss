@@ -1,0 +1,90 @@
+// Классы, установленные через JS
+$accordionClass: '.collapse-init';
+$panelClass: '.c-accordion__panel--active';
+$contentsClass: 'summary + *';
+
+// .accordion__panel-inner {}
+#{$accordionClass $contentsClass} {
+  transition: all var(--speed) ease-in-out;
+  overflow: hidden; // для анимации высоты
+}
+
+// :not(.accordion__panel--active) .accordion__panel-inner {}
+#{$accordionClass} :not(#{$panelClass}) #{$contentsClass} {
+  opacity: 0;
+  height: 0;
+  transform: scale(0.9);
+  transform-origin: bottom center;
+}
+
+.c-accordion {
+  --shadow: hsl(263.8 96.9% 61.8% / .2);
+  margin-block-start: rem(28);
+  margin-block-end: rem(28);
+  max-inline-size: rem(640);
+  box-shadow: rem(3.2) rem(16) rem(32) rem(-16) var(--shadow);
+
+  &__panel {
+    $b: rem(6);
+    border-width: rem(1) rem(1) 0;
+    border-style: solid;
+    border-color: var(--gray-20);
+    background: var(--white);
+    list-style: none;
+
+    &:first-child {
+      border-radius: $b $b 0 0;
+    }
+    &:last-child {
+      border-bottom: 1px solid var(--gray-20);
+      border-radius: 0 0 $b $b;
+    }
+    &-inner p {
+      padding: rem(16);
+      color: var(--gray-100);
+    }
+  }
+
+  &__panel-toggler {
+    --arrow-size: #{rem(8)};
+
+    display: block;
+    transition: 200ms;
+    padding: rem(16);
+    color: var(--gray-100);
+    @include fvar($exa, $semibold);
+
+    &:hover { cursor: pointer; }
+    &:focus-visible {
+      outline: 2px dotted var(--purple-40);
+    }
+
+    #{$accordionClass} &::after {
+      content: '';
+      float: right;
+      margin-block-start: calc(var(--arrow-size) / 2);
+      width: var(--arrow-size);
+      height: var(--arrow-size);
+      border-width: 0 rem(2) rem(2) 0;
+      border-style: solid;
+      transform: rotate(45deg);
+      transition: inherit;
+    }
+
+    [open] & {
+      background: var(--purple-60);
+      color: var(--white);
+
+      &::after {
+        margin-top: var(--arrow-size);
+        transform: rotate(225deg);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $tablet) {
+  .c-accordion__panel-inner p {
+    padding: rem(16) rem(28);
+  }
+}

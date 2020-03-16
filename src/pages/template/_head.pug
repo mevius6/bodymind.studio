@@ -1,0 +1,72 @@
+-
+  let canonicalURL = (page.title != '') ? data.meta.domain + page.path[1] : data.meta.domain;
+  let promoImage = `${data.meta.domain}/common/ogp_${((page.title == '') ? 'common' : page.id)}.jpeg`;
+  let titleMerge = (page.title != '') ? `${page.title} │ ${data.meta.websiteName}` : data.meta.websiteName;
+  let keywordsMerge = (page.keywords != '') ? `${page.keywords}, ${data.meta.keywords}` : data.meta.keywords;
+  let themeColor = '#f4f4f4';
+
+meta(charset="utf-8")
+meta(http-equiv="X-UA-Compatible", content="IE=edge")
+meta(name="viewport" content="width=device-width, initial-scale=1.0")
+title #{titleMerge}
+
+meta(name="description", content=page.description)
+meta(name="keywords", content=keywordsMerge)
+
+link(rel="canonical" href=canonicalURL)
+meta(property="og:locale" content="ru")
+meta(property="og:title", content=titleMerge)
+meta(property="og:site_name", content=data.meta.websiteName)
+meta(property="og:type", content="website")
+meta(property="og:description", content=page.description)
+meta(property="og:url", content=canonicalURL)
+meta(property="og:image", content=promoImage)
+meta(property="og:image:secure_url", content=promoImage)
+meta(property="og:image:type" content="image/jpeg")
+meta(property="og:image:width" content="1200")
+meta(property="og:image:height" content="630")
+
+meta(name="twitter:card", content="summary_large_image")
+meta(name="twitter:title", content=titleMerge)
+meta(name="twitter:description", content=page.description)
+meta(name="twitter:image", content=promoImage)
+
+link(rel="manifest" href="../manifest.webmanifest")
+link(rel="shortcut icon" href="../favicon.ico")
+include ./_pwa-asset
+//- Windows 8, IE10
+  meta(name="msapplication-TileColor", content=themeColor)
+  meta(name="msapplication-TileImage" content="../icons/ms-icon-144x144.png")
+//- Windows 8.1, IE11+
+meta(name="msapplication-config" content="../browserconfig.xml")
+meta(name="apple-mobile-web-app-status-bar" content=themeColor)
+meta(name="theme-color", content=themeColor)
+
+link(
+  rel="preload"
+  href="../fonts/GrtskVariable.woff2" as="font"
+  type="font/woff2-variations"
+  crossorigin
+)
+style.
+  @font-face {
+    font-family: Grtsk Variable;
+    src:
+      url(../fonts/GrtskVariable.woff2) format('woff2 supports variations'),
+      url(../fonts/GrtskVariable.woff2) format('woff2-variations');
+    font-stretch: 100% 1000%;
+    font-style: oblique 0deg 15deg;
+    font-synthesis: none;
+    font-weight: 100 700;
+    font-display: swap;
+  }
+link(
+  rel="stylesheet"
+  href="../scss/loader.scss"
+  media="print"
+  onload="this.media='all'"
+)
+link(rel="stylesheet" type="text/css" href="../scss/main.scss")
+
+block head
+  script(src="../js/vendor/modernizr.js")

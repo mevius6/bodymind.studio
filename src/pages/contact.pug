@@ -1,0 +1,33 @@
+extends ./template/_page
+
+block vars
+  -
+    let page = data.pages.contact;
+
+append head
+  script(src="https://www.google.com/recaptcha/api.js?render=6LchYK0UAAAAAMRflt6o0V_1imaH5KDnH5XVjWjB&onload=initRecaptcha&render=explicit")
+  script(type="text/javascript").
+    var initRecaptcha = function() {
+      grecaptcha.ready(function() {
+        grecaptcha.execute("6LchYK0UAAAAAMRflt6o0V_1imaH5KDnH5XVjWjB", {action: "homepage"}).then(function(token) {
+        document.getElementById('recaptcha_token').value = token;
+        });
+      });
+    }
+
+block content
+  section.contact
+    .maps-area
+      #map
+    .meta-area
+      p.fs-bs ИП Королёва Наталья Владимировна, 173021 Россия, Новгородская обл, Новгородский р-н, д. Плетниха, ул. Чапаева 20.
+      p.fs-bs ИНН 532004637012, ОГРНИП 318532100021883, Р/сч 408028104430000004566
+      p.fs-bs Новгородское отделение ПАО Сбербанк г.В.Новгород К/сч 30101810100000000698 БИК 044959698
+    .form-area
+      h1.fs-h3 Пишите нам!
+      p.fs-bs Укажите, пожалуйста, Ваши контактные данные.
+      small &ast; Обязательно
+      include ./form
+
+block scripts
+  script(type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0cbaaf418c0e87df2938d943cc21ee7dbdd948a7fa75b86b25c16e9fbf15b847&amp;id=map&amp;width=100%25&amp;height=100%25&amp;lang=ru_RU&amp;scroll=true&amp;apikey=<b606c37d-c0a3-4f3c-86bf-dd82ccceefac>")

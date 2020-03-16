@@ -1,0 +1,18 @@
+block vars
+
+doctype html
+html(class="no-js" dir="ltr" lang="ru")
+  head
+    include ./_head
+  body
+    if page.id === 'index'
+      #loader
+    include ./_nav
+    main.o-main(data-id=page.id)
+      block content
+
+    block scripts
+    script.
+      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+      ga('create', 'UA-114147921-3', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
+    script(src="https://www.google-analytics.com/analytics.js" async)

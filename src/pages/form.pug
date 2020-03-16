@@ -1,0 +1,91 @@
+form#contact-form.c-form(
+  accept-charset="UTF-8"
+  action="https://app.form2chat.io/f/d4267741"
+  method="POST"
+  autocomplete="on"
+  spellcheck="false"
+)
+  //- Имя
+  label.c-form__field(for="name")
+    span.c-form__label-text Имя
+      span &ast;
+    input#name.c-form__control(
+      role="text-box"
+      type="text"
+      name="name"
+      placeholder="Ваше имя"
+      aria-labelledby="name-label"
+      aria-required="true"
+      minlength="2" maxlength="None"
+      required
+      autofocus
+      autocapitalize="off" spellcheck="false"
+    )
+    small#name-label Введите полное имя
+
+  //- Телефон
+  label.c-form__field(for="phone")
+    span.c-form__label-text Телефон
+    input#phone.c-form__control(
+      inputmode="tel"
+      type="tel"
+      name="phone"
+      placeholder="+7 (816) 292-02-20"
+      minlength="11" maxlength="18"
+      aria-required="false"
+    )
+    small Введите номер телефона
+
+  //- Электронная почта
+  label.c-form__field(for="email")
+    span.c-form__label-text Email
+      span &ast;
+    input#email.c-form__control(
+      inputmode="email"
+      type="email"
+      name="email"
+      placeholder="admin@bodymind.studio"
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+      autocapitalize="off" spellcheck="false"
+      aria-required="false"
+    )
+    small Введите адрес эл. почты
+
+  //- Комментарии
+  label.c-form__field(for="message")
+    span.c-form__label-text Комментарии
+    textarea#message(
+      role="text-box"
+      name="comment"
+      form="contact-form"
+      placeholder="Сообщение…"
+      rows="2" cols="20" wrap="hard"
+      aria-required="false"
+    )
+
+  .c-form__group
+    input#terms.c-form__checkbox(
+      type="checkbox"
+      tabindex="0"
+      aria-checked="true"
+      aria-labelledby="label-terms"
+      aria-describedby="Пожалуйста, перед тем, как отправить, ознакомьтесь с политикой использования данных Body & Mind."
+      onclick="document.getElementById('cta').disabled = !document.getElementById('cta').disabled;"
+    )
+    label#label-terms.c-form__checkbox-label.fs-bs(for="terms")
+      | Принять&nbsp;
+      a(href="/privacy.pug" target="_blank" rel="noopener") политику обработки персональных данных.
+
+  button#cta.c-form__cta(type="submit" disabled) Отправить!
+    //- span.tooltip(role="tooltip")
+    - for (let i = 0; i < 4; i++)
+      span
+    - for (let i = 0; i < 4; i++)
+      p(aria-hidden="true") Отправить!
+
+  #submit-result
+
+  input#recaptcha_token(type="hidden" name="recaptcha_token")
+  input(type="hidden" name="action" value="validate_captcha")
+  //- Honeypot
+  input(type="hidden" name="_gotyou")

@@ -1,0 +1,17 @@
+extends ./template/_page
+
+append head
+  script(defer src="../js/loader.js")
+
+block vars
+  -
+    let page = data.pages.index;
+
+block content
+  #app.o-content
+  .cursor
+    .cursor__inner.cursor__inner--circle
+    .cursor__inner.cursor__inner--dot
+
+block scripts
+  script(src="../js/index.js")

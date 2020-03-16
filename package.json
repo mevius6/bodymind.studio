@@ -1,0 +1,59 @@
+{
+  "name": "bodymind.studio",
+  "version": "1.0.0",
+  "description": "bodymind.studio",
+  "main": "index.js",
+  "engines": {
+    "node": "12.x"
+  },
+  "scripts": {
+    "start": "parcel src/pages/index.pug --open -d public",
+    "build": "npm run clean && parcel build src/pages/index.pug -d public --no-cache --no-source-maps",
+    "clean": "rm -rf public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mevius6/bodymind.studio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mevius6/bodymind.studio/issues"
+  },
+  "homepage": "https://github.com/mevius6/bodymind.studio#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "autoprefixer": "^9.7.4",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-static-files-copy": "^2.3.1",
+    "pug": "^2.0.4",
+    "sass": "^1.26.3"
+  },
+  "dependencies": {
+    "popmotion": "^8.7.1",
+    "three": "^0.112.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "Firefox ESR",
+    "not ie <= 8"
+  ],
+  "postcss": {
+    "modules": false,
+    "plugins": {
+      "autoprefixer": {
+        "grid": "autoplace",
+        "flexbox": "no-2009"
+      }
+    }
+  },
+  "staticFiles": {
+    "staticPath": [
+      {
+        "staticPath": "src/img/common/",
+        "staticOutDir": "/common/"
+      }
+    ]
+  }
+}

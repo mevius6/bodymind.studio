@@ -1,0 +1,95 @@
+.c-calendar
+  - for (let year = startingYear; year <= endingYear; year++)
+    - for (let month = 0; month < monthsCount; month++)
+      //- Для выбора года / месяца
+      input(
+        type="radio"
+        id=idPrefix + "year_select_" + year + "_" + month
+        name=calName
+      ).cal-year-check
+      input(
+        type="radio"
+        id=idPrefix + "month_select_" + year + "_" + month
+        name=calName
+        data-cal-year=year
+      ).cal-month-check
+
+      .cal
+        .cal-head
+          .controls
+            //- Изменение года
+            label(for=idPrefix + year + "_" + month).cal-change-year #{monthsLabel[month]} #{year}
+              svg(viewBox="0 0 24 24")
+                path(d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z")
+          .controls
+
+        //- Выбор года
+        .cal-body.year-picker
+          - for (let yearPick = startingYear; yearPick <= endingYear; yearPick++)
+            .cal-date
+              label(for=idPrefix + "month_select_" + yearPick + "_" + month)
+                span #{yearPick}
+
+        //- Выбор месяца
+        - for (let yearPick = startingYear; yearPick <= endingYear; yearPick++)
+          .cal-body.month-picker(data-cal-year=yearPick)
+            - for (let monthPick = 0; monthPick < monthsCount; monthPick++)
+              .cal-date
+                label(for=idPrefix + yearPick + "_" + monthPick)
+                  span #{monthsLabel[monthPick]}
+
+      //- Актуальный календарь
+      input(
+        type="radio"
+        id=idPrefix + year + "_" + month
+        name=calName
+        checked=currentDate.getFullYear() == year && currentDate.getMonth() == month
+      ).cal-check
+
+      .cal
+        .cal-head
+          .controls
+            //- Изменение года
+            label(for=idPrefix + "year_select_" + year + "_" + month).cal-change-year #{monthsLabel[month]} #{year}
+              svg(viewBox="0 0 24 24")
+                path(d="M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z")
+          .controls
+            //- Изменение месяца
+            - let lastMonth = new Date(year, month - 1);
+            - let nextMonth = new Date(year, month + 1);
+            //- Прошлый
+            label(for=idPrefix + lastMonth.getFullYear() + "_" + lastMonth.getMonth()).cal-change-month
+              svg(viewBox="0 0 24 24")
+                path(d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z")
+            //- Следующий
+            label(for=idPrefix + nextMonth.getFullYear() + "_" + nextMonth.getMonth()).cal-change-month
+              svg(viewBox="0 0 24 24")
+                path(d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z")
+
+        .cal-body
+          //- Первая дата
+          - let firstDate = new Date(year, month, 1);
+          //- Последняя дата
+          - let lastDate  = new Date(year, (month + 1), 0);
+
+          //- Дни недели, 0 соответствует Воскресенью
+          - for (let day = 0; day < daysInWeek; day++)
+            .cal-day #{daysLabel[day]}
+
+          //- Дополнительные пробелы до первой даты
+          - for (let date = 0; date < firstDate.getDay(); date++)
+            .cal-date
+          //- Фактическая дата
+          - for (let date = 1; date <= lastDate.getDate(); date++)
+            .cal-date
+              label
+                input(
+                  type="radio"
+                  name=dateName
+                  value=year + "/" + month + "/" + date
+                  checked=currentDate.getFullYear() == year && currentDate.getMonth() == month && currentDate.getDate() == date
+                )
+                span #{date}
+          //- Дополнительные пробелы после последней даты
+          - for (let date = lastDate.getDay() + 1; date < daysInWeek; date++)
+            .cal-date

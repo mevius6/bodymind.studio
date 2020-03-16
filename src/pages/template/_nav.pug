@@ -1,0 +1,29 @@
+- let year = new Date().getFullYear()
+- let copy = `${data.meta.websiteName} © 2019—${year}`
+
+nav.c-nav(aria-label="primary")
+  .c-nav__links
+    mixin navLink(path, title)
+      a.c-nav__link(rel="noopener" href=path)= title
+
+    each page in data.pages
+      if page.title
+        +navLink(page.path[0], page.title)
+      else
+        +navLink(page.path[0], copy)
+
+  .c-nav__links-social
+    a.c-nav__link-social(
+      rel="noopener"
+      href="https://vk.com/bmfitness"
+      target="_blank"
+    )
+    a.c-nav__link-social(
+      rel="noopener"
+      href="https://www.instagram.com/bodymind.fs/"
+      target="_blank"
+    )
+    a.c-nav__link-social(
+      rel="noopener"
+      href=`mailto:${data.meta.email}`
+    )

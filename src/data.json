@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "domain": "https://bodymind.studio",
+    "email": "admin@bodymind.studio",
+    "websiteName": "Body & Mind",
+    "keywords": "gyrotonic, pilates, yoga, fitness"
+  },
+  "pages": {
+    "privacy": {
+      "title": "Конфиденциальность",
+      "id": "privacy",
+      "path": ["/privacy.pug", "/privacy.html"],
+      "description": "Политика обработки персональных данных",
+      "keywords": ""
+    },
+    "contact": {
+      "title": "Контакты",
+      "id": "contact",
+      "path": ["/contact.pug", "/contact.html"],
+      "description": "Контакты",
+      "keywords": ""
+    },
+    "pricing": {
+      "title": "Стоимость",
+      "id": "pricing",
+      "path": ["/pricing.pug", "/pricing.html"],
+      "description": "Ценообразование",
+      "keywords": ""
+    },
+    "coaches": {
+      "title": "Инструкторы",
+      "id": "coaches",
+      "path": ["/coaches.pug", "/coaches.html"],
+      "description": "Инструкторы",
+      "keywords": ""
+    },
+    "workout": {
+      "title": "Направления",
+      "id": "workout",
+      "path": ["/workout.pug", "/workout.html"],
+      "description": "Gyrotonic • Pilates • Yoga • Functional",
+      "keywords": ""
+    },
+    "schedule": {
+      "title": "Расписание",
+      "id": "schedule",
+      "path": ["/schedule.pug", "/schedule.html"],
+      "description": "Расписание групповых программ",
+      "keywords": ""
+    },
+    "about": {
+      "title": "Студия",
+      "id": "about",
+      "path": ["/about.pug", "/about.html"],
+      "description": "Фитнес-студия",
+      "keywords": ""
+    },
+    "index": {
+      "title": "",
+      "id": "index",
+      "path": ["/", "/"],
+      "description": "Фитнес-студия",
+      "keywords": ""
+    }
+  }
+}

@@ -1,0 +1,63 @@
+::marker {
+  // https://drafts.csswg.org/css-color-4/#currentcolor-color
+  color: currentcolor;
+  @extend %tabular-nums;
+}
+
+.terms {
+  counter-reset: h-count;
+}
+
+.h-count {
+  color: var(--black);
+  counter-increment: h-count;
+}
+
+[role="list"] {
+  max-width: rem(960);
+  margin-block-start: rem(16);
+  margin-block-end: rem(28);
+  padding-inline-start: rem(30);
+
+  & > * + * {
+    margin-block-start: rem(10);
+  }
+}
+
+@supports (counter-set: count) {
+  .h-count {
+    display: list-item;
+    margin-inline-start: rem(28);
+    padding-inline-start: rem(4);
+    &::marker {
+      content: counter(h-count) ".";
+    }
+  }
+
+  [role="list"] li {
+    padding-inline-start: rem(4);
+    &::marker {
+      content: counters(list-item, ".", decimal) ".";
+    }
+  }
+}
+
+@supports not (counter-set: count) {
+  .h-count {
+    &::before {
+      content: counter(h-count) ". ";
+      color: currentcolor;
+    }
+  }
+
+  [role="list"] {
+    counter-reset: list-item;
+    li {
+      counter-increment: list-item;
+      &::before {
+        content: counters(list-item, ".", decimal) ". ";
+        color: currentcolor;
+      }
+    }
+  }
+}

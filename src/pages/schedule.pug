@@ -1,0 +1,147 @@
+extends ./template/_page
+
+block vars
+  -
+    let page = data.pages.schedule;
+
+    //- Метаданные календаря
+    const startingYear = new Date().getFullYear();
+    const endingYear   = new Date().getFullYear();
+    const monthsCount  = 12;
+    const daysInWeek   = 7;
+    const currentDate  = new Date();
+
+    const idPrefix = 'cal_';
+    const calName  = 'calendar';
+    const dateName = 'calendar_date';
+
+    const daysLabel = [
+      'ВС',
+      'ПН',
+      'ВТ',
+      'СР',
+      'ЧТ',
+      'ПТ',
+      'СБ'
+    ];
+
+    const weekDays = [
+      'Воскресенье',
+      'Понедельник',
+      'Вторник',
+      'Среда',
+      'Четверг',
+      'Пятница',
+      'Суббота'
+    ];
+
+    const monthsLabel = [
+      'Январь',
+      'Февраль',
+      'Март',
+      'Апрель',
+      'Май',
+      'Июнь',
+      'Июль',
+      'Август',
+      'Сентябрь',
+      'Октябрь',
+      'Ноябрь',
+      'Декабрь'
+    ];
+
+block content
+  include ./calendar
+
+  mixin session(day, time, link1, title1, coach1, badge1='adults', merged, link2, title2, coach2, badge2='adults')
+    div(
+      class=merged ? 'c-session ' + 'c-session--merged' : 'c-session'
+      style=`--date: var(--day-${day}); --time: var(--of-${time});`
+    )&attributes(attributes)
+      if merged
+        .sub
+          h3.c-session__title: a(href=`/workout.pug#slide-${link1}`)= title1
+          span.c-session__date=`${weekDays[day]},`
+          span.c-session__coach= coach1
+          span.c-session__cta: a(href="#") Записаться
+          - if(badge1 == 'kids')
+            span.c-session__badge дети
+        .sub
+          h3.c-session__title: a(href=`/workout.pug#slide-${link2}`)= title2
+          span.c-session__date=`${weekDays[day]},`
+          span.c-session__coach= coach2
+          span.c-session__cta: a(href="#") Записаться
+          - if(badge2 == 'kids')
+            span.c-session__badge дети
+      else
+        h3.c-session__title: a(href=`/workout.pug#slide-${link1}`)= title1
+        span.c-session__date=`${weekDays[day]},`
+        span.c-session__coach= coach1
+        span.c-session__cta: a(href="#") Записаться
+        - if(badge1 == 'kids')
+          span.c-session__badge дети
+
+  h2.fs-h3.current=`${monthsLabel[currentDate.getMonth()]} ${year} г.`
+
+  #schedule-heading.visually-hidden Расписание групповых занятий
+  .o-schedule(aria-labelledby="schedule-heading")
+
+    //- Актуальные даты
+    - for (let i = 1; i < daysInWeek; i++)
+      - let startOfWeek = currentDate.getDate() - currentDate.getDay() + (currentDate.getDay() === 0 ? -6 : 1);
+      - let endOfWeek = currentDate.getDate() - (currentDate.getDay() - 1) + 6;
+      - let dayOfWeek = startOfWeek - 1 + i;
+
+      span.date-slot(
+        aria-hidden="true"
+        style=`grid-column: track-${i}; grid-row: tracks`
+      ) #{weekDays[i]}, #{dayOfWeek}
+
+    h2.time-slot(style="grid-row: time-0900") 09:00
+    +session(2, '09', 2, 'Hatha Yoga', 'Елена Лютая')(data-session-date='?')
+    +session(5, '09', 2, 'Hatha Yoga', 'Елена Лютая')
+
+    h2.time-slot(style="grid-row: time-1000") 10:00
+    +session(1, '10', 3, 'Power Class', 'Анна Сафронова')
+    +session(2, '10', 1, 'Pilates Mat', 'Анна Сафронова')
+    +session(4, '10', 1, 'Pilates Mat', 'Анна Сафронова')
+    +session(5, '10', 3, 'Power Class', 'Анна Сафронова')
+
+    h2.time-slot(style="grid-row: time-1100") 11:00
+    +session(2, '11', 3, 'Full Body', 'Анна Сафронова')
+    +session(4, '11', 3, 'Full Body', 'Анна Сафронова')
+    +session(6, '11', 4, 'Dance Therapy', 'Анна Сафронова', 'kids', 'merged', 2, 'Hatha Yoga', 'Елена Лютая')
+
+    h2.time-slot(style="grid-row: time-1200") 12:00
+    +session(6, '12', 1, 'Power Pilates', 'Анна Сафронова')
+
+    h2.time-slot(style="grid-row: time-1300") 13:00
+    +session(6, '13', 2, 'Relax Yoga', 'Ольга Лунгу', 'adults', 'merged', 3, 'Power Class', 'Анна Сафронова')
+
+    h2.time-slot(style="grid-row: time-1400") 14:00
+    //-
+      h2.time-slot(style="grid-row: time-1500") 15:00
+      h2.time-slot(style="grid-row: time-1600") 16:00
+      h2.time-slot(style="grid-row: time-1700") 17:00
+
+    h2.time-slot(style="grid-row: time-1800") 18:00
+    +session(1, '18', 4, 'Dance Therapy', 'Анна Сафронова', 'kids')
+    +session(2, '18', 3, 'Super Sculpt', 'Ольга Петухова')
+    +session(3, '18', 4, 'Foundation', 'Анастасия Акулова', 'kids', 'merged', 4, 'Flexibility', 'Анна Сафронова')
+    +session(4, '18', 3, 'Super Sculpt', 'Ольга Петухова')
+    +session(5, '18', 4, 'Foundation', 'Анастасия Акулова', 'kids')
+
+    h2.time-slot(style="grid-row: time-1900") 19:00
+    +session(1, '19', 3, 'Power Class', 'Анна Сафронова')
+    +session(2, '19', 2, 'Fitness Yoga', 'Ольга Лунгу', 'adults', 'merged', 1, 'Power Pilates', 'Татьяна Заднипрянец')
+    +session(3, '19', 3, 'Stretching', 'Анастасия Акулова', 'adults', 'merged', 1, 'Pilates Mat', 'Анна Сафронова')
+    +session(4, '19', 2, 'Fitness Yoga', 'Ольга Лунгу', 'adults', 'merged', 1, 'Power Pilates', 'Татьяна Заднипрянец')
+    +session(5, '19', 3, 'Stretching', 'Анастасия Акулова', 'adults', 'merged', 1, 'Pilates Mat', 'Анна Сафронова')
+
+    h2.time-slot(style="grid-row: time-2000") 20:00
+    +session(1, '20', 2, 'Hatha Yoga', 'Елена Лютая', 'adults', 'merged', 1, 'Men\'s Pilates', 'Анна Сафронова')
+    +session(2, '20', 3, 'Stretching', 'Ольга Лунгу')
+    +session(3, '20', 2, 'Hatha Yoga', 'Елена Лютая', 'adults', 'merged', 1, 'Men\'s Pilates', 'Анна Сафронова')
+    +session(4, '20', 3, 'Stretching', 'Ольга Лунгу')
+
+block scripts

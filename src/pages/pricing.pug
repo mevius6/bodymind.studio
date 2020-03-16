@@ -1,0 +1,82 @@
+extends ./template/_page
+
+block vars
+  -
+    let page = data.pages.pricing;
+
+    let tabs = [
+      {
+        'label': 'Group',
+        'content': 'Единая цена на все виды групповых программ'
+      },
+      {
+        'label': 'Personal',
+        'content': 'Персональные тренировки'
+      },
+      {
+        'label': 'Premium',
+        'content': 'Персональные тренировки (Reformer / Gyrotonic)'
+      },
+      {
+        'label': 'Premium Mini',
+        'content': 'Тренировки в мини-группах из 3-5 человек'
+      },
+      {
+        'label': 'Trial',
+        'content': 'Пробные тренировки для новых клиентов'
+      }
+    ];
+
+block content
+  mixin cta
+    - for (let i = 0; i < 4; i++)
+      span
+    - for (let i = 0; i < 4; i++)
+      p(aria-hidden="true") Купить!
+
+  mixin deal(amount, cost)
+    .quantity
+      p= amount
+    .purchase
+      p= cost + ' ₽'
+      a(href="#") Купить!
+        +cta
+
+  section.o-container
+    h2.fs-h2 Услуги и цены
+    .c-tabs(role="tablist")
+      each tab, index in tabs
+        .c-tabs__tab(role="tab")
+          input(id=`tab-${index}` tabindex="0" type="radio" name="radioTab" checked)
+          label(for=`tab-${index}`)= tab.label
+          .c-tabs__content
+            b= tab.content
+            b(style="display: grid; grid: inherit;")
+              p Количество
+              p Стоимость
+            case tab.label
+              when 'Group'
+                +deal(1, 250)
+                +deal(3, 699)
+                +deal(8, 1800)
+                +deal(16, 3300)
+                +deal(24, 4800)
+                +deal(32, 5100)
+              when 'Personal'
+                +deal(1, 600)
+                +deal(8, 4300)
+                +deal(16, 8000)
+              when 'Premium'
+                +deal(1, 1500)
+                +deal(8, 10800)
+                +deal(16, 19200)
+              when 'Premium Mini'
+                +deal(1, 800)
+                +deal(8, 5700)
+                +deal(16, 10400)
+              when 'Trial'
+                +deal(3 + " (групповые)", 300)
+                +deal(3 + " (персональные)", 900)
+                +deal("Cкидка 50% на Premium", 750)
+
+block scripts

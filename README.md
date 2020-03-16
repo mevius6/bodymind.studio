@@ -1,1 +1,1 @@
-bodymind.studio
+# bodymind.studio
