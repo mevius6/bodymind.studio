@@ -66,7 +66,7 @@ $cal-body-min-height: $cal-day-height + ($cal-date-height * 6);
   .cal-check {
     display: none;
 
-    &:checked  +  .cal {
+    &:checked + .cal {
       display: block;
     }
   }
