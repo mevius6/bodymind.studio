@@ -55,10 +55,10 @@ block content
 
   mixin session(options)
     div(
-      class=(options.merged == true) ? `c-session c-session--merged` : 'c-session'
+      class=(options.merge == true) ? 'c-session c-session--merged' : 'c-session'
       style=`--date: var(--day-${options.day}); --time: var(--of-${options.time});`
     )&attributes(attributes)
-      if options.merged == true
+      if options.merge == true
         .sub
           h3.c-session__title: a(href=`/workout.pug#slide-${options.link[0]}`)= options.title[0]
           span.c-session__date=`${weekDays[day]},`
@@ -71,7 +71,7 @@ block content
           span.c-session__date=`${weekDays[day]},`
           span.c-session__coach= options.coach[1]
           span.c-session__cta: a(href="#") Записаться
-          if options.badge2 == 'kids'
+          if options.badge == 'kids'
             span.c-session__badge дети
       else
         h3.c-session__title: a(href=`/workout.pug#slide-${options.link}`)= options.title
@@ -167,7 +167,7 @@ block content
       title: ['Dance Therapy', 'Hatha Yoga'],
       coach: ['Анна Сафронова', 'Елена Лютая'],
       badge: 'kids',
-      merged: true
+      merge: true
     })
 
     h2.time-slot(style="grid-row: time-1200")
@@ -188,8 +188,7 @@ block content
       link: ['2', '3'],
       title: ['Relax Yoga', 'Power Class'],
       coach: ['Ольга Лунгу', 'Анна Сафронова'],
-      badge: 'adults',
-      merged: true
+      merge: true
     })
 
     h2.time-slot(style="grid-row: time-1400")
@@ -223,7 +222,7 @@ block content
       title: ['Foundation', 'Flexibility'],
       coach: ['Анастасия Акулова', 'Анна Сафронова'],
       badge: 'kids',
-      merged: true
+      merge: true
     })
     +session({
       day: 4,
@@ -256,8 +255,7 @@ block content
       link: ['2', '1'],
       title: ['Fitness Yoga', 'Power Pilates'],
       coach: ['Ольга Лунгу', 'Татьяна Заднипрянец'],
-      badge: 'adults',
-      merged: true
+      merge: true
     })
     +session({
       day: 3,
@@ -265,8 +263,7 @@ block content
       link: ['3', '1'],
       title: ['Stretching', 'Pilates Mat'],
       coach: ['Анастасия Акулова', 'Анна Сафронова'],
-      badge: 'adults',
-      merged: true
+      merge: true
     })
     +session({
       day: 4,
@@ -274,8 +271,7 @@ block content
       link: ['2', '1'],
       title: ['Fitness Yoga', 'Power Pilates'],
       coach: ['Ольга Лунгу', 'Татьяна Заднипрянец'],
-      badge: 'adults',
-      merged: true
+      merge: true
     })
     +session({
       day: 5,
@@ -283,8 +279,7 @@ block content
       link: ['3', '1'],
       title: ['Stretching', 'Pilates Mat'],
       coach: ['Анастасия Акулова', 'Анна Сафронова'],
-      badge: 'adults',
-      merged: true
+      merge: true
     })
 
     h2.time-slot(style="grid-row: time-2000")
@@ -295,8 +290,7 @@ block content
       link: ['2', '1'],
       title: ['Hatha Yoga', 'Men\'s Pilates'],
       coach: ['Елена Лютая', 'Анна Сафронова'],
-      badge: 'adults',
-      merged: true
+      merge: true
     })
     +session({
       day: 2,
@@ -311,8 +305,7 @@ block content
       link: ['2', '1'],
       title: ['Hatha Yoga', 'Men\'s Pilates'],
       coach: ['Елена Лютая', 'Анна Сафронова'],
-      badge: 'adults',
-      merged: true
+      merge: true
     })
     +session({
       day: 4,

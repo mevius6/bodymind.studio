@@ -9,56 +9,56 @@
     "privacy": {
       "title": "Конфиденциальность",
       "id": "privacy",
-      "path": ["/privacy.pug", "/privacy.html"],
+      "path": ["/privacy.pug", "/privacy"],
       "description": "Политика обработки персональных данных",
       "keywords": ""
     },
     "contact": {
       "title": "Контакты",
       "id": "contact",
-      "path": ["/contact.pug", "/contact.html"],
+      "path": ["/contact.pug", "/contact"],
       "description": "Контакты",
       "keywords": ""
     },
     "pricing": {
       "title": "Стоимость",
       "id": "pricing",
-      "path": ["/pricing.pug", "/pricing.html"],
+      "path": ["/pricing.pug", "/pricing"],
       "description": "Ценообразование",
       "keywords": ""
     },
     "coaches": {
       "title": "Инструкторы",
       "id": "coaches",
-      "path": ["/coaches.pug", "/coaches.html"],
+      "path": ["/coaches.pug", "/coaches"],
       "description": "Инструкторы",
       "keywords": ""
     },
     "workout": {
       "title": "Направления",
       "id": "workout",
-      "path": ["/workout.pug", "/workout.html"],
+      "path": ["/workout.pug", "/workout"],
       "description": "Gyrotonic • Pilates • Yoga • Functional",
       "keywords": ""
     },
     "schedule": {
       "title": "Расписание",
       "id": "schedule",
-      "path": ["/schedule.pug", "/schedule.html"],
+      "path": ["/schedule.pug", "/schedule"],
       "description": "Расписание групповых программ",
       "keywords": ""
     },
     "about": {
       "title": "Студия",
       "id": "about",
-      "path": ["/about.pug", "/about.html"],
+      "path": ["/about.pug", "/about"],
       "description": "Фитнес-студия",
       "keywords": ""
     },
     "index": {
       "title": "",
       "id": "index",
-      "path": ["/", "/"],
+      "path": "/",
       "description": "Фитнес-студия",
       "keywords": ""
     }

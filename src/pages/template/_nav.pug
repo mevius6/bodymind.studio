@@ -10,7 +10,7 @@ nav.c-nav(aria-label="primary")
       if page.title
         +navLink(page.path[0], page.title)
       else
-        +navLink(page.path[0], copy)
+        +navLink(page.path, copy)
 
   .c-nav__links-social
     a.c-nav__link-social(
