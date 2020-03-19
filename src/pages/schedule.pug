@@ -72,11 +72,11 @@ block content
   include ./calendar
 
   mixin session(options)
-    div(
-      class=(options.merge == true) ? 'c-session c-session--merged' : 'c-session'
+    .c-session(
+      class={'c-session--merged': options.merge === true}
       style=`--date: var(--day-${options.day}); --time: var(--of-${options.time});`
     )&attributes(attributes)
-      if options.merge == true
+      if options.merge === true
         .sub
           each anchor, index in anchors
             if anchor.titles.includes(options.title[0])
@@ -84,7 +84,7 @@ block content
           span.c-session__date=`${weekDays[options.day]},`
           span.c-session__coach= options.coach[0]
           span.c-session__cta: a(href="#") Записаться
-          if options.badge == 'kids'
+          if options.badge === 'kids'
             span.c-session__badge дети
         .sub
           each anchor, index in anchors
@@ -93,7 +93,7 @@ block content
           span.c-session__date=`${weekDays[options.day]},`
           span.c-session__coach= options.coach[1]
           span.c-session__cta: a(href="#") Записаться
-          if options.badge == 'kids'
+          if options.badge === 'kids'
             span.c-session__badge дети
       else
         each anchor, index in anchors
@@ -102,7 +102,7 @@ block content
         span.c-session__date=`${weekDays[options.day]},`
         span.c-session__coach= options.coach
         span.c-session__cta: a(href="#") Записаться
-        if options.badge == 'kids'
+        if options.badge === 'kids'
           span.c-session__badge дети
 
   h2.fs-h3.current=`${monthsLabel[currentDate.getMonth()]} ${year} г.`
