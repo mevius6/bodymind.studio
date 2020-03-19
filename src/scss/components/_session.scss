@@ -1,26 +1,29 @@
 .c-session {
-  --shadow: hsl(263.8 96.9% 61.8% / .16);
-  --y: 0;
   position: relative;
   grid-row: var(--time);
   grid-column: var(--date);
-  align-self: start;
-  backface-visibility: hidden;
-  perspective: 1000px;
-  will-change: transform;
-  transform: translateY(var(--y));
-  transition-duration: calc(var(--speed) * 1.5);
-  transition-property: box-shadow, transform;
-  transition-timing-function: var(--timing);
-  border-radius: rem(4);
-  box-shadow: 0 rem(4) rem(12) var(--shadow);
-  background: var(--white);
-  padding: rem(8);
-  font-size: rem(14);
 
-  &:hover {
-    --y: -2px;
-    box-shadow: 0 rem(8) rem(16) var(--shadow);
+  &__card {
+    --shadow: hsl(263.8 96.9% 61.8% / .16);
+    --y: 0;
+    align-self: start;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    will-change: transform;
+    transform: translateY(var(--y));
+    transition-duration: calc(var(--speed) * 1.5);
+    transition-property: box-shadow, transform;
+    transition-timing-function: var(--timing);
+    border-radius: rem(4);
+    box-shadow: 0 rem(4) rem(12) var(--shadow);
+    background: var(--white);
+    padding: rem(8);
+    font-size: rem(14);
+
+    &:hover {
+      --y: -2px;
+      box-shadow: 0 rem(8) rem(16) var(--shadow);
+    }
   }
 
   &--merged {
@@ -29,7 +32,7 @@
     // Управляет поведением автоматически размещаемых элементов
     grid-auto-flow: row dense;
     // Устанавливает размер неявных треков
-    grid-auto-rows: minmax(auto, .5fr);
+    grid-auto-rows: minmax(auto, 0.5fr);
   }
 
   &__title,

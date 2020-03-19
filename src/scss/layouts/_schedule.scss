@@ -28,18 +28,18 @@
     display: grid;
     grid-template-rows:
       [tracks] auto
-      [time-0900] 0.5fr
-      [time-1000] 0.5fr
-      [time-1100] 1fr
-      [time-1200] 0.5fr
-      [time-1300] 1fr
-      [time-1400] 0.5fr
+      [time-0900] 1fr
+      [time-1000] 1fr
+      [time-1100] auto
+      [time-1200] 1fr
+      [time-1300] auto
+      [time-1400] 1fr
       // [time-1500] 1fr
       // [time-1600] 1fr
       // [time-1700] 1fr
-      [time-1800] 1fr
-      [time-1900] 1fr
-      [time-2000] 1fr;
+      [time-1800] auto
+      [time-1900] auto
+      [time-2000] auto;
     grid-template-columns:
       [times] 4em
       [track-1-start] 1fr
