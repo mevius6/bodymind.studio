@@ -3,7 +3,7 @@ extends ./template/_page
 block vars
   -
     let page = data.pages.schedule;
-
+  -
     //- Метаданные календаря
     const startingYear = new Date().getFullYear();
     const endingYear   = new Date().getFullYear();
@@ -14,7 +14,7 @@ block vars
     const idPrefix = 'cal_';
     const calName  = 'calendar';
     const dateName = 'calendar_date';
-
+  -
     const daysLabel = [
       'ВС',
       'ПН',
@@ -24,7 +24,7 @@ block vars
       'ПТ',
       'СБ'
     ];
-
+  -
     const weekDays = [
       'Воскресенье',
       'Понедельник',
@@ -34,7 +34,7 @@ block vars
       'Пятница',
       'Суббота'
     ];
-
+  -
     const monthsLabel = [
       'Январь',
       'Февраль',
@@ -67,7 +67,8 @@ block vars
       {
         'titles': [
           'Fitness Yoga',
-          'Fly Yoga', 'Hatha Yoga',
+          'Fly Yoga',
+          'Hatha Yoga',
           'Relax Yoga'
         ]
       },
