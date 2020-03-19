@@ -22,17 +22,17 @@ block vars
       {
         'title': 'Pilates',
         'description': 'Занятия по системе Джозефа Пилатеса. Способствуют улучшению гибкости, силы и выносливости, улучшают осанку, координацию и общее физическое состояние.',
-        'directions': ['Pilates Mat', 'Power Pilates', 'Pilates Reformer', 'Men’s Pilates'],
+        'directions': ['Men’s Pilates', 'Pilates Mat', 'Pilates Reformer', 'Power Pilates'],
       },
       {
         'title': 'Yoga',
         'description': 'Древнейшая оздоровительная система. Укрепляет тело, раскрепощает суставы и успокаивает ум.',
-        'directions': ['Fitness Yoga', 'Hatha Yoga', 'Fly Yoga', 'Relax Yoga'],
+        'directions': ['Fitness Yoga', 'Fly Yoga', 'Hatha Yoga', 'Relax Yoga'],
       },
       {
         'title': 'Functional',
         'description': 'Энергоемкая программа тренировок, направленная на комплексное улучшение общей физической формы. Сочетание функционального тренинга с принципами Пилатеса позволяет обеспечить качество и безопасность движения, а интенсивный темп тренировки ускорит обмен веществ.',
-        'directions': ['Super Sculpt', 'Stretching', 'TRX', 'Power Сlass', 'Full Body'],
+        'directions': ['Full Body', 'Power Class', 'Stretching', 'Super Sculpt', 'TRX'],
       },
       {
         'title': 'Kids',
@@ -45,10 +45,10 @@ block vars
 block content
   .c-carousel(style="--side-fade: 0")
     each workout, index in workouts
-      section.c-carousel__item(id=`slide-${index}`)
+      section.c-carousel__item(id=`section-id-${index}`)
 
         .c-carousel__item-meta
-          h2.fs-h2(id=workout.title)
+          h2.fs-h2
             | #{workout.title}
           p.fs-bs
             | #{workout.description}
@@ -111,7 +111,7 @@ block content
 
     .c-carousel__controls
       each i in Array.from(Array(total).keys())
-        a(href=`#slide-${i}`)
+        a(href=`#section-id-${i}`)
 
 block scripts
   script(src="../js/Collapse.js")

@@ -51,21 +51,11 @@ block vars
     ];
   -
     const anchors = [
-      {
-        'titles': ['Gyrotonic']
-      },
-      {
-        'titles': ['Pilates Mat', 'Power Pilates', 'Pilates Reformer', 'Men’s Pilates']
-      },
-      {
-        'titles': ['Fitness Yoga', 'Hatha Yoga', 'Fly Yoga', 'Relax Yoga']
-      },
-      {
-        'titles': ['Super Sculpt', 'Stretching', 'TRX', 'Power Class', 'Full Body']
-      },
-      {
-        'titles': ['Dance Therapy', 'Foundation', 'Flexibility']
-      }
+      {'titles': ['Gyrotonic']},
+      {'titles': ['Men’s Pilates', 'Pilates Mat', 'Pilates Reformer', 'Power Pilates']},
+      {'titles': ['Fitness Yoga', 'Fly Yoga', 'Hatha Yoga', 'Relax Yoga']},
+      {'titles': ['Full Body', 'Power Class', 'Stretching', 'Super Sculpt', 'TRX']},
+      {'titles': ['Dance Therapy', 'Flexibility', 'Foundation']}
     ];
 
 block content
@@ -75,7 +65,7 @@ block content
     .c-session__card
       each anchor, index in anchors
         if anchor.titles.includes(options.title)
-          h3.c-session__title: a(href=`/workout.pug#slide-${index}`)= options.title
+          h3.c-session__title: a(href=`/workout#section-id-${index}`)= options.title
       span.c-session__date=`${weekDays[options.day]},`
       span.c-session__coach= options.coach
       span.c-session__cta: a(href="#") Записаться
@@ -89,15 +79,18 @@ block content
     )&attributes(attributes)
       if options.merge === true
         +sessionCard({
+          day: options.day,
           title: options.title[0],
           coach: options.coach[0]
         })
         +sessionCard({
+          day: options.day,
           title: options.title[1],
           coach: options.coach[1]
         })
       else
         +sessionCard({
+          day: options.day,
           title: options.title,
           coach: options.coach
         })
