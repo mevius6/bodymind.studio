@@ -14,7 +14,7 @@
   }
 }
 
-// Резервный формат изображений для EI11 и Safari
+// Резервный формат изображений для IE11 и Safari
 @mixin images($assets) {
   @each $asset in $assets {
     $i: list.index($assets, $asset);
@@ -202,8 +202,8 @@ $assets-02: (
       }
     }
 
-    &[data-set='1'] { @include images($assets-01) }
-    &[data-set='2'] { @include images($assets-02) }
+    &[data-image-set='1'] { @include images($assets-01) }
+    &[data-image-set='2'] { @include images($assets-02) }
   }
 
   @media screen and (min-width: $tablet) {

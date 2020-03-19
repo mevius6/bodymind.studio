@@ -6,7 +6,7 @@ append head
     Modernizr.on('webp', function(result) {
       const items = [...document.querySelectorAll('.c-carousel__item')];
       items.forEach((item) => {
-        item.setAttribute("data-set", "1");
+        item.setAttribute("data-image-set", "1");
       });
     });
 
@@ -78,7 +78,7 @@ block content
           p.fs-bs
             | #{coach.occupation}
 
-          if coach.videoId != ''
+          if coach.videoId !== ''
             lite-vimeo(videoid=coach.videoId)
 
         .c-carousel__item-img
