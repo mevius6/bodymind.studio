@@ -49,6 +49,24 @@ block vars
       'Ноябрь',
       'Декабрь'
     ];
+  -
+    const anchors = [
+      {
+        'titles': ['Gyrotonic']
+      },
+      {
+        'titles': ['Pilates Mat', 'Power Pilates', 'Pilates Reformer', 'Men’s Pilates']
+      },
+      {
+        'titles': ['Fitness Yoga', 'Hatha Yoga', 'Fly Yoga', 'Relax Yoga']
+      },
+      {
+        'titles': ['Super Sculpt', 'Stretching', 'TRX', 'Power Class', 'Full Body']
+      },
+      {
+        'titles': ['Dance Therapy', 'Foundation', 'Flexibility']
+      }
+    ];
 
 block content
   include ./calendar
@@ -60,22 +78,28 @@ block content
     )&attributes(attributes)
       if options.merge == true
         .sub
-          h3.c-session__title: a(href=`/workout.pug#slide-${options.link[0]}`)= options.title[0]
-          span.c-session__date=`${weekDays[day]},`
+          each anchor, index in anchors
+            if anchor.titles.includes(options.title[0])
+              h3.c-session__title: a(href=`/workout.pug#slide-${index}`)= options.title[0]
+          span.c-session__date=`${weekDays[options.day]},`
           span.c-session__coach= options.coach[0]
           span.c-session__cta: a(href="#") Записаться
           if options.badge == 'kids'
             span.c-session__badge дети
         .sub
-          h3.c-session__title: a(href=`/workout.pug#slide-${options.link[1]}`)= options.title[1]
-          span.c-session__date=`${weekDays[day]},`
+          each anchor, index in anchors
+            if anchor.titles.includes(options.title[1])
+              h3.c-session__title: a(href=`/workout.pug#slide-${index}`)= options.title[1]
+          span.c-session__date=`${weekDays[options.day]},`
           span.c-session__coach= options.coach[1]
           span.c-session__cta: a(href="#") Записаться
           if options.badge == 'kids'
             span.c-session__badge дети
       else
-        h3.c-session__title: a(href=`/workout.pug#slide-${options.link}`)= options.title
-        span.c-session__date=`${weekDays[day]},`
+        each anchor, index in anchors
+          if anchor.titles.includes(options.title)
+            h3.c-session__title: a(href=`/workout.pug#slide-${index}`)= options.title
+        span.c-session__date=`${weekDays[options.day]},`
         span.c-session__coach= options.coach
         span.c-session__cta: a(href="#") Записаться
         if options.badge == 'kids'
@@ -93,7 +117,7 @@ block content
       - let endOfWeek = currentDate.getDate() - (currentDate.getDay() - 1) + 6;
       - let dayOfWeek = startOfWeek - 1 + i;
 
-      span.date-slot(aria-hidden="true" style=`grid-column: track-${i}; grid-row: tracks`)
+      span.date-slot(aria-hidden="true" style=`grid-column: track-${i}; grid-row: tracks;`)
         | #{weekDays[i]}, #{dayOfWeek}
 
     h2.time-slot(style="grid-row: time-0900")
@@ -101,14 +125,12 @@ block content
     +session({
       day: 2,
       time: '09',
-      link: '2',
       title: 'Hatha Yoga',
       coach: 'Елена Лютая'
     })
     +session({
       day: 5,
       time: '09',
-      link: '2',
       title: 'Hatha Yoga',
       coach: 'Елена Лютая'
     })
@@ -118,28 +140,24 @@ block content
     +session({
       day: 1,
       time: '10',
-      link: '3',
       title: 'Power Class',
       coach: 'Анна Сафронова'
     })
     +session({
       day: 2,
       time: '10',
-      link: '1',
       title: 'Pilates Mat',
       coach: 'Анна Сафронова'
     })
     +session({
       day: 4,
       time: '10',
-      link: '1',
       title: 'Pilates Mat',
       coach: 'Анна Сафронова'
     })
     +session({
       day: 5,
       time: '10',
-      link: '3',
       title: 'Power Class',
       coach: 'Анна Сафронова'
     })
@@ -149,21 +167,18 @@ block content
     +session({
       day: 2,
       time: '11',
-      link: '3',
       title: 'Full Body',
       coach: 'Анна Сафронова'
     })
     +session({
       day: 4,
       time: '11',
-      link: '3',
       title: 'Full Body',
       coach: 'Анна Сафронова'
     })
     +session({
       day: 6,
       time: '11',
-      link: ['4', '2'],
       title: ['Dance Therapy', 'Hatha Yoga'],
       coach: ['Анна Сафронова', 'Елена Лютая'],
       badge: 'kids',
@@ -175,7 +190,6 @@ block content
     +session({
       day: 6,
       time: '12',
-      link: '1',
       title: 'Power Pilates',
       coach: 'Анна Сафронова'
     })
@@ -185,7 +199,6 @@ block content
     +session({
       day: 6,
       time: '13',
-      link: ['2', '3'],
       title: ['Relax Yoga', 'Power Class'],
       coach: ['Ольга Лунгу', 'Анна Сафронова'],
       merge: true
@@ -203,7 +216,6 @@ block content
     +session({
       day: 1,
       time: '18',
-      link: '4',
       title: 'Dance Therapy',
       coach: 'Анна Сафронова',
       badge: 'kids'
@@ -211,14 +223,12 @@ block content
     +session({
       day: 2,
       time: '18',
-      link: '3',
       title: 'Super Sculpt',
       coach: 'Ольга Петухова'
     })
     +session({
       day: 3,
       time: '18',
-      link: ['4', '4'],
       title: ['Foundation', 'Flexibility'],
       coach: ['Анастасия Акулова', 'Анна Сафронова'],
       badge: 'kids',
@@ -227,14 +237,12 @@ block content
     +session({
       day: 4,
       time: '18',
-      link: '3',
       title: 'Super Sculpt',
       coach: 'Ольга Петухова'
     })
     +session({
       day: 5,
       time: '18',
-      link: '4',
       title: 'Foundation',
       coach: 'Анастасия Акулова',
       badge: 'kids'
@@ -245,14 +253,12 @@ block content
     +session({
       day: 1,
       time: '19',
-      link: '3',
       title: 'Power Class',
       coach: 'Анна Сафронова'
     })
     +session({
       day: 2,
       time: '19',
-      link: ['2', '1'],
       title: ['Fitness Yoga', 'Power Pilates'],
       coach: ['Ольга Лунгу', 'Татьяна Заднипрянец'],
       merge: true
@@ -260,7 +266,6 @@ block content
     +session({
       day: 3,
       time: '19',
-      link: ['3', '1'],
       title: ['Stretching', 'Pilates Mat'],
       coach: ['Анастасия Акулова', 'Анна Сафронова'],
       merge: true
@@ -268,7 +273,6 @@ block content
     +session({
       day: 4,
       time: '19',
-      link: ['2', '1'],
       title: ['Fitness Yoga', 'Power Pilates'],
       coach: ['Ольга Лунгу', 'Татьяна Заднипрянец'],
       merge: true
@@ -276,7 +280,6 @@ block content
     +session({
       day: 5,
       time: '19',
-      link: ['3', '1'],
       title: ['Stretching', 'Pilates Mat'],
       coach: ['Анастасия Акулова', 'Анна Сафронова'],
       merge: true
@@ -287,30 +290,26 @@ block content
     +session({
       day: 1,
       time: '20',
-      link: ['2', '1'],
-      title: ['Hatha Yoga', 'Men\'s Pilates'],
+      title: ['Hatha Yoga', 'Men’s Pilates'],
       coach: ['Елена Лютая', 'Анна Сафронова'],
       merge: true
     })
     +session({
       day: 2,
       time: '20',
-      link: '3',
       title: 'Stretching',
       coach: 'Ольга Лунгу'
     })
     +session({
       day: 3,
       time: '20',
-      link: ['2', '1'],
-      title: ['Hatha Yoga', 'Men\'s Pilates'],
+      title: ['Hatha Yoga', 'Men’s Pilates'],
       coach: ['Елена Лютая', 'Анна Сафронова'],
       merge: true
     })
     +session({
       day: 4,
       time: '20',
-      link: '3',
       title: 'Stretching',
       coach: 'Ольга Лунгу'
     })

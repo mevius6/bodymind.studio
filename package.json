@@ -37,7 +37,7 @@
     "> 1%",
     "last 2 versions",
     "Firefox ESR",
-    "not ie <= 8"
+    "not ie <= 10"
   ],
   "postcss": {
     "modules": false,
