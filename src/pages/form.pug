@@ -1,70 +1,75 @@
-form#contact-form.c-form(
+form.c-form#contact-form(
   accept-charset="UTF-8"
   action="https://app.form2chat.io/f/d4267741"
   method="POST"
   autocomplete="on"
   spellcheck="false"
 )
-  //- Имя
   label.c-form__field(for="name")
-    span.c-form__label-text Имя
-      span &ast;
-    input#name.c-form__control(
+    span.c-form__label-text
+      | Имя
+      | #[span &ast;]
+    input.c-form__control#name(
       role="text-box"
       type="text"
       name="name"
       placeholder="Ваше имя"
       aria-labelledby="name-label"
       aria-required="true"
-      minlength="2" maxlength="None"
+      minlength="2"
+      maxlength="None"
       required
       autofocus
       autocapitalize="off" spellcheck="false"
     )
     small#name-label Введите полное имя
 
-  //- Телефон
   label.c-form__field(for="phone")
-    span.c-form__label-text Телефон
-    input#phone.c-form__control(
+    span.c-form__label-text
+      | Телефон
+    input.c-form__control#phone(
       inputmode="tel"
       type="tel"
       name="phone"
       placeholder="+7 (816) 292-02-20"
-      minlength="11" maxlength="18"
+      minlength="11"
+      maxlength="18"
       aria-required="false"
     )
     small Введите номер телефона
 
-  //- Электронная почта
   label.c-form__field(for="email")
-    span.c-form__label-text Email
-      span &ast;
-    input#email.c-form__control(
+    span.c-form__label-text
+      | Email
+      | #[span &ast;]
+    input.c-form__control#email(
       inputmode="email"
       type="email"
       name="email"
       placeholder="admin@bodymind.studio"
       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-      autocapitalize="off" spellcheck="false"
+      autocapitalize="off"
+      spellcheck="false"
       aria-required="false"
     )
     small Введите адрес эл. почты
 
-  //- Комментарии
   label.c-form__field(for="message")
-    span.c-form__label-text Комментарии
+    span.c-form__label-text
+      | Комментарии
     textarea#message(
       role="text-box"
       name="comment"
       form="contact-form"
       placeholder="Сообщение…"
-      rows="2" cols="20" wrap="hard"
+      rows="2"
+      cols="20"
+      wrap="hard"
       aria-required="false"
     )
 
   .c-form__group
-    input#terms.c-form__checkbox(
+    input.c-form__checkbox#terms(
       type="checkbox"
       tabindex="0"
       aria-checked="true"
@@ -72,11 +77,12 @@ form#contact-form.c-form(
       aria-describedby="Пожалуйста, перед тем, как отправить, ознакомьтесь с политикой использования данных Body & Mind."
       onclick="document.getElementById('cta').disabled = !document.getElementById('cta').disabled;"
     )
-    label#label-terms.c-form__checkbox-label.fs-bs(for="terms")
+    label.c-form__checkbox-label.fs-bs#label-terms(for="terms")
       | Принять&nbsp;
-      a(href="/privacy.pug" target="_blank" rel="noopener") политику обработки персональных данных.
+      a(href="/privacy.pug" target="_blank" rel="noopener")
+        | политику обработки персональных данных.
 
-  button#cta.c-form__cta(type="submit" disabled) Отправить!
+  button.c-form__cta#cta(type="submit" disabled) Отправить!
     //- span.tooltip(role="tooltip")
     - for (let i = 0; i < 4; i++)
       span
