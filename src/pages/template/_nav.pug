@@ -1,11 +1,11 @@
 - let year = new Date().getFullYear()
 - let copy = `${data.meta.websiteName} © 2019—${year}`
 
+mixin navLink(path, title)
+  a.c-nav__link(rel="noopener" href=path)= title
+
 nav.c-nav(aria-label="primary")
   .c-nav__links
-    mixin navLink(path, title)
-      a.c-nav__link(rel="noopener" href=path)= title
-
     each page in data.pages
       if page.title
         +navLink(page.path[0], page.title)
