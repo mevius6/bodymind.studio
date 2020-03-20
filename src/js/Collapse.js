@@ -54,55 +54,44 @@ class Collapse {
     contents.style.height = null;
   }
 
-  // === Открытая панель
   open(panel) {
     panel.dispatchEvent(this.events.openingPanel);
-
     panel.open = true;
   }
 
-  // Добавьте высоту и активный класс — это вызывает анимацию открытия
   afterOpen(panel) {
     this.setPanelHeight(panel);
     panel.classList.add(this.settings.activeClass);
   }
 
-  // Убрать высоту в конце анимации, так как она больше не нужна
   endOpen(panel) {
     panel.dispatchEvent(this.events.openedPanel);
-
     this.removePanelHeight(panel);
   }
 
-  // === Закройте панель, не переключая фактическое [open] значение!
   close(panel) {
     panel.dispatchEvent(this.events.closingPanel);
     this.afterClose(panel);
   }
 
-  // Установите высоту, чуть подождите, а затем уберите высоту, чтобы запустить анимацию закрытия
   afterClose(panel) {
     this.setPanelHeight(panel);
 
     setTimeout(() => {
       panel.classList.remove(this.settings.activeClass);
       this.removePanelHeight(panel);
-    }, 100); // это глючит
+    }, 100);
   }
 
-  // На самом деле закрывает панель после завершения анимации
   endClose(panel) {
     panel.dispatchEvent(this.events.closedPanel);
-
     panel.open = false;
   }
 
-  // === Переключатель
   toggle(panel) {
     panel.open ? this.close(panel) : this.open(panel);
   }
 
-  // === Аккордеон закрывает все панели кроме текущей
   openSinglePanel(panel) {
     this.panels.forEach(element => {
       if (panel == element && !panel.open) {
@@ -113,13 +102,11 @@ class Collapse {
     });
   }
 
-  // Всё вместе
   attachEvents() {
     this.panels.forEach(panel => {
       let toggler = panel.querySelector("summary");
       let contents = panel.querySelector("summary + *");
 
-      // На открытой панели
       panel.addEventListener("toggle", e => {
         let isReadingHeight = panel.classList.contains(this.settings.heightClass);
 
@@ -129,7 +116,6 @@ class Collapse {
       });
 
       toggler.addEventListener("click", e => {
-        // Если аккордеон, остановить поведение по умолчанию
         if (this.settings.accordion) {
           this.openSinglePanel(panel);
           e.preventDefault();
@@ -141,19 +127,14 @@ class Collapse {
 
       let propToWatch = '';
 
-      // На панели заканчиваем анимацию открытия / закрытия
       contents.addEventListener("transitionend", e => {
-        // Игнорируем переходы от дочерних элементов
         if (e.target !== contents) {
           return;
         }
-
-        // Установить свойство для просмотра при первом запуске
         if (!propToWatch) propToWatch = e.propertyName;
-
-        // Если наблюдаемое свойство соответствует текущему анимирующему свойству
         if (e.propertyName == propToWatch) {
           let wasOpened = panel.classList.contains(this.settings.activeClass);
+
           wasOpened ? this.endOpen(panel) : this.endClose(panel);
         }
       });
@@ -161,15 +142,12 @@ class Collapse {
   }
 
   init() {
-    // Функциональность
     this.attachEvents();
 
-    // Если аккордеон, открой первую панель
     if (this.settings.accordion) {
       this.openSinglePanel(this.panels[0]);
     }
 
-    // Стилизация
     this.container.classList.add(this.settings.initClass);
 
     return this;
