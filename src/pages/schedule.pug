@@ -4,12 +4,15 @@ block vars
   -
     let page = data.pages.schedule;
   -
-    //- Метаданные календаря
-    const startingYear = new Date().getFullYear();
-    const endingYear   = new Date().getFullYear();
+    const now = new Date()
+          currentDate  = now.getDate()
+          currentDay   = now.getDay()
+          currentMonth = now.getMonth()
+          currentYear  = now.getFullYear();
+    const startingYear = currentYear;
+    const endingYear   = 2020;
     const monthsCount  = 12;
     const daysInWeek   = 7;
-    const currentDate  = new Date();
 
     const idPrefix = 'cal_';
     const calName  = 'calendar';
@@ -127,7 +130,7 @@ block content
           coach: options.coach
         })
 
-  h2.fs-h3.current=`${monthsLabel[currentDate.getMonth()]} ${year} г.`
+  h2.fs-h3.current=`${monthsLabel[currentMonth]} ${currentYear} г.`
 
   #schedule-heading.visually-hidden
     | Расписание групповых занятий
@@ -135,8 +138,8 @@ block content
 
     //- Актуальные даты
     - for (let i = 1; i < daysInWeek; i++)
-      - let startOfWeek = currentDate.getDate() - currentDate.getDay() + (currentDate.getDay() === 0 ? -6 : 1);
-      - let endOfWeek = currentDate.getDate() - (currentDate.getDay() - 1) + 6;
+      - let startOfWeek = currentDate - currentDay + (currentDay === 0 ? -6 : 1);
+      - let endOfWeek = currentDate - (currentDay - 1) + 6;
       - let dayOfWeek = startOfWeek - 1 + i;
 
       span.date-slot(aria-hidden="true" style=`grid-column: track-${i}; grid-row: tracks;`)

@@ -101,7 +101,7 @@ $cal-body-min-height: $cal-day-height + ($cal-date-height * 6);
     display: none;
     margin-block-end: rem(32);
 
-    .cal-head {
+    &__head {
       display: flex;
       width: 100%;
       height: $cal-head-height;
@@ -167,7 +167,7 @@ $cal-body-min-height: $cal-day-height + ($cal-date-height * 6);
     }
 
     // Макет календарной сетки
-    .cal-body {
+    &__body {
       display: grid;
       grid-template-columns: repeat(#{$days-in-week}, 1fr);
       align-content: start;
