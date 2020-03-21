@@ -1,14 +1,15 @@
 -
-  let canonicalURL = (page.title != '') ? data.meta.domain + page.path[1] : data.meta.domain;
-  let promoImage = `${data.meta.domain}/static/ogp_${((page.title == '') ? 'common' : page.id)}.jpeg`;
-  let titleMerge = (page.title != '') ? `${page.title} │ ${data.meta.websiteName}` : data.meta.websiteName;
+  let canonicalURL = (page.title[0] != '') ? data.meta.domain + page.path[1] : data.meta.domain;
+  let promoImage = `${data.meta.domain}/static/ogp_${((page.title[0] == '') ? 'common' : page.id)}.jpeg`;
+  let titleMerge = (page.title[0] != '') ? `${page.title[0]} │ ${data.meta.websiteName}` : data.meta.websiteName;
   let keywordsMerge = (page.keywords != '') ? `${page.keywords}, ${data.meta.keywords}` : data.meta.keywords;
   let themeColor = '#f4f4f4';
+  let titleSEO = (page.title[1] != '') ? page.title[1] : `${page.title[0]} │ ${data.meta.websiteName}`;
 
 meta(charset="utf-8")
 meta(http-equiv="X-UA-Compatible", content="IE=edge")
 meta(name="viewport" content="width=device-width, initial-scale=1.0")
-title #{titleMerge}
+title #{titleSEO}
 
 meta(name="description", content=page.description)
 meta(name="keywords", content=keywordsMerge)

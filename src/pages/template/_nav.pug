@@ -8,7 +8,7 @@ nav.c-nav(aria-label="primary")
   .c-nav__links
     each page in data.pages
       if page.id !== 'index'
-        +navLink(page.path[0], page.title)
+        +navLink(page.path[0], page.title[0])
       else
         +navLink(page.path, copy)
 
