@@ -7,7 +7,7 @@ mixin navLink(path, title)
 nav.c-nav(aria-label="primary")
   .c-nav__links
     each page in data.pages
-      if page.title
+      if page.id !== 'index'
         +navLink(page.path[0], page.title)
       else
         +navLink(page.path, copy)

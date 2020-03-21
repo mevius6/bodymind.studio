@@ -51,8 +51,8 @@
   "staticFiles": {
     "staticPath": [
       {
-        "staticPath": "src/img/common/",
-        "staticOutDir": "/common/"
+        "staticPath": "src/static/",
+        "staticOutDir": "/static/"
       }
     ]
   }

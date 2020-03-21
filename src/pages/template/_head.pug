@@ -1,6 +1,6 @@
 -
   let canonicalURL = (page.title != '') ? data.meta.domain + page.path[1] : data.meta.domain;
-  let promoImage = `${data.meta.domain}/common/ogp_${((page.title == '') ? 'common' : page.id)}.jpeg`;
+  let promoImage = `${data.meta.domain}/static/ogp_${((page.title == '') ? 'common' : page.id)}.jpeg`;
   let titleMerge = (page.title != '') ? `${page.title} │ ${data.meta.websiteName}` : data.meta.websiteName;
   let keywordsMerge = (page.keywords != '') ? `${page.keywords}, ${data.meta.keywords}` : data.meta.keywords;
   let themeColor = '#f4f4f4';

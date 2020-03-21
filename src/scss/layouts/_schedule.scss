@@ -9,18 +9,18 @@
     --day-5: track-5-start;
     --day-6: track-6-start;
     // Время
-    --of-09: time-0900 / time-1000;
-    --of-10: time-1000 / time-1100;
-    --of-11: time-1100 / time-1200;
-    --of-12: time-1200 / time-1300;
-    --of-13: time-1300 / time-1400;
-    // --of-14: time-1400 / time-1500;
-    // --of-15: time-1500 / time-1600;
-    // --of-16: time-1600 / time-1700;
-    // --of-17: time-1700 / time-1800;
-    --of-18: time-1800 / time-1900;
-    --of-19: time-1900 / time-2000;
-    --of-20: time-2000 / time-2100;
+    --of-09: time-09 / time-10;
+    --of-10: time-10 / time-11;
+    --of-11: time-11 / time-12;
+    --of-12: time-12 / time-13;
+    --of-13: time-13 / time-14;
+    // --of-14: time-14 / time-15;
+    // --of-15: time-15 / time-16;
+    // --of-16: time-16 / time-17;
+    // --of-17: time-17 / time-18;
+    --of-18: time-18 / time-19;
+    --of-19: time-19 / time-20;
+    --of-20: time-20 / time-21;
 
     --spacing: #{rem(16)}; // 1.5vmin
     max-width: var(--laptop);
@@ -28,18 +28,18 @@
     display: grid;
     grid-template-rows:
       [tracks] auto
-      [time-0900] 1fr
-      [time-1000] 1fr
-      [time-1100] auto
-      [time-1200] 1fr
-      [time-1300] auto
-      [time-1400] 1fr
-      // [time-1500] 1fr
-      // [time-1600] 1fr
-      // [time-1700] 1fr
-      [time-1800] auto
-      [time-1900] auto
-      [time-2000] auto;
+      [time-09] 1fr
+      [time-10] 1fr
+      [time-11] auto
+      [time-12] 1fr
+      [time-13] auto
+      [time-14] 1fr
+      // [time-15] 1fr
+      // [time-16] 1fr
+      // [time-17] 1fr
+      [time-18] auto
+      [time-19] auto
+      [time-20] auto;
     grid-template-columns:
       [times] 4em
       [track-1-start] 1fr
