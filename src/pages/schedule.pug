@@ -1,5 +1,11 @@
 extends ./template/_page
 
+append head
+  style#cssFilter.
+    .session__card {
+      display: block
+    }
+
 block vars
   -
     let page = data.pages.schedule;
@@ -147,7 +153,6 @@ block content
   h1.visually-hidden#schedule-heading
     | Расписание групповых занятий
   .o-schedule(aria-labelledby="schedule-heading")
-    style#cssFilter
 
     //- Актуальные даты
     - for (let i = 1; i < daysInWeek; i++)
