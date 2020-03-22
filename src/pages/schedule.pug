@@ -1,10 +1,11 @@
 extends ./template/_page
 
-//- append head
-  style#cssFilter.
-    .session__card {
-      display: block;
-    }
+append head
+  //-
+    style#cssFilter.
+      .session__card {
+        display: block;
+      }
 
 block vars
   -
@@ -100,15 +101,10 @@ block vars
     ];
 
 block content
-  style#cssFilter.
-    .session__card {
-      display: block;
-    }
-
   include ./calendar
 
   mixin sessionCard(options)
-    .c-session__card(data-date)
+    .c-session__card
       each anchor, index in anchors
         if anchor.titles.includes(options.title)
           h3.c-session__title: a(href=`/workout#section-id-${index}`)= options.title
@@ -129,6 +125,7 @@ block content
     .c-session(
       class={'c-session--merged': options.merge === true}
       style=`--date: var(--day-${options.day}); --time: var(--of-${options.time});`
+      data-date
     )
       if options.merge === true
         +sessionCard({

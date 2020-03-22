@@ -22,32 +22,32 @@ Modernizr.on('webp', function(result) {
     {
       image: (result) ? image1_mod : image1,
       title: "Студия",
-      cta: "../about.html"
+      cta: "/about"
     },
     {
       image: (result) ? image2_mod : image2,
       title: "Направления",
-      cta: "../workout.html"
+      cta: "/workout"
     },
     {
       image: (result) ? image3_mod : image3,
       title: "Расписание",
-      cta: "../schedule.html"
+      cta: "/schedule"
     },
     {
       image: (result) ? image4_mod : image4,
       title: "Инструкторы",
-      cta: "../coaches.html"
+      cta: "/coaches"
     },
     {
       image: (result) ? image5_mod : image5,
       title: "Стоимость",
-      cta: "../pricing.html"
+      cta: "/pricing"
     },
     {
       image: (result) ? image6_mod : image6,
       title: "Контакты",
-      cta: "../contact.html"
+      cta: "/contact"
     }
   ];
 

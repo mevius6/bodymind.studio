@@ -9,7 +9,7 @@
   "scripts": {
     "start": "parcel src/pages/index.pug --open -d public",
     "build": "npm run clean && parcel build src/pages/index.pug -d public --no-cache --no-source-maps",
-    "clean": "rm -rf public"
+    "clean": "rm -rf public && rm -rf .cache"
   },
   "repository": {
     "type": "git",
@@ -43,7 +43,7 @@
     "modules": false,
     "plugins": {
       "autoprefixer": {
-        "grid": "autoplace",
+        "grid": true,
         "flexbox": "no-2009"
       }
     }
