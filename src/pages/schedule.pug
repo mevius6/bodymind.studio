@@ -1,6 +1,6 @@
 extends ./template/_page
 
-prepend head
+//- append head
   style#cssFilter.
     .session__card {
       display: block;
@@ -100,6 +100,11 @@ block vars
     ];
 
 block content
+  style#cssFilter.
+    .session__card {
+      display: block;
+    }
+
   include ./calendar
 
   mixin sessionCard(options)

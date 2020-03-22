@@ -6,17 +6,17 @@ for (const card of cards) {
   card.dataset.date = output.textContent;
 }
 
-const filters = document.querySelectorAll('.cal-date input');
+const inputs = document.querySelectorAll('.cal-date input');
 
-for (const filter of filters) {
-  filter.addEventListener('change', e => {
+for (const input of inputs) {
+  input.addEventListener('change', e => {
     if (e.target.checked) {
-      let date = e.target.value.slice(7, 9);
-      let css = date ? `
+      let filter = e.target.value.slice(7, 9);
+      let css = filter ? `
         .c-session__card {
           display: none;
         }
-        .c-session__card[data-date*="${date}"] {
+        .c-session__card[data-date*="${filter}"] {
           display: block;
         }
       ` : ``;
