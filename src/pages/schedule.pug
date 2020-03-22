@@ -148,12 +148,11 @@ block content
       | #{time}:00
     block
 
+  h1#schedule-heading
+    | Расписание групповых занятий
   h2.fs-h3.current=`${monthsLabel[currentMonth]} ${currentYear} г.`
 
-  h1.visually-hidden#schedule-heading
-    | Расписание групповых занятий
   .o-schedule(aria-labelledby="schedule-heading")
-
     //- Актуальные даты
     - for (let i = 1; i < daysInWeek; i++)
       - let start = currentDate - currentDay + i

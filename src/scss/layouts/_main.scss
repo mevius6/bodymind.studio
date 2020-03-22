@@ -1,4 +1,10 @@
 .o-main {
+  &[data-id*="schedule"] {
+    > h1 {
+      @include visually-hidden;
+    }
+  }
+
   &[data-id*="about"] {
     > section {
       width: 100%;
