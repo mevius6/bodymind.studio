@@ -1,18 +1,18 @@
 import { Showcase } from "./Showcase";
 import { Slides } from "./Slides";
 import { Cursor } from "./Cursor";
-import image1 from '../img/1.jpg';
-import image2 from '../img/2.jpg';
-import image3 from '../img/3.jpg';
-import image4 from '../img/4.jpg';
-import image5 from '../img/5.jpg';
-import image6 from '../img/6.jpg';
-import image1_mod from '../img/1.webp';
-import image2_mod from '../img/2.webp';
-import image3_mod from '../img/3.webp';
-import image4_mod from '../img/4.webp';
-import image5_mod from '../img/5.webp';
-import image6_mod from '../img/6.webp';
+import image1 from 'url:../img/1.jpg';
+import image2 from 'url:../img/2.jpg';
+import image3 from 'url:../img/3.jpg';
+import image4 from 'url:../img/4.jpg';
+import image5 from 'url:../img/5.jpg';
+import image6 from 'url:../img/6.jpg';
+import image1_mod from 'url:../img/1.webp';
+import image2_mod from 'url:../img/2.webp';
+import image3_mod from 'url:../img/3.webp';
+import image4_mod from 'url:../img/4.webp';
+import image5_mod from 'url:../img/5.webp';
+import image6_mod from 'url:../img/6.webp';
 
 const container = document.getElementById('app');
 const cursor = new Cursor(document.querySelector('.cursor'));
@@ -22,32 +22,32 @@ Modernizr.on('webp', function(result) {
     {
       image: (result) ? image1_mod : image1,
       title: "Студия",
-      cta: "../about.html"
+      cta: "/about"
     },
     {
       image: (result) ? image2_mod : image2,
       title: "Направления",
-      cta: "../workout.html"
+      cta: "/workout"
     },
     {
       image: (result) ? image3_mod : image3,
       title: "Расписание",
-      cta: "../schedule.html"
+      cta: "/schedule"
     },
     {
       image: (result) ? image4_mod : image4,
       title: "Инструкторы",
-      cta: "../coaches.html"
+      cta: "/coaches"
     },
     {
       image: (result) ? image5_mod : image5,
       title: "Стоимость",
-      cta: "../pricing.html"
+      cta: "/pricing"
     },
     {
       image: (result) ? image6_mod : image6,
       title: "Контакты",
-      cta: "../contact.html"
+      cta: "/contact"
     }
   ];
 
