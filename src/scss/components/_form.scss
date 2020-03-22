@@ -38,22 +38,9 @@
         border-color: var(--gray-20);
       }
 
-      // Chrome, Firefox, Opera, Safari 10.1+
       &::placeholder {
         color: var(--gray-70);
-        opacity: 1; // Firefox
-      }
-      // Microsoft Edge
-      &::-ms-input-placeholder {
-        color: var(--gray-70);
-      }
-      // IE 10-11
-      &:-ms-input-placeholder {
-        color: var(--gray-70);
-      }
-      // Firefox 18-
-      &:-moz-placeholder {
-        color: var(--gray-70);
+        opacity: 1;
       }
     }
 
