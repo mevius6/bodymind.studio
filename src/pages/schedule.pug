@@ -115,25 +115,25 @@ block content
 
     .c-session(
       class={'c-session--merged': options.merge === true}
-      style=`--date: var(--day-${options.day}); --time: var(--of-${options.timeStart});`
+      style=`--date: var(--day-${options.day}); --time: var(--of-${options.time[0]});`
     )&attributes(attrs)
       if options.merge === true
         +sessionCard({
           day: options.day,
-          time: `${options.timeStart}:00—${options.timeEnd}:00`,
+          time: `${options.time[0]}:00—${options.time[1]}:00`,
           title: options.title[0],
           coach: options.coach[0]
         })
         +sessionCard({
           day: options.day,
-          time: `${options.timeStart}:00—${options.timeEnd}:00`,
+          time: `${options.time[0]}:00—${options.time[1]}:00`,
           title: options.title[1],
           coach: options.coach[1]
         })
       else
         +sessionCard({
           day: options.day,
-          time: `${options.timeStart}:00—${options.timeEnd}:00`,
+          time: `${options.time[0]}:00—${options.time[1]}:00`,
           title: options.title,
           coach: options.coach
         })
@@ -162,15 +162,13 @@ block content
     +timeSlot('09')
       +session({
         day: 2,
-        timeStart: '09',
-        timeEnd: '10',
+        time: ['09', '10'],
         title: 'Hatha Yoga',
         coach: 'Елена Лютая'
       })
       +session({
         day: 5,
-        timeStart: '09',
-        timeEnd: '10',
+        time: ['09', '10'],
         title: 'Hatha Yoga',
         coach: 'Елена Лютая'
       })
@@ -178,29 +176,25 @@ block content
     +timeSlot('10')
       +session({
         day: 1,
-        timeStart: '10',
-        timeEnd: '11',
+        time: ['10', '11'],
         title: 'Power Class',
         coach: 'Анна Сафронова'
       })
       +session({
         day: 2,
-        timeStart: '10',
-        timeEnd: '11',
+        time: ['10', '11'],
         title: 'Pilates Mat',
         coach: 'Анна Сафронова'
       })
       +session({
         day: 4,
-        timeStart: '10',
-        timeEnd: '11',
+        time: ['10', '11'],
         title: 'Pilates Mat',
         coach: 'Анна Сафронова'
       })
       +session({
         day: 5,
-        timeStart: '10',
-        timeEnd: '11',
+        time: ['10', '11'],
         title: 'Power Class',
         coach: 'Анна Сафронова'
       })
@@ -208,22 +202,19 @@ block content
     +timeSlot('11')
       +session({
         day: 2,
-        timeStart: '11',
-        timeEnd: '12',
+        time: ['11', '12'],
         title: 'Full Body',
         coach: 'Анна Сафронова'
       })
       +session({
         day: 4,
-        timeStart: '11',
-        timeEnd: '12',
+        time: ['11', '12'],
         title: 'Full Body',
         coach: 'Анна Сафронова'
       })
       +session({
         day: 6,
-        timeStart: '11',
-        timeEnd: '12',
+        time: ['11', '12'],
         title: ['Dance Therapy', 'Hatha Yoga'],
         coach: ['Анна Сафронова', 'Елена Лютая'],
         merge: true
@@ -232,8 +223,7 @@ block content
     +timeSlot('12')
       +session({
         day: 6,
-        timeStart: '12',
-        timeEnd: '13',
+        time: ['12', '13'],
         title: 'Power Pilates',
         coach: 'Анна Сафронова'
       })
@@ -241,8 +231,7 @@ block content
     +timeSlot('13')
       +session({
         day: 6,
-        timeStart: '13',
-        timeEnd: '14',
+        time: ['13', '14'],
         title: ['Relax Yoga', 'Power Class'],
         coach: ['Ольга Лунгу', 'Анна Сафронова'],
         merge: true
@@ -257,37 +246,32 @@ block content
     +timeSlot('18')
       +session({
         day: 1,
-        timeStart: '18',
-        timeEnd: '19',
+        time: ['18', '19'],
         title: 'Dance Therapy',
         coach: 'Анна Сафронова',
       })
       +session({
         day: 2,
-        timeStart: '18',
-        timeEnd: '19',
+        time: ['18', '19'],
         title: 'Super Sculpt',
         coach: 'Ольга Петухова'
       })
       +session({
         day: 3,
-        timeStart: '18',
-        timeEnd: '19',
+        time: ['18', '19'],
         title: ['Foundation', 'Flexibility'],
         coach: ['Анастасия Акулова', 'Анна Сафронова'],
         merge: true
       })
       +session({
         day: 4,
-        timeStart: '18',
-        timeEnd: '19',
+        time: ['18', '19'],
         title: 'Super Sculpt',
         coach: 'Ольга Петухова'
       })
       +session({
         day: 5,
-        timeStart: '18',
-        timeEnd: '19',
+        time: ['18', '19'],
         title: 'Foundation',
         coach: 'Анастасия Акулова',
       })
@@ -295,39 +279,34 @@ block content
     +timeSlot('19')
       +session({
         day: 1,
-        timeStart: '19',
-        timeEnd: '20',
+        time: ['19', '20'],
         title: 'Power Class',
         coach: 'Анна Сафронова'
       })
       +session({
         day: 2,
-        timeStart: '19',
-        timeEnd: '20',
+        time: ['19', '20'],
         title: ['Fitness Yoga', 'Power Pilates'],
         coach: ['Ольга Лунгу', 'Татьяна Заднипрянец'],
         merge: true
       })
       +session({
         day: 3,
-        timeStart: '19',
-        timeEnd: '20',
+        time: ['19', '20'],
         title: ['Stretching', 'Pilates Mat'],
         coach: ['Анастасия Акулова', 'Анна Сафронова'],
         merge: true
       })
       +session({
         day: 4,
-        timeStart: '19',
-        timeEnd: '20',
+        time: ['19', '20'],
         title: ['Fitness Yoga', 'Power Pilates'],
         coach: ['Ольга Лунгу', 'Татьяна Заднипрянец'],
         merge: true
       })
       +session({
         day: 5,
-        timeStart: '19',
-        timeEnd: '20',
+        time: ['19', '20'],
         title: ['Stretching', 'Pilates Mat'],
         coach: ['Анастасия Акулова', 'Анна Сафронова'],
         merge: true
@@ -336,31 +315,27 @@ block content
     +timeSlot('20')
       +session({
         day: 1,
-        timeStart: '20',
-        timeEnd: '21',
+        time: ['20', '21'],
         title: ['Hatha Yoga', 'Men’s Pilates'],
         coach: ['Елена Лютая', 'Анна Сафронова'],
         merge: true
       })
       +session({
         day: 2,
-        timeStart: '20',
-        timeEnd: '21',
+        time: ['20', '21'],
         title: 'Stretching',
         coach: 'Ольга Лунгу'
       })
       +session({
         day: 3,
-        timeStart: '20',
-        timeEnd: '21',
+        time: ['20', '21'],
         title: ['Hatha Yoga', 'Men’s Pilates'],
         coach: ['Елена Лютая', 'Анна Сафронова'],
         merge: true
       })
       +session({
         day: 4,
-        timeStart: '20',
-        timeEnd: '21',
+        time: ['20', '21'],
         title: 'Stretching',
         coach: 'Ольга Лунгу'
       })
