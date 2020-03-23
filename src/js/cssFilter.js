@@ -11,7 +11,7 @@ const style = document.createElement('style');
 style.setAttribute('id', 'cssFilter');
 document.head.appendChild(style);
 
-const inputs = document.querySelectorAll('.cal-date input');
+const inputs = document.querySelectorAll('input[name="calendar_date"]');
 
 for (const input of inputs) {
   input.addEventListener('change', e => {

@@ -42,48 +42,50 @@ $cal-body-min-height: $cal-day-height + ($cal-date-height * 6);
     min-height: $cal-body-min-height;
     text-align: center;
     @include fvar($exa, $regular);
+  }
 
-    // Дни
-    .cal-day {
-      height: $cal-day-height;
-      background-color: $cal-day-background-color;
-      line-height: $cal-day-height;
+  // Дни
+  &__day {
+    height: $cal-day-height;
+    background-color: $cal-day-background-color;
+    line-height: $cal-day-height;
 
-      &:nth-child(1) {
-        border-top-left-radius: rem(6);
-      }
-      &:nth-child(7) {
-        border-top-right-radius: rem(6);
+    &:nth-child(1) {
+      border-top-left-radius: rem(6);
+    }
+
+    &:nth-child(7) {
+      border-top-right-radius: rem(6);
+    }
+  }
+
+  // Даты
+  &__date {
+    height: $cal-date-height;
+    line-height: $cal-date-height;
+
+    input[type="radio"] {
+      display: none;
+
+      &:checked + span {
+        color: $cal-date-span-active-color;
+        background-color: $cal-date-span-active-background-color;
       }
     }
 
-    // Даты
-    .cal-date {
-      height: $cal-date-height;
-      line-height: $cal-date-height;
+    label,
+    label span {
+      display: block;
+      border-radius: rem(4); // 50%
+      text-align: center;
+      @extend %tabular-nums;
+    }
 
-      input[type="radio"] {
-        display: none;
+    label span {
+      transition: $cal-date-span-transition;
 
-        &:checked + span {
-          color: $cal-date-span-active-color;
-          background-color: $cal-date-span-active-background-color;
-        }
-      }
-
-      label,
-      label span {
-        display: block;
-        border-radius: rem(4); // 50%
-        text-align: center;
-        @extend %tabular-nums;
-      }
-
-      label span {
-        transition: $cal-date-span-transition;
-        &:hover {
-          background-color: $cal-date-span-hover-background-color;
-        }
+      &:hover {
+        background-color: $cal-date-span-hover-background-color;
       }
     }
   }

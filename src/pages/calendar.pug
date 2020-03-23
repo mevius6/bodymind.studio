@@ -7,14 +7,14 @@
 
     //- Дни недели, 0 соответствует Воскресенью
     - for (let day = 0; day < daysInWeek; day++)
-      .cal-day #{daysLabelAbbr[day]}
+      .c-calendar__day #{daysLabelAbbr[day]}
 
     //- Дополнительные пробелы до первой даты
     - for (let date = 0; date < firstDate.getDay(); date++)
-      .cal-date
+      .c-calendar__date
     //- Фактическая дата
     - for (let date = 1; date <= lastDate.getDate(); date++)
-      .cal-date
+      .c-calendar__date
         - let attrs = {checked: currentDate == date}
         label
           input(
@@ -25,4 +25,4 @@
           span #{date}
     //- Дополнительные пробелы после последней даты
     - for (let date = lastDate.getDay() + 1; date < daysInWeek; date++)
-      .cal-date
+      .c-calendar__date
