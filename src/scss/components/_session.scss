@@ -56,6 +56,7 @@
   }
 
   &__date,
+  &__time,
   &__coach {
     @include fvar($exa, $regular)
   }
@@ -102,7 +103,8 @@
   @media screen and (min-width: $tablet) {
     .c-session {
       margin: 0;
-      &__date { display: none; }
+      &__date,
+      &__time { display: none; }
     }
   }
 }

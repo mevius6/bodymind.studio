@@ -1,10 +1,4 @@
 .o-main {
-  &[data-id*="schedule"] {
-    > h1 {
-      @include visually-hidden;
-    }
-  }
-
   &[data-id*="about"] {
     > section {
       width: 100%;
@@ -44,7 +38,15 @@
   }
 
   &[data-id*="schedule"] {
-    .current { display: none; }
+    .current {
+      margin-inline-start: auto;
+      margin-inline-end: auto;
+      max-width: rem(280);
+    }
+
+    > h1 {
+      @include visually-hidden;
+    }
   }
 }
 

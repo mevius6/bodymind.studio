@@ -18,15 +18,10 @@ for (const input of inputs) {
     if (e.target.checked) {
       let filter = e.target.value.slice(7, 9);
       let css = filter ? `
-        .c-session {
-          display: none;
-        }
-        .c-session[data-date*="${filter}"] {
-          display: block;
-        }
-        .c-session__card:first-child {
-          margin-bottom: 1rem;
-        }
+        .time-slot { display: none; }
+        .c-session { display: none; }
+        .c-session[data-date$="${filter}"] { display: grid; }
+        .c-session__card:first-child { row-gap: 1rem; }
       ` : ``;
       window.cssFilter.innerHTML = css;
     }
