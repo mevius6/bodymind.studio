@@ -52,7 +52,7 @@
     "staticPath": [
       {
         "staticPath": "src/static/",
-        "staticOutDir": "/static/"
+        "staticOutDir": "/"
       }
     ]
   }
