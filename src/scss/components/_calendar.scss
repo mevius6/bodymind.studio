@@ -1,8 +1,6 @@
 $months-count: 12;
 $days-in-week: 7;
 
-$cell-size: 100%;
-
 $hover-background-color: var(--gray-20);
 
 $primary-color: var(--white);
@@ -20,7 +18,7 @@ $cal-date-height: 40px;
 $cal-date-span-hover-background-color: $hover-background-color;
 $cal-date-span-active-color: $primary-color;
 $cal-date-span-active-background-color: $primary-background-color;
-$cal-date-span-transition: background-color ease-out 150ms, color ease-out 150ms;
+$cal-date-span-transition: background-color var(--timing) 150ms, color var(--timing) 150ms;
 
 $cal-body-min-height: $cal-day-height + ($cal-date-height * 6);
 

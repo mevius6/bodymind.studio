@@ -4,15 +4,13 @@ block vars
   -
     let page = data.pages.schedule;
   -
-    const curr = new Date(),
-          currentDate  = curr.getDate(),
-          currentDay   = curr.getDay(),
-          currentMonth = curr.getMonth(),
-          currentYear  = curr.getFullYear();
-    const startingYear = currentYear;
-    const endingYear   = 2020;
-    const monthsCount  = 12;
-    const daysInWeek   = 7;
+    const curr = new Date()
+          currentDate  = curr.getDate()
+          currentDay   = curr.getDay()
+          currentMonth = curr.getMonth()
+          currentYear  = curr.getFullYear()
+    const monthsCount  = 12
+    const daysInWeek   = 7
   -
     const daysLabel = [
       'Воскресенье',
@@ -22,7 +20,7 @@ block vars
       'Четверг',
       'Пятница',
       'Суббота'
-    ];
+    ]
   -
     const daysLabelAbbr = [
       'ВС',
@@ -32,7 +30,7 @@ block vars
       'ЧТ',
       'ПТ',
       'СБ'
-    ];
+    ]
   -
     const monthsLabel = [
       'Январь',
@@ -47,7 +45,7 @@ block vars
       'Октябрь',
       'Ноябрь',
       'Декабрь'
-    ];
+    ]
   -
     const anchors = [
       {
@@ -87,7 +85,7 @@ block vars
           'Foundation'
         ]
       }
-    ];
+    ]
 
 block content
 
@@ -104,34 +102,30 @@ block content
         span.c-session__badge дети
 
   mixin session(options)
-    -
-      let attrs = {
-        'data-date': '',
-        'data-time': `${options.time[0]}:00—${options.time[1]}:00`
-      }
-
     .c-session(
       class={'c-session--merged': options.merge === true}
       style=`--date: var(--day-${options.day}); --time: var(--of-${options.time[0]});`
-    )&attributes(attrs)
-      each i in Array.from(Array(daysInWeek).keys())
+      data-date=""
+      data-time=`${options.time[0]}:00—${options.time[1]}:00`
+    )
+      - for (let i = 1; i < daysInWeek; i++)
         -
-          let start = currentDate - currentDay + i,
-              date  = new Date(curr.setDate(start)),
-              day   = date.getDay();
+          let start = currentDate - currentDay + i
+              setDate = new Date(curr.setDate(start))
+              getDate = curr.getDate()
 
-        if options.day === day
+        if options.day === curr.getDay()
           if options.merge === true
             each i in Array.from(Array(2).keys())
               +sessionCard({
-                date: `${daysLabel[options.day]}, ${curr.getDate(date)}`,
+                date: `${daysLabel[options.day]}, ${getDate}`,
                 time: `${options.time[0]}:00—${options.time[1]}:00`,
                 title: options.title[i],
                 coach: options.coach[i]
               })
           else
             +sessionCard({
-              date: `${daysLabel[options.day]}, ${curr.getDate(date)}`,
+              date: `${daysLabel[options.day]}, ${getDate}`,
               time: `${options.time[0]}:00—${options.time[1]}:00`,
               title: options.title,
               coach: options.coach
@@ -151,12 +145,12 @@ block content
   .o-schedule(aria-labelledby="schedule-heading")
     - for (let i = 1; i < daysInWeek; i++)
       -
-        let start = currentDate - currentDay + i,
-            date  = new Date(curr.setDate(start)),
-            day   = curr.getDate(date);
+        let start = currentDate - currentDay + i
+            setDate = new Date(curr.setDate(start))
+            getDate = curr.getDate()
 
       span.date-slot(aria-hidden="true" style=`grid-column: track-${i}; grid-row: tracks;`)
-        | #{daysLabel[i]}, #{day}
+        | #{daysLabel[i]}, #{getDate}
 
     +timeSlot('09')
       +session({

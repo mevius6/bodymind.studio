@@ -1,9 +1,9 @@
 const sessions = document.querySelectorAll('.c-session');
 
 for (const session of sessions) {
-  let output = session.querySelector('span.c-session__date');
+  let span = session.querySelector('.c-session__date');
 
-  session.dataset.date = output.textContent;
+  session.dataset.date = span.textContent;
 }
 
 const style = document.createElement('style');
@@ -11,7 +11,7 @@ const style = document.createElement('style');
 style.setAttribute('id', 'cssFilter');
 document.head.appendChild(style);
 
-const inputs = document.querySelectorAll('input[name="calendar_date"]');
+const inputs = document.querySelectorAll('[name="calendar_date"]');
 
 for (const input of inputs) {
   input.addEventListener('change', e => {
