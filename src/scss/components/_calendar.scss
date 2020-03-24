@@ -84,7 +84,7 @@ $cal-body-min-height: $cal-day-height + ($cal-date-height * 6);
     label span {
       transition: $cal-date-span-transition;
 
-      &:hover {
+      @include hover {
         background-color: $cal-date-span-hover-background-color;
       }
     }

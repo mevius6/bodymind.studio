@@ -145,3 +145,11 @@
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
