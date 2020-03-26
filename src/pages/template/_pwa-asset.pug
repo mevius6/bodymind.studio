@@ -1,4 +1,13 @@
 - let assetPrefix = '../img/pwa-asset';
+- let themeColor  = '#f4f4f4';
+
+meta(name="theme-color", content=themeColor)
+
+//- Windows 8, IE10
+meta(name="msapplication-TileColor", content=themeColor)
+meta(name="msapplication-TileImage" content=`${assetPrefix}/ms-icon-144x144.png`)
+//- Windows 8.1, IE11+
+meta(name="msapplication-config" content="../browserconfig.xml")
 
 //- Web Clips
 link(rel="apple-touch-icon" sizes="180x180" href=`${assetPrefix}/apple-icon-180.png`)
@@ -8,6 +17,7 @@ link(rel="apple-touch-icon" sizes="120x120" href=`${assetPrefix}/apple-icon-120.
 
 //- Launch Screen Images
 meta(name="apple-mobile-web-app-capable" content="yes")
+meta(name="apple-mobile-web-app-status-bar-style" content=themeColor)
 link(
   rel="apple-touch-startup-image"
   href=`${assetPrefix}/apple-splash-2048-2732.png`
