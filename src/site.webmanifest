@@ -1,6 +1,8 @@
 {
   "name": "Body & Mind",
   "short_name": "Body & Mind",
+  "url": "https://bodymind.studio",
+  "lang": "Russian",
   "icons": [
     {
       "src": "./img/pwa-asset/manifest-icon-192.png",
@@ -11,10 +13,17 @@
       "src": "./img/pwa-asset/manifest-icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "./img/pwa-asset/maskable-icon.png",
+      "sizes": "196x196",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "start_url": "/",
   "theme_color": "#f4f4f4",
   "background_color": "#f4f4f4",
-  "display": "standalone"
+  "display": "standalone",
+  "orientation": "portrait-primary"
 }
