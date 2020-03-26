@@ -1,26 +1,17 @@
 $months-count: 12;
 $days-in-week: 7;
 
-$hover-background-color: var(--gray-20);
-
-$primary-color: var(--white);
-$primary-background-color: var(--purple-40);
-
-$calendar-background-color: var(--white);
+$calendar-bg-color: var(--white);
 $calendar-width: rem(280);
 $calendar-box-shadow: hsl(263.8 96.9% 61.8% / .16);
-
-$cal-day-background-color: var(--gray-20);
-$cal-day-height: 30px;
-
-$cal-date-height: 40px;
-
-$cal-date-span-hover-background-color: $hover-background-color;
-$cal-date-span-active-color: $primary-color;
-$cal-date-span-active-background-color: $primary-background-color;
-$cal-date-span-transition: background-color var(--timing) 150ms, color var(--timing) 150ms;
-
-$cal-body-min-height: $cal-day-height + ($cal-date-height * 6);
+$calendar-day-bg-color: var(--gray-20);
+$calendar-day-height: 30px;
+$calendar-date-height: 40px;
+$calendar-date-span-hover-bg-color: var(--gray-20);
+$calendar-date-span-active-color: var(--white);
+$calendar-date-span-active-bg-color: var(--purple-40);
+$calendar-date-span-transition: background-color var(--timing) 150ms, color var(--timing) 150ms;
+$calendar-body-min-height: $calendar-day-height + ($calendar-date-height * 6);
 
 // Макет календаря
 .c-calendar {
@@ -28,7 +19,7 @@ $cal-body-min-height: $cal-day-height + ($cal-date-height * 6);
   margin-block-end: 1.75rem;
   width: $calendar-width;
   box-shadow: 0 rem(4) rem(12) $calendar-box-shadow;
-  background-color: $calendar-background-color;
+  background-color: $calendar-bg-color;
   user-select: none;
   border-radius: 6px;
 
@@ -37,16 +28,16 @@ $cal-body-min-height: $cal-day-height + ($cal-date-height * 6);
     display: grid;
     grid-template-columns: repeat(#{$days-in-week}, 1fr);
     align-content: start;
-    min-height: $cal-body-min-height;
+    min-height: $calendar-body-min-height;
     text-align: center;
     @include fvar($exa, $regular);
   }
 
   // Дни
   &__day {
-    height: $cal-day-height;
-    background-color: $cal-day-background-color;
-    line-height: $cal-day-height;
+    height: $calendar-day-height;
+    background-color: $calendar-day-bg-color;
+    line-height: $calendar-day-height;
 
     &:nth-child(1) {
       border-top-left-radius: rem(6);
@@ -59,15 +50,15 @@ $cal-body-min-height: $cal-day-height + ($cal-date-height * 6);
 
   // Даты
   &__date {
-    height: $cal-date-height;
-    line-height: $cal-date-height;
+    height: $calendar-date-height;
+    line-height: $calendar-date-height;
 
     input[type="radio"] {
       display: none;
 
       &:checked + span {
-        color: $cal-date-span-active-color;
-        background-color: $cal-date-span-active-background-color;
+        color: $calendar-date-span-active-color;
+        background-color: $calendar-date-span-active-bg-color;
       }
     }
 
@@ -80,10 +71,10 @@ $cal-body-min-height: $cal-day-height + ($cal-date-height * 6);
     }
 
     label span {
-      transition: $cal-date-span-transition;
+      transition: $calendar-date-span-transition;
 
       @include hover {
-        background-color: $cal-date-span-hover-background-color;
+        background-color: $calendar-date-span-hover-bg-color;
       }
     }
   }

@@ -5,28 +5,13 @@
   &::after {
     box-sizing: inherit;
   }
+
+  @include scrollbar;
 }
 
 ::selection {
   background: transparent;
   text-shadow: none;
-}
-
-::-webkit-scrollbar {
-  width: 0; height: 0;
-
-  &-thumb,
-  &-track {
-    background: transparent;
-  }
-}
-
-@supports (scrollbar-width: none) {
-  .slides,
-  .c-carousel {
-    scrollbar-color: unset;
-    scrollbar-width: none;
-  }
 }
 
 :root {

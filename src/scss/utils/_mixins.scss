@@ -2,6 +2,32 @@
 // Mixins
 //==========================================================================
 
+@mixin scrollbar($size: 0, $bg-color: transparent, $fg-color: transparent) {
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+
+    &-thumb {
+      background: $fg-color;
+    }
+    &-track {
+      background: $bg-color;
+    }
+  }
+
+  @supports (scrollbar-width: thin) {
+    & {
+      scrollbar-color: unset;
+      scrollbar-width: none;
+      // -ms-overflow-style: none;
+    }
+  }
+}
+
+@mixin fvar($stretch, $weight, $style: $upright) {
+  font-variation-settings: $style, $stretch, $weight;
+}
+
 @mixin cta-set-01($position: $default, $before: $full, $after: $null, $bg-color: transparent) {
   --pad-x: #{rem(4)};
   --pad-y: 0;
@@ -112,8 +138,12 @@
   }
 }
 
-@mixin fvar($stretch, $weight, $style: $upright) {
-  font-variation-settings: $style, $stretch, $weight;
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
 }
 
 @mixin user-select {
@@ -144,12 +174,4 @@
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
-}
-
-@mixin hover {
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      @content;
-    }
-  }
 }
