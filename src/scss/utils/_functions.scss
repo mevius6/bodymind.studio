@@ -11,22 +11,11 @@
 }
 
 /**
- * Компактное использование пользовательских CSS-свойств
- * https://github.com/meduzen/v-helper
- */
-@function v($propertyName: '', $fallback: null) {
-  @if($fallback) {
-    @return var(--#{$propertyName}, $fallback);
-  }
-  @return var(--#{$propertyName});
-}
-
-/**
  * Использование HSL(A) без преобразования в RGB(A)
  * https://github.com/meduzen/true-hsl.scss
  * — или —
- * https://preset-env.cssdb.org/features#color-functional-notation
  * https://github.com/csstools/postcss-preset-env#options
+ * https://preset-env.cssdb.org/features#color-functional-notation
  */
 @function hsl($args...) {
   @return #{'hsl(#{$args})'};
