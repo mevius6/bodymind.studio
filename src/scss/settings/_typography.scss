@@ -49,7 +49,7 @@
 
 .fs-h4 {
   --max-size: 36.00;
-  --min-size: 36.00;
+  --min-size: 24.00;
   font-size: var(--responsive);
   @include fvar($exa, $medium)
 }

@@ -1,3 +1,5 @@
+include ./cta
+
 form.c-form#contact-form(
   accept-charset="UTF-8"
   action="https://app.form2chat.io/f/d4267741"
@@ -7,8 +9,7 @@ form.c-form#contact-form(
 )
   label.c-form__field(for="name")
     span.c-form__label-text
-      | Имя
-      | #[span &ast;]
+      | Имя #[span &ast;]
     input.c-form__control#name(
       role="text-box"
       type="text"
@@ -41,8 +42,7 @@ form.c-form#contact-form(
 
   label.c-form__field(for="email")
     span.c-form__label-text
-      | Email
-      | #[span &ast;]
+      | Email #[span &ast;]
     input.c-form__control#email(
       inputmode="email"
       type="email"
@@ -83,12 +83,11 @@ form.c-form#contact-form(
       a(href="/privacy.pug" target="_blank" rel="noopener")
         | политику обработки персональных данных.
 
-  button.c-form__cta#cta(type="submit" disabled) Отправить!
-    //- span.tooltip(role="tooltip")
-    - for (let i = 0; i < 4; i++)
-      span
-    - for (let i = 0; i < 4; i++)
-      p(aria-hidden="true") Отправить!
+  +cta({
+    base: 'c-form',
+    type: 'button',
+    text: 'Отправить!'
+  })(type="submit" disabled)
 
   #submit-result
 

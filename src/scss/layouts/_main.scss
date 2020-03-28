@@ -23,10 +23,14 @@
     > .terms {
       margin: 0 auto;
       max-width: rem(992);
+      padding: 0 rem(16);
     }
   }
 
   &[data-id*="pricing"] {
+    position: fixed;
+    overflow-x: hidden;
+    overflow-y: auto;
     width: 100vw;
     height: 100vh;
     --bg-image: url('../img/7.jpg');
@@ -52,8 +56,9 @@
 
 .o-container {
   margin: 0 auto;
-  max-width: var(--laptop);
-  padding: rem(16) 0;
+  max-width: var(--mobile);
+  height: 100vh;
+  padding: 0 rem(16);
 }
 
 @media screen and (min-width: $tablet) {
@@ -87,5 +92,16 @@
       margin-block-end: 2rem;
       padding-inline-start: rem(25);
     }
+  }
+
+  .o-container {
+    max-width: var(--tablet);
+    padding: rem(16) 0;
+  }
+}
+
+@media screen and (min-width: $laptop) {
+  .o-container {
+    max-width: var(--laptop);
   }
 }

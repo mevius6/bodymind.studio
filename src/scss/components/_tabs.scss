@@ -2,7 +2,10 @@
   --tab-h: #{rem(48)};
   position: relative;
   margin-block-start: rem(32);
+  margin-inline-start: auto;
+  margin-inline-end: auto;
   width: 100%;
+  max-width: rem(300);
   min-height: rem(448);
 }
 
@@ -11,13 +14,20 @@
   flex-direction: column;
   @include fvar($exa, $semibold);
 
+  &:first-child {
+    > label {
+      border-radius: rem(6) rem(6) 0 0;
+    }
+  }
+
   label {
+    display: inline-flex;
+    align-items: center;
     border: none;
-    border-radius: rem(6) rem(6) 0 0;
+    height: var(--tab-h);
     background: var(--gray-20);
-    padding: 1em;
+    padding: rem(16);
     color: var(--gray-90);
-    font-size: 1em;
     line-height: 1;
     cursor: pointer;
   }
@@ -57,19 +67,18 @@
   bottom: 0;
   left: 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(min-content, auto));
+  grid-template-columns: 0.5fr minmax(min-content, 1fr);
   gap: rem(16);
   align-content: start;
   opacity: 0;
   z-index: -1;
   width: 100%;
   height: 100%;
-  border-radius: 0 0 6px 6px;
-  padding: 1em 1.2em;
-  box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.3);
+  border-radius: 0 0 rem(6) rem(6);
+  padding: rem(16);
+  box-shadow: 0 rem(8) rem(24) rgba(0,0,0,0.3);
   background: var(--white);
   color: var(--gray-100);
-  @include fvar($exa, $regular);
 
   p,
   b { @include fvar($exa, $medium); }
@@ -81,10 +90,16 @@
     gap: inherit;
     border-bottom: 1px solid var(--gray-20);
     padding-block-end: rem(16);
+
+    &:nth-child(2) {
+      display: grid;
+      grid: inherit;
+    }
   }
 
   a {
-    box-shadow: 0 4px 12px hsla(263.8, 96.9%, 61.8%, 0.2);
+    --shadow: hsla(263.8 96.9% 61.8% / 0.2);
+    box-shadow: 0 4px 12px var(--shadow);
     text-align: center;
     @include cta-set-02(
       linear-gradient(
@@ -103,7 +118,7 @@
   }
 
   .purchase {
-    grid-template-columns: inherit;
+    grid-template-columns: repeat(2, minmax(min-content, 1fr));
     column-gap: rem(8);
     justify-content: end;
   }
@@ -113,13 +128,17 @@
   }
 }
 
-
 @media (min-width: $tablet) {
   .c-tabs {
     display: flex;
     align-items: flex-start;
+    margin-inline-start: 0;
     max-width: max-content;
     min-height: rem(448);
+
+    &__tab > label {
+      border-radius: rem(6) rem(6) 0 0;
+    }
 
     &__content {
       position: absolute;
@@ -127,6 +146,7 @@
       grid-template-columns: repeat(2, minmax(min-content, 1fr));
       row-gap: rem(16);
       place-content: start;
+      padding: rem(16) rem(20);
     }
   }
 }

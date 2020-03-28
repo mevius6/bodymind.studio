@@ -25,7 +25,6 @@
   }
 }
 
-// https://drafts.csswg.org/mediaqueries-4/#hover
 @media(hover: hover) and (pointer: fine) {
   .cursor { display: block; }
 }

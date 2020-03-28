@@ -28,32 +28,33 @@ block vars
     ];
 
 block content
-  mixin cta
-    - for (let i = 0; i < 4; i++)
-      span
-    - for (let i = 0; i < 4; i++)
-      p(aria-hidden="true") Купить!
+  include ./cta
 
   mixin deal(amount, cost)
     .quantity
-      p= amount
+      | #[p.fs-bs #{amount}]
     .purchase
-      p= cost + ' ₽'
-      a(href="#") Купить!
-        +cta
+      | #[p.fs-bs #{cost} ₽]
+      +cta({
+        type: 'anchor',
+        link: '#',
+        text: 'Купить!'
+      })
 
   section.o-container
-    h1.fs-h2 Услуги и цены
+    h1.fs-h2
+      | Услуги и цены
     .c-tabs(role="tablist")
       each tab, index in tabs
         .c-tabs__tab(role="tab")
-          input(id=`tab-${index}` tabindex="0" type="radio" name="radioTab" checked)
+          - let attrs = {checked: index === 0}
+          input(id=`tab-${index}` tabindex="0" type="radio" name="radioTab")&attributes(attrs)
           label(for=`tab-${index}`)= tab.label
           .c-tabs__content
-            b= tab.content
-            b(style="display: grid; grid: inherit;")
-              p Количество
-              p Стоимость
+            b.fs-bs= tab.content
+            b.fs-bs
+              | #[span Количество]
+              | #[span Стоимость]
             case tab.label
               when 'Group'
                 +deal(1, 250)
@@ -75,8 +76,8 @@ block content
                 +deal(8, 5700)
                 +deal(16, 10400)
               when 'Trial'
-                +deal(3 + " (групповые)", 300)
-                +deal(3 + " (персональные)", 900)
+                +deal(3 + " (групп.)", 300)
+                +deal(3 + " (персон.)", 900)
                 +deal("Cкидка 50% на Premium", 750)
 
 block scripts

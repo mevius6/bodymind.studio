@@ -1,0 +1,13 @@
+mixin ctaSet(text)
+  each i in Array.from(Array(4))
+    span
+  each i in Array.from(Array(4))
+    p.fs-bs(aria-hidden="true")= text
+
+mixin cta(options)
+  if options.type === 'anchor'
+    a.fs-bs(href=options.link)= options.text
+      +ctaSet(options.text)
+  if options.type === 'button'
+    button#cta(class=`${options.base}__cta`)&attributes(attributes)= options.text
+      +ctaSet(options.text)

@@ -138,8 +138,9 @@
   }
 }
 
+// https://drafts.csswg.org/mediaqueries-4/#hover
 @mixin hover {
-  @media (hover: hover) and (pointer: fine) {
+  @media (hover: hover) {
     &:hover {
       @content;
     }
