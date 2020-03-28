@@ -6,12 +6,13 @@
     box-sizing: inherit;
   }
 
-  @include scrollbar;
-}
+  &::selection {
+    background: inherit;
+    text-shadow: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }
 
-::selection {
-  background: transparent;
-  text-shadow: none;
+  @include scrollbar;
 }
 
 :root {
@@ -73,10 +74,10 @@ body {
 }
 
 @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 2dppx) {
-	body {
-		-moz-osx-font-smoothing: grayscale;
-		-webkit-font-smoothing: antialiased;
-	}
+  body {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
 }
 
 a:focus-visible {
