@@ -5,6 +5,8 @@ html(class="no-js" dir="ltr" lang="ru")
   head
     include ./_head
   body
+    button.add-button(type="button")
+      | Установить
     if page.id === 'index'
       #loader
     include ./_nav
@@ -12,4 +14,6 @@ html(class="no-js" dir="ltr" lang="ru")
       block content
 
     block scripts
+    prepend scripts
+      script(src="../js/a2hs.js")
     include ./_analytics

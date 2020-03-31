@@ -1,4 +1,4 @@
-window.addEventListener("load", () => {
+window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
 
   let svg = ``;
@@ -12,13 +12,13 @@ window.addEventListener("load", () => {
   </svg>
   `;
 
-  loader.insertAdjacentHTML("afterbegin", svg);
+  loader.insertAdjacentHTML('afterbegin', svg);
 
   const loaderEls = Array.prototype.slice.apply(
     document.querySelectorAll('.svg__el')
   );
 
-  loaderEls[2].addEventListener("animationend", () => {
+  loaderEls[2].addEventListener('animationend', () => {
     loader.style.setProperty('--alpha', 0);
     window.setTimeout(() => {
       loader.style.display = 'none';

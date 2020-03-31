@@ -1,0 +1,13 @@
+.add-button {
+  position: absolute;
+  bottom: 1rem;
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+  background-color: inherit;
+  border: 1px solid white;
+  color: white;
+  font-size: 1em;
+  padding: 0.75em;
+  cursor: pointer;
+}

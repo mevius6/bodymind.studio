@@ -1,4 +1,10 @@
-.cursor { display: none; }
+.cursor {
+  display: none;
+
+  @media (hover: hover) {
+    & { display: block; }
+  }
+}
 
 .cursor__inner {
   --dot-size: #{rem(8)};
@@ -23,8 +29,4 @@
     height: var(--circle-size);
     border: 1px solid var(--white);
   }
-}
-
-@media(hover: hover) and (pointer: fine) {
-  .cursor { display: block; }
 }

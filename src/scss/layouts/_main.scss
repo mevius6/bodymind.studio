@@ -59,6 +59,19 @@
   max-width: var(--mobile);
   height: 100vh;
   padding: 0 rem(16);
+
+  @media (min-width: $tablet) {
+    & {
+      max-width: var(--tablet);
+      padding: rem(16) 0;
+    }
+  }
+
+  @media (min-width: $laptop) {
+    & {
+      max-width: var(--laptop);
+    }
+  }
 }
 
 @media screen and (min-width: $tablet) {
@@ -92,16 +105,5 @@
       margin-block-end: 2rem;
       padding-inline-start: rem(25);
     }
-  }
-
-  .o-container {
-    max-width: var(--tablet);
-    padding: rem(16) 0;
-  }
-}
-
-@media screen and (min-width: $laptop) {
-  .o-container {
-    max-width: var(--laptop);
   }
 }

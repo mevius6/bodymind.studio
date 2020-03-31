@@ -18,6 +18,7 @@
   "lang": "Russian",
   "name": "Body & Mind",
   "orientation": "portrait-primary",
+  "scope": "/",
   "short_name": "Body & Mind",
   "start_url": "/",
   "theme_color": "#f4f4f4",
