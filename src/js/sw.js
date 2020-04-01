@@ -4,10 +4,10 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open("shell").then(cache => {
       return cache.addAll([
+        "/",
         "/index.html",
-        "/index.js",
-        "/main.css"
-      ]);
+        "/index.js"
+      ]).then(() => self.skipWaiting());
     })
   );
 });
