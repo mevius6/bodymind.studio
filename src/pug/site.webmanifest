@@ -1,6 +1,9 @@
 {
-  "background_color": "#f4f4f4",
-  "display": "standalone",
+  "dir": "ltr",
+  "lang": "ru",
+  "name": "Body & Mind",
+  "short_name": "B&M",
+  "description": "Фитнес-клуб",
   "icons": [{
     "src": "../img/pwa-asset/manifest-icon-192.png",
     "sizes": "192x192",
@@ -15,12 +18,10 @@
     "type": "image/png",
     "purpose": "any maskable"
   }],
-  "lang": "Russian",
-  "name": "Body & Mind",
+  "display": "standalone",
   "orientation": "portrait-primary",
-  "scope": "/",
-  "short_name": "Body & Mind",
   "start_url": "/",
   "theme_color": "#f4f4f4",
-  "url": "https://bodymind.studio"
+  "background_color": "#f4f4f4",
+  "scope": "/"
 }

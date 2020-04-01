@@ -1,14 +1,28 @@
-self.addEventListener('install', (event) => {
+self.addEventListener('install', event => {
   console.log('👷', 'install', event);
-  self.skipWaiting();
+  // self.skipWaiting();
+  event.waitUntil(
+    caches.open("shell").then(cache => {
+      return cache.addAll([
+        "/index.html",
+        "/index.js",
+        "/main.css"
+      ]);
+    })
+  );
 });
 
-self.addEventListener('activate', (event) => {
+self.addEventListener('activate', event => {
   console.log('👷', 'activate', event);
   return self.clients.claim();
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', event => {
   // console.log('👷', 'fetch', event);
-  event.respondWith(fetch(event.request));
+  // event.respondWith(fetch(event.request));
+  event.respondWith(
+    caches.match(e.request).then(response => {
+      return response || fetch(e.request);
+    })
+  );
 });

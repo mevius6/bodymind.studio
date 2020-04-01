@@ -109,7 +109,7 @@ block content
       data-time=`${options.time[0]}:00—${options.time[1]}:00`
     )
       //- Последняя дата текущего месяца
-      - let final = new Date(currentYear, (currentMonth + 1), 0)
+      //- let final = new Date(currentYear, (currentMonth + 1), 0)
       //- Актуальные даты
       - for (let i = 1; i < daysInWeek; i++)
         -
@@ -134,12 +134,12 @@ block content
               coach: options.coach
             })
         //- Прервать цикл, когда он достигнет последнего числа месяца
-        if getDate === final.getDate()
+        //-if getDate === final.getDate()
           - break
       //- Первое число следующего месяца
-      - let nextDate = new Date(currentYear, currentMonth + 1, 1).getDate()
+      //- let nextDate = new Date(currentYear, currentMonth + 1, 1).getDate()
       //- Для оставшихся дней недели, после последнего числа месяца
-      - for (let i = final.getDay() + 1; i < daysInWeek; i++)
+      //- for (let i = final.getDay() + 1; i < daysInWeek; i++)
         -
           let start = nextDate + i - (final.getDay() + 1)
               setDate = new Date(curr.setDate(start))
@@ -183,14 +183,24 @@ block content
         let start = currentDate - currentDay + i
             setDate = new Date(curr.setDate(start))
             getDate = curr.getDate()
-      +dateSlot(i, getDate)
+
+      if firstDate.getDay() <= i
+        +dateSlot(i, getDate)
+
+      if firstDate.getDay() > i
+        //-
+          let start = firstDate
+              setDate = new Date(curr.setDate(start))
+              getDate = curr.getDate()
+        +dateSlot(i, getDate)
+
       //- Прервать цикл, когда он достигнет последнего числа месяца
-      if getDate === lastDate.getDate()
+      //-if getDate === lastDate.getDate()
         - break
     //- Первое число следующего месяца
-    - let nextDate = new Date(currentYear, currentMonth + 1, 1).getDate()
+    //- let nextDate = new Date(currentYear, currentMonth + 1, 1).getDate()
     //- Для оставшихся дней недели, после последнего числа месяца
-    - for (let i = lastDate.getDay() + 1; i < daysInWeek; i++)
+    //- for (let i = lastDate.getDay() + 1; i < daysInWeek; i++)
       -
         let start = nextDate + i - (lastDate.getDay() + 1)
             setDate = new Date(curr.setDate(start))
