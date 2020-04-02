@@ -108,44 +108,63 @@ block content
       data-date=""
       data-time=`${options.time[0]}:00—${options.time[1]}:00`
     )
+      //- Первая дата текущего месяца
+      - let firstDate = new Date(currentYear, currentMonth, 1)
       //- Последняя дата текущего месяца
-      //- let final = new Date(currentYear, (currentMonth + 1), 0)
+      - let finalDate = new Date(currentYear, (currentMonth + 1), 0)
       //- Актуальные даты
-      - for (let i = 1; i < daysInWeek; i++)
+      - for (let day = 1; day < daysInWeek; day++)
         -
-          let start = currentDate - currentDay + i
+          let start = currentDate - currentDay + day
               setDate = new Date(curr.setDate(start))
               getDate = curr.getDate()
         //- Если опция миксина соответствует дню недели
-        if options.day === curr.getDay()
-          if options.merge === true
-            each i in Array.from(Array(2).keys())
+        if options.day === day
+          if day >= firstDate.getDay()
+            if options.merge === true
+              each i in Array.from(Array(2).keys())
+                +sessionCard({
+                  date: `${daysLabel[options.day]}, ${getDate}`,
+                  time: `${options.time[0]}:00—${options.time[1]}:00`,
+                  title: options.title[i],
+                  coach: options.coach[i]
+                })
+            else
               +sessionCard({
                 date: `${daysLabel[options.day]}, ${getDate}`,
                 time: `${options.time[0]}:00—${options.time[1]}:00`,
-                title: options.title[i],
-                coach: options.coach[i]
+                title: options.title,
+                coach: options.coach
               })
-          else
-            +sessionCard({
-              date: `${daysLabel[options.day]}, ${getDate}`,
-              time: `${options.time[0]}:00—${options.time[1]}:00`,
-              title: options.title,
-              coach: options.coach
-            })
+          if day < firstDate.getDay()
+            if options.merge === true
+              each i in Array.from(Array(2).keys())
+                +sessionCard({
+                  date: `${daysLabel[options.day]}, ${getDate}`,
+                  time: `${options.time[0]}:00—${options.time[1]}:00`,
+                  title: options.title[i],
+                  coach: options.coach[i]
+                })
+            else
+              +sessionCard({
+                date: `${daysLabel[options.day]}, ${getDate}`,
+                time: `${options.time[0]}:00—${options.time[1]}:00`,
+                title: options.title,
+                coach: options.coach
+              })
         //- Прервать цикл, когда он достигнет последнего числа месяца
-        //-if getDate === final.getDate()
+        //-if getDate === finalDate.getDate()
           - break
       //- Первое число следующего месяца
       //- let nextDate = new Date(currentYear, currentMonth + 1, 1).getDate()
-      //- Для оставшихся дней недели, после последнего числа месяца
-      //- for (let i = final.getDay() + 1; i < daysInWeek; i++)
+      //- Для оставшихся дней недели, после последнего числа текущего месяца
+      //- for (let day = finalDate.getDay() + 1; day < daysInWeek; day++)
         -
-          let start = nextDate + i - (final.getDay() + 1)
+          let start = nextDate + day - (finalDate.getDay() + 1)
               setDate = new Date(curr.setDate(start))
               getDate = curr.getDate()
         //- Если опция миксина соответствует оставшемуся дню недели
-        if options.day === i
+        if options.day === day
           if options.merge === true
             each i in Array.from(Array(2).keys())
               +sessionCard({
@@ -178,34 +197,36 @@ block content
   include ./calendar
 
   .o-schedule(aria-labelledby="schedule-heading")
-    - for (let i = 1; i < daysInWeek; i++)
+    //- Последнее число предыдущего месяца
+    - let prevDate = new Date(currentYear, currentMonth, 0).getDate()
+    //- Дополнительные даты до первого дня месяца
+    - for (let day = 1; day < firstDate.getDay(); day++)
       -
-        let start = currentDate - currentDay + i
+        let start = prevDate - firstDate.getDay() + day
             setDate = new Date(curr.setDate(start))
             getDate = curr.getDate()
-
-      if firstDate.getDay() <= i
-        +dateSlot(i, getDate)
-
-      if firstDate.getDay() > i
-        //-
-          let start = firstDate
-              setDate = new Date(curr.setDate(start))
-              getDate = curr.getDate()
-        +dateSlot(i, getDate)
+      +dateSlot(day, getDate)
+    //- Актуальные даты с первого дня месяца
+    - for (let day = 1; day < daysInWeek; day++)
+      -
+        let start = currentDate - currentDay + day
+            setDate = new Date(curr.setDate(start))
+            getDate = curr.getDate()
+      if day >= firstDate.getDay()
+        +dateSlot(day, getDate)
 
       //- Прервать цикл, когда он достигнет последнего числа месяца
-      //-if getDate === lastDate.getDate()
+      //-if getDate === finalDate.getDate()
         - break
     //- Первое число следующего месяца
     //- let nextDate = new Date(currentYear, currentMonth + 1, 1).getDate()
     //- Для оставшихся дней недели, после последнего числа месяца
-    //- for (let i = lastDate.getDay() + 1; i < daysInWeek; i++)
+    //- for (let day = finalDate.getDay() + 1; day < daysInWeek; day++)
       -
-        let start = nextDate + i - (lastDate.getDay() + 1)
+        let start = nextDate - (finalDate.getDay() + 1) + day
             setDate = new Date(curr.setDate(start))
             getDate = curr.getDate()
-      +dateSlot(i, getDate)
+      +dateSlot(day, getDate)
 
     +timeSlot('09')
       +session({

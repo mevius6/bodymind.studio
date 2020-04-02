@@ -1,6 +1,6 @@
 if('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js').then(() => {
-    console.log('Service Worker Registered');
+    console.log('Сервисный работник зарегистрирован');
   });
 }
 
@@ -21,9 +21,9 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
     deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the a2hs prompt');
+        console.log('Пользователь принял a2hs запрос');
       } else {
-        console.log('User dismissed the a2hs prompt');
+        console.log('Пользователь отклонил a2hs запрос');
       }
       deferredPrompt = null;
     });
@@ -31,5 +31,5 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 
 window.addEventListener('appinstalled', (evt) => {
-  console.log('a2hs installed');
+  console.log('a2hs установлен');
 });

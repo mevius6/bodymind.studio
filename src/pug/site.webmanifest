@@ -18,10 +18,10 @@
     "type": "image/png",
     "purpose": "any maskable"
   }],
+  "scope": "/",
+  "start_url": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "start_url": "/",
   "theme_color": "#f4f4f4",
-  "background_color": "#f4f4f4",
-  "scope": "/"
+  "background_color": "#f4f4f4"
 }

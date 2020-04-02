@@ -1,9 +1,9 @@
 .c-calendar
   .c-calendar__body
-    //- Первая дата
-    - let firstDate = new Date(currentYear, currentMonth, 1);
-    //- Последняя дата
-    - let lastDate  = new Date(currentYear, (currentMonth + 1), 0);
+    //- Первая дата текущего месяца
+    - let firstDate = new Date(currentYear, currentMonth, 1)
+    //- Последняя дата текущего месяца
+    - let finalDate = new Date(currentYear, (currentMonth + 1), 0)
 
     //- Дни недели
     - for (let day = 0; day < daysInWeek; day++)
@@ -13,7 +13,7 @@
     - for (let date = 0; date < firstDate.getDay(); date++)
       .c-calendar__date
     //- Фактическая дата
-    - for (let date = 1; date <= lastDate.getDate(); date++)
+    - for (let date = 1; date <= finalDate.getDate(); date++)
       .c-calendar__date
         - let attrs = {checked: currentDate == date}
         label
@@ -24,5 +24,5 @@
           )&attributes(attrs)
           span #{date}
     //- Дополнительные пробелы после последней даты
-    - for (let date = lastDate.getDay() + 1; date < daysInWeek; date++)
+    - for (let date = finalDate.getDay() + 1; date < daysInWeek; date++)
       .c-calendar__date
