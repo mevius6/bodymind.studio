@@ -6,16 +6,17 @@ if('serviceWorker' in navigator) {
 
 let deferredPrompt;
 const addBtn = document.querySelector('.add-button');
-addBtn.style.display = 'none';
+// addBtn.style.display = 'none';
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
 
-  addBtn.style.display = 'block';
+  // addBtn.style.display = 'block';
+  addBtn.classList.toggle('hidden', false);
 
   addBtn.addEventListener('click', (e) => {
-    addBtn.style.display = 'none';
+    // addBtn.style.display = 'none';
 
     deferredPrompt.prompt();
 
@@ -26,6 +27,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
         console.log('Пользователь отклонил a2hs запрос');
       }
       deferredPrompt = null;
+      addBtn.classList.toggle('hidden', true);
     });
   });
 });

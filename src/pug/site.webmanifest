@@ -2,7 +2,7 @@
   "dir": "ltr",
   "lang": "ru",
   "name": "Body & Mind",
-  "short_name": "B&M",
+  "short_name": "Body & Mind",
   "description": "Фитнес-клуб",
   "icons": [{
     "src": "../img/pwa-asset/manifest-icon-192.png",

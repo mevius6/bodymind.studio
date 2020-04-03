@@ -200,7 +200,7 @@ block content
     //- Последнее число предыдущего месяца
     - let prevDate = new Date(currentYear, currentMonth, 0).getDate()
     //- Дополнительные даты до первого дня месяца
-    - for (let day = 1; day < firstDate.getDay(); day++)
+    - for (let day = 1; day <= (firstDate.getDay() + 1); day++)
       -
         let start = prevDate - firstDate.getDay() + day
             setDate = new Date(curr.setDate(start))
