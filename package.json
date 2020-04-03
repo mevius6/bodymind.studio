@@ -7,8 +7,8 @@
     "node": "12.x"
   },
   "scripts": {
-    "start": "parcel src/pug/index.pug --open -d public",
-    "build": "npm run clean && parcel build src/pug/index.pug -d public --no-cache --no-source-maps",
+    "start": "parcel src/pages/index.pug --open -d public",
+    "build": "npm run clean && parcel build src/pages/index.pug -d public --no-cache --no-source-maps",
     "clean": "rm -rf public && rm -rf .cache"
   },
   "repository": {

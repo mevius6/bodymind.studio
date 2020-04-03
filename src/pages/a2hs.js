@@ -1,22 +1,19 @@
 if('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js').then(() => {
-    console.log('Сервисный работник зарегистрирован');
-  });
+  navigator.serviceWorker.register('/sw.js')
 }
 
 let deferredPrompt;
-const addBtn = document.querySelector('.add-button');
-// addBtn.style.display = 'none';
+const addDiv = document.querySelector('.a2hs');
+const addBtn = document.querySelector('.a2hs__cta');
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
 
-  // addBtn.style.display = 'block';
-  addBtn.classList.toggle('hidden', false);
+  addDiv.classList.toggle('hidden', false);
 
   addBtn.addEventListener('click', (e) => {
-    // addBtn.style.display = 'none';
+    addDiv.classList.toggle('hidden', true);
 
     deferredPrompt.prompt();
 
@@ -27,8 +24,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
         console.log('Пользователь отклонил a2hs запрос');
       }
       deferredPrompt = null;
-      addBtn.classList.toggle('hidden', true);
-    });
+    })
   });
 });
 

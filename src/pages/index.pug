@@ -8,6 +8,13 @@ block vars
     let page = data.pages.index;
 
 block content
+  include ./cta
+  .a2hs.hidden
+    +cta({
+      base: 'a2hs',
+      type: 'button',
+      text: 'Установить'
+    })(type="button")
   .o-content#app
   .cursor
     .cursor__inner.cursor__inner--circle
@@ -15,3 +22,6 @@ block content
 
 block scripts
   script(src="../js/index.js")
+
+prepend scripts
+  script(src="./a2hs.js")

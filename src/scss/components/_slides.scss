@@ -48,9 +48,10 @@
   }
 
   &__cta {
+    --shadow: hsl(263.8 96.9% 61.8% / 0.2);
     opacity: 0;
     transition: opacity calc(var(--speed) * 3) var(--timing);
-    box-shadow: 0 4px 12px hsla(263.8, 96.9%, 61.8%, 0.2);
+    box-shadow: 0 4px 12px var(--shadow);
     @include cta-set-02(
       linear-gradient(
         135deg,
