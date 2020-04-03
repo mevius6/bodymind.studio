@@ -19,9 +19,9 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
     deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === 'accepted') {
-        console.log('Пользователь принял a2hs запрос');
+        // console.log('Пользователь принял a2hs запрос');
       } else {
-        console.log('Пользователь отклонил a2hs запрос');
+        // console.log('Пользователь отклонил a2hs запрос');
       }
       deferredPrompt = null;
     })
@@ -29,5 +29,5 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 
 window.addEventListener('appinstalled', (evt) => {
-  console.log('a2hs установлен');
+  // console.log('a2hs установлен');
 });
