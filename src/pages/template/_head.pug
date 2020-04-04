@@ -16,6 +16,11 @@ meta(name="keywords", content=keywordsMerge)
 meta(name="google-site-verification" content="tgWmHffwnNJaJTL6j5VJauVecBP29dEfk4t4OMgcQ_o")
 meta(name="yandex-verification" content="245c36a7516eb7ef")
 
+link(rel="preconnect" href="https://www.google-analytics.com" crossorigin)
+link(rel="dns-prefetch" href="https://www.google-analytics.com")
+link(rel="preconnect" href="https://mc.yandex.ru" crossorigin)
+link(rel="dns-prefetch" href="https://mc.yandex.ru")
+
 link(rel="canonical" href=canonicalURL)
 meta(property="og:locale" content="ru")
 meta(property="og:title", content=titleMerge)
@@ -37,11 +42,6 @@ meta(name="twitter:image", content=promoImage)
 link(rel="manifest" href="./site.webmanifest")
 link(rel="shortcut icon" href="../favicon.ico")
 include ./_pwa-asset
-
-link(rel="dns-prefetch" href="https://www.google-analytics.com")
-link(rel="dns-prefetch" href="https://mc.yandex.ru")
-link(rel="preconnect" href="https://www.google-analytics.com" crossorigin)
-link(rel="preconnect" href="https://mc.yandex.ru" crossorigin)
 
 link(
   rel="preload"
@@ -71,5 +71,5 @@ link(
 link(rel="stylesheet" type="text/css" href="../scss/main.scss")
 
 block head
-  include ./_ym
+  //- include ./_ym
   script(src="../js/vendor/modernizr.js")
