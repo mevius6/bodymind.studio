@@ -120,22 +120,7 @@ block content
               getDate = curr.getDate()
         //- Если опция миксина соответствует дню недели
         if options.day === day
-          if day >= firstDate.getDay()
-            if options.merge === true
-              each i in Array.from(Array(2).keys())
-                +sessionCard({
-                  date: `${daysLabel[options.day]}, ${getDate}`,
-                  time: `${options.time[0]}:00—${options.time[1]}:00`,
-                  title: options.title[i],
-                  coach: options.coach[i]
-                })
-            else
-              +sessionCard({
-                date: `${daysLabel[options.day]}, ${getDate}`,
-                time: `${options.time[0]}:00—${options.time[1]}:00`,
-                title: options.title,
-                coach: options.coach
-              })
+          //- Дни недели до первого дня текущего месяца
           if day < firstDate.getDay()
             if options.merge === true
               each i in Array.from(Array(2).keys())
@@ -152,8 +137,25 @@ block content
                 title: options.title,
                 coach: options.coach
               })
+          //- Дни недели с первого дня текущего месяца
+          if day >= firstDate.getDay()
+            if options.merge === true
+              each i in Array.from(Array(2).keys())
+                +sessionCard({
+                  date: `${daysLabel[options.day]}, ${getDate}`,
+                  time: `${options.time[0]}:00—${options.time[1]}:00`,
+                  title: options.title[i],
+                  coach: options.coach[i]
+                })
+            else
+              +sessionCard({
+                date: `${daysLabel[options.day]}, ${getDate}`,
+                time: `${options.time[0]}:00—${options.time[1]}:00`,
+                title: options.title,
+                coach: options.coach
+              })
         //- Прервать цикл, когда он достигнет последнего числа месяца
-        //-if getDate === finalDate.getDate()
+          if getDate === finalDate.getDate()
           - break
       //- Первое число следующего месяца
       //- let nextDate = new Date(currentYear, currentMonth + 1, 1).getDate()
@@ -198,25 +200,26 @@ block content
 
   .o-schedule(aria-labelledby="schedule-heading")
     //- Последнее число предыдущего месяца
-    - let lastDate = new Date(currentYear, currentMonth, 0).getDate()
+    //- let lastDate = new Date(currentYear, currentMonth, 0).getDate()
     //- Дополнительные даты до первого дня месяца
-    - for (let day = 1; day < firstDate.getDay(); day++)
+    //- for (let day = 1; day < firstDate.getDay(); day++)
       -
         let start = lastDate - (firstDate.getDay() - 1)
             setDate = new Date(curr.setDate(start))
             getDate = curr.getDate()
       +dateSlot(day, getDate + day)
-    //- Актуальные даты с первого дня месяца
+    //- Актуальные даты на неделю
     - for (let day = 1; day < daysInWeek; day++)
       -
         let start = currentDate - currentDay + day
             setDate = new Date(curr.setDate(start))
             getDate = curr.getDate()
-      if day >= firstDate.getDay()
+      +dateSlot(day, getDate)
+      //- Если день недели больше/равен первому дню текущего месяца
+      //- if day >= firstDate.getDay()
         +dateSlot(day, getDate)
-
       //- Прервать цикл, когда он достигнет последнего числа месяца
-      //-if getDate === finalDate.getDate()
+        if getDate === finalDate.getDate()
         - break
     //- Первое число следующего месяца
     //- let nextDate = new Date(currentYear, currentMonth + 1, 1).getDate()
