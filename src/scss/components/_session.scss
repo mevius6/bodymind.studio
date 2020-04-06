@@ -6,6 +6,10 @@
   &__card {
     --shadow: hsl(263.8 96.9% 61.8% / .16);
     --y: 0;
+    display: flex;
+    flex-flow: column;
+    align-items: start;
+    position: relative;
     align-self: start;
     backface-visibility: hidden;
     perspective: 1000px;
@@ -38,8 +42,9 @@
   &__title,
   &__date,
   &__time,
-  &__coach,
-  &__cta {
+  &__coach {
+    position: relative;
+    z-index: 1;
     display: block;
     color: var(--gray-100);
   }
@@ -66,10 +71,20 @@
     margin-block-start: rem(8);
     @include fvar($exa, $medium);
     a {
+      position: static;
       transition-duration: var(--speed);
       transition-property: color, background-size;
       transition-timing-function: var(--timing);
-      @include cta-set-01($reverse, $null, $full)
+      @include cta-set-01($reverse, $null, $full);
+      &::before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 

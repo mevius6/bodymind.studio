@@ -21,7 +21,6 @@ for (const input of inputs) {
         .time-slot { display: none; }
         .c-session { display: none; }
         .c-session[data-date$="${filter}"] { display: grid; }
-        .c-session__card:first-child { row-gap: 1rem; }
       ` : ``;
       window.cssFilter.innerHTML = css;
     }

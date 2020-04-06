@@ -6,8 +6,8 @@ mixin ctaSet(text)
 
 mixin cta(options)
   if options.type === 'anchor'
-    a.fs-bs(href=options.link)= options.text
+    a.fs-bs(class=`${options.base}__cta` href=options.link)= options.text
       +ctaSet(options.text)
   if options.type === 'button'
-    button#cta(class=`${options.base}__cta`)&attributes(attributes)= options.text
+    button(class=`${options.base}__cta`)&attributes(attributes)= options.text
       +ctaSet(options.text)

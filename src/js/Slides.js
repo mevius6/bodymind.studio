@@ -23,10 +23,10 @@ class Slides {
         cta.appendChild(clip);
       }
       for (let i = 0; i < 4; i++) {
-        let p = createEleWithClass("p", "fs-bs");
-        p.setAttribute("aria-hidden", "true");
-        p.innerHTML = "Узнать больше!";
-        cta.appendChild(p);
+        let text = createEleWithClass("p", "fs-bs");
+        text.setAttribute("aria-hidden", "true");
+        text.innerHTML = "Узнать больше!";
+        cta.appendChild(text);
       }
       slide.appendChild(title);
       slide.appendChild(cta);
