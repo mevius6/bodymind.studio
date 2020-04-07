@@ -43,9 +43,9 @@
   &__date,
   &__time,
   &__coach {
+    display: block;
     position: relative;
     z-index: 1;
-    display: block;
     color: var(--gray-100);
   }
 
@@ -66,6 +66,7 @@
     @include fvar($exa, $regular)
   }
 
+  // https://css-tricks.com/breakout-buttons/
   &__cta {
     display: inline-block;
     margin-block-start: rem(8);
