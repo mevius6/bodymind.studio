@@ -122,7 +122,7 @@ block content
         //- Если опция миксина соответствует дню недели
         if options.day === day
           //- Дни недели до первого дня текущего месяца
-          if day < firstDate.getDay()
+          if day < firstDate.getDay() || day >= firstDate.getDay()
             if options.merge === true
               each i in Array.from(Array(2).keys())
                 +sessionCard({
@@ -139,7 +139,7 @@ block content
                 coach: options.coach
               })
           //- Дни недели с первого дня текущего месяца
-          if day >= firstDate.getDay()
+          //- if day >= firstDate.getDay()
             if options.merge === true
               each i in Array.from(Array(2).keys())
                 +sessionCard({
@@ -156,7 +156,7 @@ block content
                 coach: options.coach
               })
         //- Прервать цикл, когда он достигнет последнего числа месяца
-          if getDate === finalDate.getDate()
+        //- if getDate === finalDate.getDate()
           - break
       //- Первое число следующего месяца
       //- let nextDate = new Date(currentYear, currentMonth + 1, 1).getDate()
