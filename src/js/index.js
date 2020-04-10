@@ -85,7 +85,7 @@ Modernizr.on('webp', function(result) {
     showcase.onMouseMove(ev);
   });
 
-  [...document.querySelectorAll("a")].forEach(link => {
+  [...document.querySelectorAll("a, button")].forEach(link => {
     link.addEventListener("mouseover", () => cursor.over())
     link.addEventListener("mouseleave", () => cursor.leave())
   });
