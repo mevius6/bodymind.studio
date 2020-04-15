@@ -80,8 +80,8 @@
     }
 
     > .meta-area {
-      grid-template-columns: subgrid;
       grid-template-columns: inherit;
+      grid-template-columns: subgrid;
       gap: inherit;
 
       > * + * {
