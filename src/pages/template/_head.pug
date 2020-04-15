@@ -68,8 +68,11 @@ link(
   media="print"
   onload="this.media='all'"
 )
-link(rel="stylesheet" type="text/css" href="../scss/main.scss")
 
 block head
   include ./_ym
   script(src="../js/vendor/modernizr.js")
+
+if page.id !== 'schedule'
+  prepend head
+    link(rel="stylesheet" type="text/css" href="../scss/main.scss")
