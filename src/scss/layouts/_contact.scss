@@ -24,6 +24,10 @@
     grid-area: meta;
     padding: rem(16);
     color: var(--black);
+
+    > * + * {
+      margin-block-start: rem(16);
+    }
   }
 
   > .form-area {
@@ -73,6 +77,16 @@
 
       > * { padding: 0 rem(42); }
       > h1 { margin-block-start: 0; }
+    }
+
+    > .meta-area {
+      grid-template-columns: subgrid;
+      grid-template-columns: inherit;
+      gap: inherit;
+
+      > * + * {
+        margin-block-start: 0;
+      }
     }
   }
 }
