@@ -3,7 +3,8 @@ block vars
 doctype html
 html(class="no-js" dir="ltr" lang="ru")
   head
-    include ./_head
+    if page.id !== 'schedule'
+      include ./_head
   body
     if page.id === 'index'
       #loader
