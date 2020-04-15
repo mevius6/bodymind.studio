@@ -3,12 +3,16 @@ block vars
 doctype html
 html(class="no-js" dir="ltr" lang="ru")
   head
-    include ./_head
+    if page.id !== 'schedule'
+      include ./_head
   body
     if page.id === 'index'
       #loader
-    include ./_nav
-    main.o-main(data-id=page.id)
+    if page.id !== 'schedule'
+      include ./_nav
+      main.o-main(data-id=page.id)
+        block content
+    else
       block content
 
     block scripts
