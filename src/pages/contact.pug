@@ -38,16 +38,17 @@ block content
     .meta-area
       section
         +unorderedList('Контакты:')
-          li: p.fs-bs= meta.adds[0]
-          li: p.fs-bs= meta.email
-          li
+          li.fs-bs= meta.adds[0]
+          li.fs-bs= meta.email
+          li.fs-bs
+            | Телефоны:
             | #[a(href="tel:+7 (921) 025-08-98" rel="nofollow") #{meta.phone[0]}],
             | #[a(href="tel:+7 (8162) 92-02-20" rel="nofollow") #{meta.phone[1]}]
       section
         +unorderedList('Реквизиты:')
-          li: p.fs-bs= meta.trader
-          li: p.fs-bs= meta.number
-          li: p.fs-bs= meta.adds[1]
+          li.fs-bs= meta.trader
+          li.fs-bs= meta.number
+          li.fs-bs= meta.adds[1]
 
     .form-area
       h1.fs-h3
