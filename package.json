@@ -30,6 +30,7 @@
     "sass": "^1.26.3"
   },
   "dependencies": {
+    "jquery": "^3.5.0",
     "popmotion": "^8.7.1",
     "three": "^0.112.1"
   },
