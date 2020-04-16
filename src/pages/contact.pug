@@ -1,20 +1,5 @@
 extends ./template/_page
 
-block vars
-  -
-    let page = data.pages.contact;
-  -
-    let meta = {
-      'trader': 'ИП Королёва Наталья Владимировна',
-      'number': 'ИНН 532004637012 / ОГРНИП 318532100021883',
-      'adds': [
-        'Фактический адрес: 173014, Великий Новгород, Студенческая улица, 17',
-        'Юридический адрес: 173021, Новгородский р-н, д. Плетниха, улица Чапаева, 20'
-      ],
-      'email': `Электронная почта: ${data.meta.email}`,
-      'phone': ['+7 (921) 025-08-98', '92-02-20']
-    }
-
 append head
   script(src="https://www.google.com/recaptcha/api.js?render=6LchYK0UAAAAAMRflt6o0V_1imaH5KDnH5XVjWjB&onload=initRecaptcha&render=explicit")
   script(type="text/javascript").
@@ -24,6 +9,21 @@ append head
         document.getElementById('recaptcha_token').value = token;
         });
       });
+    }
+
+block vars
+  -
+    let page = data.pages.contact;
+  -
+    let meta = {
+      'trader': 'ИП Королёва Наталья Владимировна',
+      'number': 'ИНН 532004637012 / ОГРНИП 318532100021883',
+      'adds': [
+        '173014, Великий Новгород, Студенческая улица, 17',
+        '173021, Новгородский р-н, д. Плетниха, улица Чапаева, 20'
+      ],
+      'email': `${data.meta.email}`,
+      'phone': ['+7 (921) 025-08-98', '92-02-20']
     }
 
 block content
@@ -38,8 +38,10 @@ block content
     .meta-area
       section
         +unorderedList('Контакты:')
-          li.fs-bs= meta.adds[0]
-          li.fs-bs= meta.email
+          li.fs-bs
+            | Фактический адрес: #{meta.adds[0]}
+          li.fs-bs
+            | Электронная почта: #{meta.email}
           li.fs-bs
             | Телефоны:
             | #[a(href="tel:+7 (921) 025-08-98" rel="nofollow") #{meta.phone[0]}],
@@ -48,7 +50,8 @@ block content
         +unorderedList('Реквизиты:')
           li.fs-bs= meta.trader
           li.fs-bs= meta.number
-          li.fs-bs= meta.adds[1]
+          li.fs-bs
+            | Юридический адрес: #{meta.adds[1]}
 
     .form-area
       h1.fs-h3
