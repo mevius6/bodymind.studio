@@ -82,7 +82,8 @@
 
       &:focus-visible { outline-offset: -2px; }
 
-      &:first-child { display: none; }
+      &:nth-child(1),
+      &:nth-child(2) { display: none; }
 
       &-social {
         width: var(--nav-inline);

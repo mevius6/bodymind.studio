@@ -16,6 +16,16 @@
       "description": "Политика обработки персональных данных",
       "keywords": ""
     },
+    "offer": {
+      "id": "offer",
+      "path": ["/offer.pug", "/offer"],
+      "title": [
+        "Оферта",
+        ""
+      ],
+      "description": "Политика обработки персональных данных",
+      "keywords": ""
+    },
     "contact": {
       "id": "contact",
       "path": ["/contact.pug", "/contact"],
