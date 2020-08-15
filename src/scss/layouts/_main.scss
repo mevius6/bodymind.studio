@@ -19,12 +19,37 @@
     }
   }
 
+  &[data-id*="payment"],
   &[data-id*="privacy"],
   &[data-id*="offer"] {
     > .terms {
       margin: 0 auto;
       max-width: rem(992);
       padding: 0 rem(16);
+    }
+
+    .icon {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: auto;
+      max-width: rem(58);
+      min-height: rem(37);
+      margin: rem(20) rem(20) rem(20) 0;
+
+      &:nth-child(3) {
+        background-color: white;
+        border-radius: 2px;
+        border: solid #0f754e 1px;
+      }
+
+      span {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
     }
   }
 

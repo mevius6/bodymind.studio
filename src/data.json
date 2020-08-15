@@ -23,7 +23,17 @@
         "Оферта",
         ""
       ],
-      "description": "Политика обработки персональных данных",
+      "description": "Публичная оферта",
+      "keywords": ""
+    },
+    "payment": {
+      "id": "payment",
+      "path": ["/payment.pug", "/payment"],
+      "title": [
+        "Оплата",
+        ""
+      ],
+      "description": "Оплата услуг",
       "keywords": ""
     },
     "contact": {
