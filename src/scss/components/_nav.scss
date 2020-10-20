@@ -13,7 +13,7 @@
   .c-nav {
     display: grid;
     grid:
-      "nav" max-content
+      "nav" min-content
       "soc" auto
       / 1fr;
     align-content: space-between;
@@ -35,6 +35,7 @@
       grid-area: nav;
       transform: scale(var(--inverse));
       writing-mode: vertical-lr;
+      overflow-y: scroll;
 
       &-social {
         grid-area: soc;
