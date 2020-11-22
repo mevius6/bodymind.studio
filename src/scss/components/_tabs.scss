@@ -6,13 +6,14 @@
   margin-inline-end: auto;
   width: 100%;
   max-width: rem(300);
-  min-height: rem(448);
+  min-height: rem(300);
 }
 
 .c-tabs__tab {
+  @include fvar($exa, $semibold);
+
   display: flex;
   flex-direction: column;
-  @include fvar($exa, $semibold);
 
   &:first-child {
     > label {
@@ -135,7 +136,7 @@
     align-items: flex-start;
     margin-inline-start: 0;
     max-width: max-content;
-    min-height: rem(448);
+    min-height: rem(300); // ~ 18rem
 
     &__tab > label {
       border-radius: rem(6) rem(6) 0 0;
