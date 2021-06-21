@@ -2,9 +2,7 @@
   "name": "bodymind.studio",
   "version": "1.0.0",
   "description": "bodymind.studio",
-  "engines": {
-    "node": "15.x"
-  },
+  "engines": { "node": "14.x" },
   "scripts": {
     "start": "parcel src/index.pug --no-cache --dist-dir ./public",
     "clear": "rm -rf public && rm -rf .parcel-cache",
