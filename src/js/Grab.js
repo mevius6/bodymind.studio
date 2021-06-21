@@ -1,10 +1,10 @@
 class Grab {
   constructor({
-    indexSize,
-    onIndexChange,
+    // indexSize,
+    // onIndexChange,
     onGrabStart,
     onGrabMove,
-    onGrabEnd
+    onGrabEnd,
   }) {
     this.onGrabEnd = onGrabEnd;
     this.onGrabStart = onGrabStart;
@@ -13,30 +13,30 @@ class Grab {
     this.scroll = {
       start: 0,
       current: 0,
-      initial: 0
+      initial: 0,
     };
 
-    this.listen("mousedown", this.onMouseDown.bind(this));
-    this.listen("mousemove", this.onMouseMove.bind(this));
-    this.listen("mouseup", this.onMouseUp.bind(this));
+    this.listen('mousedown', this.onMouseDown.bind(this));
+    this.listen('mousemove', this.onMouseMove.bind(this));
+    this.listen('mouseup', this.onMouseUp.bind(this));
 
-    this.listen("touchstart", this.onMouseDown.bind(this), true);
-    this.listen("touchmove", this.onMouseMove.bind(this), true);
-    this.listen(["touchend", "touchcancel"], this.onMouseUp.bind(this), true);
+    this.listen('touchstart', this.onMouseDown.bind(this), true);
+    this.listen('touchmove', this.onMouseMove.bind(this), true);
+    this.listen(['touchend', 'touchcancel'], this.onMouseUp.bind(this), true);
   }
   listen(events, grabListener, isTouch) {
-    let mouseListener = function(ev) {
-      if (ev.type === "mouseout" && ev.relatedTarget != null) return;
+    let mouseListener = function (ev) {
+      if (ev.type === 'mouseout' && ev.relatedTarget != null) return;
       grabListener({ y: ev.clientY });
     };
 
-    let touchListener = function(ev) {
-      if (ev.type === "touchend") {
+    let touchListener = function (ev) {
+      if (ev.type === 'touchend') {
         throw new Error(ev.targetTouches);
       }
       ev.preventDefault();
       grabListener({
-        y: ev.targetTouches[0] ? ev.targetTouches[0].clientY : null
+        y: ev.targetTouches[0] ? ev.targetTouches[0].clientY : null,
       });
     };
     let listener = mouseListener;
@@ -63,7 +63,7 @@ class Grab {
       delta: this.scroll.delta,
       direction: Math.abs(this.scroll.delta),
       current: this.scroll.current,
-      start: this.scroll.start
+      start: this.scroll.start,
     });
   }
   onMouseMove(position) {
@@ -75,7 +75,7 @@ class Grab {
         delta: this.scroll.delta,
         direction: Math.abs(this.scroll.delta),
         current: this.scroll.current,
-        start: this.scroll.start
+        start: this.scroll.start,
       });
     }
   }
@@ -85,7 +85,7 @@ class Grab {
         delta: this.scroll.delta,
         direction: Math.abs(this.scroll.delta),
         current: this.scroll.current,
-        start: this.scroll.start
+        start: this.scroll.start,
       });
 
       this.scroll.start = null;

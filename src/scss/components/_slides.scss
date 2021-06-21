@@ -1,9 +1,11 @@
+@use '../config';
+
 .slides {
   position: absolute;
   top: 50%;
   width: 100%;
   padding: 0 10vw;
-  @include user-select;
+  user-select: none;
 }
 
 .slide {
@@ -13,17 +15,17 @@
   $show: #{&}--show;
 
   display: flex;
+  width: 100%;
+  max-width: var(--container-xl);
+  height: 25vh;
+  margin: 0 auto;
+  color: var(--gray-90);
+  transition:
+    transform calc(var(--duration) * 5),
+    opacity calc(var(--duration) * 2) var(--easing);
+  transform: translateY(-50%);
   flex-flow: column;
   align-items: center;
-  margin: 0 auto;
-  width: 100%;
-  max-width: var(--laptop);
-  height: 25vh;
-  color: var(--gray-90);
-  transform: translateY(-50%);
-  transition:
-    transform calc(var(--speed) * 5),
-    opacity calc(var(--speed) * 2) var(--timing);
 
   &--prev,
   &--next { opacity: 0; }
@@ -31,38 +33,29 @@
   &--next { transform: translateY(-15%); }
 
   &__title {
-    color: var(--black);
+    color: hsl(var(--black));
     transition:
-      font-variation-settings calc(var(--speed) * 2) var(--timing),
-      color calc(var(--speed) * 3) var(--timing);
+      font-variation-settings calc(var(--duration) * 2) var(--easing),
+      color calc(var(--duration) * 3) var(--easing);
 
     #{$prev} &,
     #{$next} & {
-      @include fvar($exa, $thin);
+      @include config.typeset('sans', 'thin', 'exa');
     }
 
     #{$show} & {
-      color: var(--white);
-      transition: color calc(var(--speed) * 5) var(--speed) var(--timing);
+      color: hsl(var(--white));
+      transition: color calc(var(--duration) * 5) var(--duration) var(--easing);
     }
   }
 
   &__cta {
-    --shadow: hsl(263.8 96.9% 61.8% / 0.2);
     opacity: 0;
-    transition: opacity calc(var(--speed) * 3) var(--timing);
-    box-shadow: 0 4px 12px var(--shadow);
-    @include cta-set-02(
-      linear-gradient(
-        135deg,
-        var(--magenta-30),
-        var(--purple-40)
-      )
-    );
+    transition: opacity calc(var(--duration) * 3) var(--easing);
 
     #{$show} & {
       opacity: 1;
-      transition: opacity calc(var(--speed) * 5) var(--speed) var(--timing);
+      transition: opacity calc(var(--duration) * 5) var(--duration) var(--easing);
     }
   }
 }
@@ -72,7 +65,7 @@
   transform: translateY(-50%);
 }
 
-@media screen and (min-width: $tablet) {
+@include config.respond('tablet') {
   .slides {
     padding: 0 17vw;
   }

@@ -1,0 +1,52 @@
+mixin tabs(props)
+  - let attrs = {}
+  - attrs.class = props.name
+
+  //- .tabs(role="tablist")
+    each tab, i in props.tabs
+      .tabs__tab(role="tab")
+        input(id=`tab-${i}` tabindex="0" type="radio" name="radioTab")&attributes({checked: i === 0})
+        label(for=`tab-${i}`)
+          | #{tab.label}
+        .tabs__content(role="tabpanel")
+          | #{tab.content}
+
+  tab-container&attributes(attrs)
+    div(role="tablist")
+      each tab, i in props.tabs
+        button(
+          type="button"
+          role="tab"
+          tabindex=`${i === 0 ? 0 : -1}`
+        )&attributes({'aria-selected': (i === 0).toString()})
+          | #{tab.label}
+      each tab, i in props.tabs
+        div(role="tabpanel")&attributes({'hidden': i !== 0})
+          | #[b #{tab.content}]
+          //- block
+          b
+            | #[span Количество]
+            | #[span Стоимость]
+          case tab.label
+            when 'Group'
+              +deal(1, 269)
+              +deal(8, '1 935')
+              +deal(16, '3 445')
+            when 'Personal'
+              +deal(1, 799)
+              +deal(8, '5 755')
+              +deal(16, '10 225')
+            when 'Premium'
+              +deal(1, '1 599')
+              +deal(8, '11 505')
+              +deal(16, '20 465')
+            when 'Premium Mini'
+              +deal(1, 799)
+              +deal(8, '5 755')
+              +deal(16, '10 225')
+            when 'Fly Yoga'
+              +deal(1, 499)
+              +deal(8, '3 595')
+              +deal(16, '6 385')
+            when 'VIP'
+              +deal(1, '2 999')

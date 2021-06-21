@@ -1,0 +1,92 @@
+append vars
+  -
+    const navItems = [
+      {
+        'title': 'Главная',
+        'pathname': '.',
+      }, {
+        'title': 'Студия',
+        'pathname': 'about.pug',
+      }, {
+        'title': 'Личный кабинет',
+        'pathname': 'account.pug',
+      }, {
+        'title': 'Расписание',
+        'pathname': 'schedule.pug',
+      }, {
+        'title': 'Направления',
+        'pathname': 'workout.pug',
+      }, {
+        'title': 'Инструкторы',
+        'pathname': 'coaches.pug',
+      }, {
+        'title': 'Стоимость',
+        'pathname': 'pricing.pug',
+      }, {
+        'title': 'Контакты',
+        'pathname': 'contact.pug',
+        // 'subItems': [
+        //   {
+        //     'title': 'Оплата',
+        //     'pathname': 'payment.pug',
+        //   }, {
+        //     'title': 'Конфиденциальность',
+        //     'pathname': 'privacy.pug',
+        //   }, {
+        //     'title': 'Публичная оферта',
+        //     'pathname': 'offer.pug',
+        //   },
+        // ]
+      }
+    ]
+
+nav.nav#Nav
+  button.nav__toggle
+    | Меню
+  ul.nav__items(aria-label="Main Menu")
+    each navItem, i in navItems
+      if navItem.subItems
+        li.nav__item(style=`--zi: ${navItems.length - i}`)
+          a.nav__link(
+            id=`item0${i+1}`
+            href=`./${navItem.pathname}`
+            rel="noopener"
+          )
+            span.nav__link-text
+              | #{navItem.title}
+          button(
+            type="button"
+            id=`btnItem0${i+1}`
+            aria-controls=`SubItem0${i+1}`
+            aria-expanded="false"
+            aria-label="Show"
+            aria-labelledby=`btnItem0${i+1} item0${i+1}`
+            onclick="toggleSubNav(this.id);"
+          )
+            svg(
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 80 80"
+              role="img" aria-hidden="true"
+            )
+              path(d="M70.3 13.8L40 66.3 9.7 13.8z")
+          ul.nav__subitems.flow(
+            id=`SubItem0${i+1}`
+            style={ display: 'none' }
+          )
+            each subItem, i in navItem.subItems
+              li.nav__subitem
+                a.nav__link(
+                  href=`./${subItem.pathname}`
+                  rel="noopener"
+                )
+                  span.nav__link-text
+                    | #{subItem.title}
+      else
+        li.nav__item(class={'selected': (i+1) === 1})
+          a.nav__link(
+            id=`item0${i+1}`
+            href=`./${navItem.pathname}`
+            rel="noopener"
+          )
+            span.nav__link-text
+              | #{navItem.title}

@@ -27,29 +27,31 @@ class Collapse {
     let defaults = {
       accordion: true,
       initClass: 'collapse-init',
-      activeClass: 'c-accordion__panel--active',
-      heightClass: 'collapse-reading-height' };
+      activeClass: 'accordion__panel--active',
+      heightClass: 'collapse-reading-height',
+    };
 
     this.settings = Object.assign({}, defaults, options);
 
     this.container = container;
-    this.panels = container.querySelectorAll("details");
+    this.panels = container.querySelectorAll('details');
 
     this.events = {
       openingPanel: new CustomEvent('openingPanel'),
       openedPanel: new CustomEvent('openedPanel'),
       closingPanel: new CustomEvent('closingPanel'),
-      closedPanel: new CustomEvent('closedPanel') };
+      closedPanel: new CustomEvent('closedPanel'),
+    };
   }
 
   setPanelHeight(panel) {
-    let contents = panel.querySelector("summary + *");
+    let contents = panel.querySelector('summary + *');
 
-    contents.style.height = contents.scrollHeight + "px";
+    contents.style.height = contents.scrollHeight + 'px';
   }
 
   removePanelHeight(panel) {
-    let contents = panel.querySelector("summary + *");
+    let contents = panel.querySelector('summary + *');
 
     contents.style.height = null;
   }
@@ -93,7 +95,7 @@ class Collapse {
   }
 
   openSinglePanel(panel) {
-    this.panels.forEach(element => {
+    this.panels.forEach((element) => {
       if (panel == element && !panel.open) {
         this.open(element);
       } else {
@@ -103,31 +105,33 @@ class Collapse {
   }
 
   attachEvents() {
-    this.panels.forEach(panel => {
-      let toggler = panel.querySelector("summary");
-      let contents = panel.querySelector("summary + *");
+    this.panels.forEach((panel) => {
+      let toggle = panel.querySelector('summary');
+      let contents = panel.querySelector('summary + *');
 
-      panel.addEventListener("toggle", e => {
-        let isReadingHeight = panel.classList.contains(this.settings.heightClass);
+      panel.addEventListener('toggle', () => {
+        let isReadingHeight = panel.classList.contains(
+          this.settings.heightClass
+        );
 
         if (panel.open && !isReadingHeight) {
           this.afterOpen(panel);
         }
       });
 
-      toggler.addEventListener("click", e => {
+      toggle.addEventListener('click', (e) => {
         if (this.settings.accordion) {
           this.openSinglePanel(panel);
           e.preventDefault();
         } else if (panel.open) {
-            this.close(panel);
-            e.preventDefault();
-          }
+          this.close(panel);
+          e.preventDefault();
+        }
       });
 
       let propToWatch = '';
 
-      contents.addEventListener("transitionend", e => {
+      contents.addEventListener('transitionend', (e) => {
         if (e.target !== contents) {
           return;
         }
@@ -157,5 +161,5 @@ class Collapse {
 const accordions = document.querySelectorAll('.collapse');
 
 for (const accordion of accordions) {
-  new Collapse(accordion).init()
+  new Collapse(accordion).init();
 }

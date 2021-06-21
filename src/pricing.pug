@@ -1,0 +1,49 @@
+extends ./pug/page
+
+block vars
+  - let page = data.pages.pricing;
+  -
+    let tabs = [
+      {
+        'label': 'Group',
+        'content': 'Единая цена на все виды групповых программ'
+      },
+      {
+        'label': 'Personal',
+        'content': 'Персональные тренировки'
+      },
+      {
+        'label': 'Premium',
+        'content': 'Персональные тренировки (Reformer / Gyrotonic)'
+      },
+      {
+        'label': 'Premium Mini',
+        'content': 'Тренировки в мини-группах из 3-5 человек'
+      },
+      {
+        'label': 'VIP',
+        'content': '1,5 часа аренды студии, в вашем распоряжении зал до 60 м², обработанный по всем правилам профилактики распространения Covid-19.'
+      },
+      {
+        'label': 'Fly Yoga',
+        'content': 'Fly-йога'
+      }
+    ];
+
+block content
+  mixin deal(amount, cost)
+    .quantity.tabular-nums
+      | #[p #{amount}]
+    .purchase.tabular-nums
+      | #[p #{cost} ₽]
+
+  section.o-container
+    h1.h1.headline
+      | Услуги и цены
+    +tabs({
+      name: 'tabs--1',
+      tabs: tabs
+    })
+
+block scripts
+  script(defer type="module" src="./js/modules.js")

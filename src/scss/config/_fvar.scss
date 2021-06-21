@@ -1,0 +1,54 @@
+// https://drafts.csswg.org/css-fonts-4/#font-named-instance
+
+@function weight($axis: 0) {
+  $tag: 'wght';
+  $preset-instances: (
+    'thin': 100,
+    'regular': 400,
+    'medium': 500,
+    'semibold': 600,
+    'bold': 700,
+  );
+
+  @each $instance, $value in $preset-instances {
+    @if $axis == $instance {
+      $axis: $value;
+    }
+  }
+
+  @return $tag var(--#{$tag}-axis, #{$axis});
+}
+
+@function stretch($axis: 0) {
+  $tag: 'wdth';
+  $preset-instances: (
+    'zetta': 100,
+    'exa': 190,
+    'peta': 300,
+    'tera': 530,
+  );
+
+  @each $instance, $value in $preset-instances {
+    @if $axis == $instance {
+      $axis: $value;
+    }
+  }
+
+  @return $tag var(--#{$tag}-axis, #{$axis});
+}
+
+@function style($axis: 0) {
+  $tag: 'slnt';
+  $preset-instances: (
+    'upright': 0,
+    'oblique': 15,
+  );
+
+  @each $instance, $value in $preset-instances {
+    @if $axis == $instance {
+      $axis: $value;
+    }
+  }
+
+  @return $tag var(--#{$tag}-axis, #{$axis});
+}

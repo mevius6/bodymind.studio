@@ -1,0 +1,47 @@
+@use 'fvar';
+@use 'tools';
+
+@mixin typeset($font, $weight: 0, $width: 0, $style: 0) {
+  $fonts: (
+    'display': (
+      'name': '',
+    ),
+    'serif': (
+      'name': '',
+    ),
+    'sans': (
+      'name': 'Grtsk Variable',
+      'axes': (
+        'wght',
+        'wdth',
+        'slnt',
+      ),
+    ),
+  );
+  $has-variable-axes: tools.check($fonts, $font, 'axes');
+
+  // font-family: tools.fetch($fonts, $font, 'name');
+
+  @if $has-variable-axes {
+    // $axis-tag: tools.fetch($fonts, $font, 'axes');
+
+    // @if $axis-tag == 'wght' {
+    //   font-variation-settings: fvar.weight($weight);
+    // }
+
+    $axes: tools.fetch($fonts, $font, 'axes');
+
+    @each $axis-tag in $axes {
+      @if $axis-tag == 'wght' and 'wdth' and 'slnt' {
+        font-variation-settings:
+          fvar.weight($weight),
+          fvar.stretch($width),
+          fvar.style($style);
+      }
+    }
+  }
+  @else {
+    font-weight: $weight;
+    font-stretch: normal;
+  }
+}

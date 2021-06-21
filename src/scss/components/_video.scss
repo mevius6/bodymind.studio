@@ -1,16 +1,18 @@
+@use '../config';
+
 #promo {
   width: 100%;
   height: auto;
 }
 
-@media screen and (min-width: $tablet) {
+@include config.respond('tablet') {
   #promo {
     position: fixed;
     right: 0;
     bottom: 0;
-    margin-inline-start: calc(50% - 50vw);
-    margin-inline-end: calc(50% - 50vw);
-    width: calc(100% + var(--nav-inline));
+    width: 100%;
     min-height: 100%;
+    margin-inline-end: calc(50% - 50vw);
+    margin-inline-start: calc(50% - 50vw);
   }
 }

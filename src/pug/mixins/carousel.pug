@@ -1,0 +1,84 @@
+mixin carousel(props)
+  - let num = props.data.length
+  - let attrs = {}
+  - attrs.class = props.name
+  -
+    attrs.style = {
+      '--side-fade': props.sideFade || 0,
+    }
+
+  .carousel&attributes(attrs)
+    .carousel__container
+      each item, i in props.data
+        section.carousel__item(id=`section-id-${i+1}`)
+          //-
+            let path = `./images/${props.path}/${i+1}`
+            picture.carousel__image
+              source(srcset=`${path}.avif` type="image/avif")
+              source(srcset=`${path}.webp` type="image/webp")
+              source(srcset=`${path}.jpg` type="image/jpeg")
+              img(
+                alt="..."
+                src=`${path}.jpg`
+                width="720" height="1080"
+                loading="lazy"
+              )
+
+          .carousel__image-wrapper
+            figure.carousel__image
+
+          .carousel__text-wrapper
+            article.carousel__text
+              if Array.isArray(item.title)
+                h2.h1.headline
+                  | #{item.title[0]}#[br]
+                  | #{item.title[1]}
+              else
+                h2.h1.headline
+                  | #{item.title}
+              if item.lead
+                p= item.lead
+
+              if Array.isArray(item.field)
+                each subitem in item.field
+                  if subitem.lead
+                    p= subitem.lead
+
+                  if subitem.accordionHeaders
+                    +accordion({
+                      headers: subitem.accordionHeaders,
+                      panels: subitem.accordionPanels,
+                    })
+                  else if subitem.listTitle
+                    +list({
+                      title: subitem.listTitle,
+                      items: subitem.listItems,
+                      ordered: false
+                    })
+                  else
+                    +list({
+                      items: subitem.listItems,
+                      ordered: false
+                    })
+              else
+                p= item.field
+
+            if item.videoId !== ''
+              lite-vimeo(videoid= item.videoId)
+
+    if props.control === 'dots'
+      ul.carousel__control
+        each i in Array.from(Array(num).keys())
+          li: a(href=`#section-id-${i+1}`)
+
+    else if props.control === 'arrows'
+      .carousel__control
+        button.prev(aria-label="Предыдущий")
+          | &larr;
+        button.next(aria-label="Следующий")
+          | &rarr;
+
+    if props.count
+      .carousel__counter
+        .carousel__counter-current= 1
+        .carousel__counter-max= num

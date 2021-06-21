@@ -1,0 +1,73 @@
+@use '../config';
+
+[type='checkbox'] {
+  --cb-size: 20px;
+  --cb-shadow-color: var(--gray-20);
+  --cb-shadow-spread: 1px;
+  --cb-background-color: var(--background);
+  --cb-mark-color: var(--foreground);
+  --cb-mark-icon: var(--check);
+
+  appearance: none;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: var(--cb-size);
+  height: var(--cb-size);
+  margin: 0;
+  cursor: pointer;
+  background-color: var(--cb-background-color);
+  border-radius: 4px;
+  outline: 0;
+  box-shadow: var(--cb-shadow-color) 0 0 0 var(--cb-shadow-spread) inset;
+  transition:
+    background-color 150ms var(--easing) 0s,
+    box-shadow var(--duration) var(--easing);
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--cb-mark-color);
+    content: var(--cb-mark-icon);
+    // '✓'
+    // content: '\2713';
+    // content: '';
+    // background: var(--cb-mark-icon) center/cover no-repeat;
+    opacity: var(--cb-mark-alpha, 0);
+    transition-delay: 0ms;
+    transition-timing-function: var(--easing);
+    transition-duration: var(--duration);
+    transition-property: opacity, transform;
+    transform: translate(-50%, -50%) scale(0.75) rotateY(45deg);
+  }
+
+  &:hover,
+  &:focus {
+    --cb-shadow-color: var(--accent);
+    --cb-shadow-spread: 2px;
+    // --cb-background-color: var(--foreground);
+  }
+
+  &:checked {
+    --cb-shadow-color: var(--accent);
+    --cb-shadow-spread: calc(var(--cb-size) / 2);
+
+    &::after {
+      --cb-mark-alpha: 1;
+      transition-delay: 200ms;
+      transition-timing-function: var(--easing);
+      transition-duration: 150ms;
+
+      transition-property: opacity, transform;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}

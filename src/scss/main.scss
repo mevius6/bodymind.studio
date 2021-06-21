@@ -1,27 +1,9 @@
 @charset "UTF-8";
 
-// =========================================================================
-// Foundation
-// =========================================================================
-@import "utils";
-@import "settings";
+@use 'reset';
+@use 'setup';
+@use 'typography';
+@use 'layout';
+@use 'patterns';
 
-// =========================================================================
-// Objects
-// =========================================================================
-@import "layouts/main";
-@import "layouts/contact";
-
-// =========================================================================
-// Components
-// =========================================================================
-@import "components/a2hs";
-@import "components/accordion";
-@import "components/carousel";
-@import "components/counter";
-@import "components/cursor";
-@import "components/form";
-@import "components/nav";
-@import "components/slides";
-@import "components/tabs";
-@import "components/video";
+@use 'components';

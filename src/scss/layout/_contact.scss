@@ -1,0 +1,46 @@
+@use '../config';
+
+.contact {
+  display: grid;
+  block-size: 100%;
+  overflow-y: auto;
+  background-color: var(--background);
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-rows: 1fr min-content auto;
+
+  > * { grid-column: 1; }
+
+  > .form-wrapper { place-self: center; }
+
+  > #map {
+    max-block-size: 100vh;
+    grid-row: 2;
+  }
+
+  > .meta {
+    display: grid;
+    padding: var(--spacer-3);
+    grid-row: 3;
+    place-self: center;
+    grid-template-columns: inherit;
+    grid-template-columns: subgrid;
+
+    section { place-self: center; }
+
+    li { display: block; }
+
+    &:nth-child(1) { grid-column: 1; }
+    &:nth-child(2) { grid-column: 2; }
+  }
+
+  @include config.respond('tablet') {
+    & {
+      column-gap: var(--gutter);
+      grid-template-rows: 1fr auto;
+    }
+
+    #map { grid-area: 1 / 2; }
+
+    .meta { grid-area: 2 / 1 / 2 / span 2; }
+  }
+}

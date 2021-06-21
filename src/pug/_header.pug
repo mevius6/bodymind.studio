@@ -1,0 +1,64 @@
+- let year = new Date().getFullYear()
+- let copy = `${data.meta.websiteName} © 2019—${year}`
+-
+  let social = [
+    {
+      'icon': 'vk',
+      'href': 'https://vk.com/bmfitness',
+    }, {
+      'icon': 'ig',
+      'href': 'https://www.instagram.com/bodymind.fs/',
+    },
+  ]
+-
+  let listItems = [
+    {
+      // 'icon': 'phone',
+      'phone': '+7 (921) 025-08-98',
+    }, {
+      // 'icon': 'at',
+      // 'email': {
+      //   'to': data.meta.email,
+      //   'subject': '',
+      //   'body': 'Добрый день!',
+      // }
+    },
+    // ...social,
+  ]
+
+header.page__header
+  div(itemscope itemtype="https://schema.org/PhysicalActivity")
+    span(itemprop="name")
+      | Body&amp;Mind
+      //-| #[h1 Body&amp;Mind]
+    span(itemprop="description" role="doc-subtitle") Фитнес студия
+    //-
+      a.logo(
+        href= data.meta.domain
+        title= data.meta.websiteName
+        rel="noopener"
+      )
+        picture
+          source(srcset="./images/logo.webp" type="image/webp")
+          img(
+            itemprop="logo"
+            src="./images/logo.png"
+            alt="Фитнес студия Body&amp;Mind"
+          )
+    div(itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress" data-hidden)
+      span(itemprop="streetAddress")
+        | Студенческая улица, 17
+      span(itemprop="addressLocality" data-hidden)
+        | Великий Новгород
+
+    //- +list({
+    //-   items: listItems,
+    //-   ordered: false
+    //- })(class='contacts')
+
+  include ./_nav
+
+  //- +list({
+  //-   items: social,
+  //-   ordered: false
+  //- })(class='social')

@@ -1,0 +1,11 @@
+mixin accordion(props)
+  - let attrs = {}
+  - attrs.class = props.name
+
+  .accordion.collapse&attributes(attrs)
+    each header, i in props.headers
+      details.accordion__panel
+        summary.accordion__panel-toggle.subhead
+          | #{header}
+        .accordion__panel-inner
+          p= props.panels[i]

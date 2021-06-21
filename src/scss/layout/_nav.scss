@@ -1,0 +1,216 @@
+@use '../config';
+
+// https://css-tricks.com/in-praise-of-the-unambiguous-click-menu/
+
+@keyframes fadeInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+header,
+nav { width: auto; }
+
+.nav {
+  --offset: calc(100% + var(--spacer-2));
+
+  // font-size: 0.75rem;
+  // font-weight: 500;
+
+  &__toggle {
+    display: none;
+
+    @media (max-width: 480px) {
+      --size: 44px; // 2.75rem
+
+      display: block;
+      inline-size: var(--size);
+      block-size: var(--size);
+      color: var(--accent);
+      background-color: transparent;
+      appearance: none;
+    }
+  }
+
+  ul,
+  li {
+    --arrow: '';
+    gap: 0;
+  }
+
+  a { word-break: normal; }
+
+  &__items {
+    display: flex;
+    flex-wrap: no-wrap; // RWD
+    justify-content: space-evenly;
+    align-items: stretch;
+
+    @media (max-width: 480px) {
+      position: absolute;
+      top: var(--offset);
+      right: 0;
+      left: 0;
+      display: block;
+      visibility: hidden;
+      opacity: 0;
+
+      &.is-active {
+        visibility: visible;
+        opacity: 1;
+        transition: var(--duration) ease-out;
+      }
+    }
+  }
+
+  &__item {
+    --r: var(--radius-1);
+
+    position: relative;
+    z-index: var(--zi);
+    display: flex;
+    background-color: hsl(var(--white));
+    opacity: var(--alpha, 0);
+    transition: opacity 150ms ease-in-out;
+    flex: 1 1 auto; // RWD
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    // :where(:not(:hover))
+    :hover > &:not(:hover) a { --alpha: 0.75; }
+
+    &:first-child { border-radius: var(--r) var(--r) 0 0; }
+    &:last-child { border-radius: 0 0 var(--r) var(--r); }
+
+    & > * { flex: 1 1 auto; }
+
+    & > a {
+      display: flex;
+      inline-size: 100%;
+      block-size: 100%;
+      padding-inline: var(--spacer-3);
+      margin: auto;
+      line-height: 1.5;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-1);
+      opacity: var(--alpha, 1);
+      align-items: center;
+    }
+
+    & > a + button svg {
+      inline-size: 100%;
+      block-size: 100%;
+      fill: var(--accent);
+      transition: transform 250ms ease-in;
+      transform-origin: center 45%;
+    }
+
+    & > button {
+      --size: 1rem;
+
+      display: flex;
+      inline-size: var(--size);
+      block-size: var(--size);
+      min-height: min-content;
+      padding: 0;
+      margin-inline-end: var(--spacer-3);
+      text-align: center;
+      background-color: transparent;
+      outline: none;
+      flex: 0 0 var(--size);
+      align-items: center;
+      justify-content: center;
+
+      &[aria-expanded='true'] svg {
+        // transform: rotate(180deg);
+        transform: scale(-1);
+      }
+    }
+  }
+
+  &__link-text {
+    margin-block: var(--spacer-3);
+    font-size: 0.875rem;
+  }
+
+  &__subitems {
+    --flow-space: 0;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1020;
+    display: block;
+    width: 100%;
+    min-width: 12em;
+    height: auto;
+    overflow: visible;
+    filter: drop-shadow(0 2px 8px hsl(var(--black) / 0.25));
+    border: 1px solid transparent;
+
+    a {
+      display: block;
+      padding: 1ch 2ex;
+      font-size: 0.75rem;
+    }
+
+    a,
+    span { margin: 0; }
+  }
+
+  &__subitem {
+    --r: var(--radius-1);
+    --speed: 200ms;
+    --delay: calc(var(--i, 0) * var(--speed));
+
+    background-color: hsl(var(--white) / 0.95);
+    opacity: 1;
+    transform: translate(0);
+    animation: fadeInBottom var(--speed) ease-out var(--delay) both;
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) { --i: #{$i * 0.25}; }
+    }
+
+    &:first-child { border-radius: var(--r) var(--r) 0 0; }
+    &:last-child { border-radius: 0 0 var(--r) var(--r); }
+  }
+
+  @include config.respond('tablet') {
+    &__items {
+      & > * + * {
+        border-inline-start: 1px solid hsl(var(--black) / 0.1);
+      }
+    }
+
+    &__item {
+      --alpha: 1;
+
+      background-color: inherit;
+
+      &:first-child,
+      &:last-child { --r: inherit; }
+    }
+
+    &__subitems {
+      top: var(--offset);
+      width: auto;
+    }
+  }
+
+  @include config.respond('laptop') {
+    &__items {
+      flex-wrap: wrap; // RWD
+    }
+
+    &__item:last-child > ul {
+      right: 0;
+      left: auto;
+    }
+
+    &__subitems { right: 0; }
+  }
+}

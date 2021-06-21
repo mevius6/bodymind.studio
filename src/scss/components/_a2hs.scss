@@ -4,17 +4,15 @@
   right: 0;
   z-index: 1;
   display: flex;
-  justify-content: center;
+  padding: var(--spacer-4);
+  font-size: 1rem;
   background-color: transparent;
-  font-size: rem(16);
-  padding: rem(28);
+  justify-content: center;
 
   &__cta {
-    --shadow: hsl(263.8 96.9% 61.8% / .16);
     box-shadow: 0 4px 12px var(--shadow);
-    transition: box-shadow .2s ease, background-image .2s ease;
-    @include cta-set-02(var(--white));
+    transition: box-shadow 0.2s ease, background-image 0.2s ease;
   }
-}
 
-.hidden { display: none; }
+  &.hidden { display: none; }
+}

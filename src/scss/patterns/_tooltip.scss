@@ -1,0 +1,47 @@
+.has-tooltip {
+  --tooltip-offset: calc(20px + 44px + 1.375rem + 1.5rem);
+  --tooltip-width: 12.5rem; // ~200px
+  --tooltip-foreground: var(--foreground);
+  --tooltip-background: hsl(var(--white));
+  --tooltip-font-size: 0.8rem; // ~12.8px
+
+  position: relative;
+
+  &::before {
+    position: absolute;
+    // inset: var(--tooltip-offset-x) var(--tooltip-offset-y);
+    top: var(--tooltip-offset);
+    left: 0;
+    display: none;
+    width: var(--tooltip-width);
+    height: var(--tooltip-height, auto);
+    padding: var(--spacer-2);
+    font-size: var(--tooltip-font-size);
+    line-height: 1.25;
+    color: var(--tooltip-foreground);
+    pointer-events: none;
+    content: attr(aria-describedby); // attr(title)
+    background-color: var(--tooltip-background);
+    border-radius: var(--radius-1);
+    box-shadow: var(--accent) 0 0 0 1px inset;
+    opacity: 0;
+    transition:
+      opacity var(--duration) var(--easing),
+      transform var(--duration) var(--easing);
+    transform: translateY(1em);
+
+    @media (hover: hover) {
+      & { display: block; }
+    }
+  }
+
+  &:hover::before {
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  &:checked::before {
+    opacity: 0;
+    transform: translateY(1em);
+  }
+}

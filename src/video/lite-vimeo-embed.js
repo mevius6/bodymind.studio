@@ -1,4 +1,4 @@
-// import './lite-vimeo-embed.css';
+import './lite-vimeo-embed.css';
 import { addPrefetch, getThumbnailDimensions, canUseWebP } from './utils.js';
 
 /**

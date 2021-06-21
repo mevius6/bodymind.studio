@@ -1,0 +1,98 @@
+@use '../config';
+
+// https://w3c.github.io/aria-practices/#accordion
+// ? https://css-tricks.com/how-to-animate-the-details-element/
+
+// Классы, установленные через JS
+$accordionClass: '.collapse-init';
+$panelClass: '.accordion__panel--active';
+$contentsClass: 'summary + *';
+
+// .accordion__panel-inner {}
+#{$accordionClass $contentsClass} {
+  overflow: hidden;
+  transition: all var(--duration) ease-in-out;
+}
+
+// :not(.accordion__panel--active) .accordion__panel-inner {}
+#{$accordionClass} :not(#{$panelClass}) #{$contentsClass} {
+  height: 0;
+  opacity: 0;
+  transform: scale(0.9);
+  transform-origin: bottom center;
+}
+
+.accordion {
+  max-inline-size: var(--container-md);
+  margin-block-start: var(--spacer-4);
+  margin-block-end: var(--spacer-4);
+  box-shadow: 3.2px 1rem 2rem -1rem var(--shadow);
+
+  &__panel {
+    overflow: hidden;
+    list-style: none;
+    background: hsl(var(--white));
+    border-color: var(--gray-20);
+    border-style: solid;
+    border-width: 1px 1px 0;
+
+    &:first-child {
+      border-top-left-radius: var(--radius-1);
+      border-top-right-radius: var(--radius-1);
+    }
+
+    &:last-child {
+      border-bottom: 1px solid var(--gray-20);
+      border-bottom-right-radius: var(--radius-1);
+      border-bottom-left-radius: var(--radius-1);
+    }
+
+    &-inner p {
+      padding: var(--spacer-3);
+      color: var(--gray-100);
+    }
+  }
+
+  &__panel-toggle {
+    --arrow-size: 0.5rem;
+
+    display: block;
+    padding: var(--spacer-3);
+    color: var(--gray-100);
+    transition: 200ms;
+
+    &:hover { cursor: pointer; }
+
+    &:focus-visible {
+      outline: 2px dotted var(--purple-40);
+    }
+
+    #{$accordionClass} &::after {
+      float: right;
+      width: var(--arrow-size);
+      height: var(--arrow-size);
+      margin-block-start: calc(var(--arrow-size) / 2);
+      content: '';
+      border-style: solid;
+      border-width: 0 2px 2px 0;
+      transition: inherit;
+      transform: rotate(45deg);
+    }
+
+    [open] & {
+      color: hsl(var(--white));
+      background: var(--purple-60);
+
+      &::after {
+        margin-top: var(--arrow-size);
+        transform: rotate(225deg);
+      }
+    }
+  }
+}
+
+@include config.respond('tablet') {
+  .accordion__panel-inner p {
+    padding: var(--spacer-3) var(--spacer-4);
+  }
+}

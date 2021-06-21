@@ -1,0 +1,125 @@
+@use '../config';
+
+.container {
+  inline-size: 100%;
+  max-inline-size: var(--container-sm);
+  min-block-size: 100%;
+  padding-block: var(--spacer-4);
+  padding-inline: var(--spacer-3);
+  margin: 0 auto;
+  background: var(--gray-10);
+
+  @include config.respond('tablet') {
+    & {
+      max-inline-size: var(--container-md);
+      padding-block: var(--spacer-5);
+    }
+  }
+}
+
+[data-id='about'] {
+  > section {
+    width: 100%;
+    max-width: var(--container-md);
+    background: var(--gray-10);
+
+    article {
+      // max-inline-size: calc(var(--mobile) * 2);
+      // padding: var(--spacer-3);
+      padding-block: var(--spacer-4);
+      padding-inline: var(--spacer-3);
+      margin: 0 auto;
+
+      > * + * {
+        padding-block-start: var(--spacer-3);
+      }
+
+      h1 { margin-block-end: 0; }
+
+      @include config.respond('tablet') {
+        & {
+          padding-block: var(--spacer-5);
+        }
+      }
+    }
+  }
+}
+
+[data-id='payment'],
+[data-id='privacy'],
+[data-id='offer'] {
+  > .terms {
+    max-width: 62rem;
+    // max-width: var(--container-lg);
+    padding: 0 var(--spacer-3);
+    margin: 0 auto;
+  }
+
+  .icon {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 58px;
+    min-height: 37px;
+    margin: auto;
+    margin: var(--spacer-4) var(--spacer-4) var(--spacer-4) 0;
+    justify-content: center;
+    align-items: center;
+
+    &:nth-child(3) {
+      background-color: white;
+      border: solid #0f754e 1px;
+      border-radius: 2px;
+    }
+
+    span {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+[data-id='pricing'] {
+  --bg-image: url('../images/7.jpg');
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: var(--bg-image) center / cover no-repeat;
+
+  .webp & {
+    --bg-image: url('../images/7.webp');
+  }
+}
+
+.o-container {
+  max-inline-size: var(--mobile);
+  min-block-size: 100%;
+  padding-block: var(--spacer-4);
+  padding-inline: var(--spacer-3);
+  margin: 0 auto;
+
+  @include config.respond('tablet') {
+    & {
+      max-inline-size: var(--container-md);
+      padding: var(--spacer-5) 0;
+    }
+  }
+
+  // @include config.respond('laptop') {
+  //   & { max-inline-size: var(--container-xl); }
+  // }
+}
+
+@include config.respond('tablet') {
+  [data-id='about'] {
+    > section {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      overflow-x: scroll;
+      background: hsl(var(--white) / 0.9);
+
+      article { padding: var(--spacer-5) var(--spacer-3); }
+    }
+  }
+}

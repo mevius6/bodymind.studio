@@ -1,12 +1,12 @@
-const reach = function({ from, to, restDelta = 0.01 }) {
+const reach = function ({ from, to, restDelta = 0.01 }) {
   let current = Object.assign({}, from);
   let keys = Object.keys(from);
 
   let raf = {
-    current: null
+    current: null,
   };
 
-  let _update = function(update, complete) {
+  let _update = function (update, complete) {
     if (keys.length === 0) {
       cancelAnimationFrame(raf.current);
       raf.current = null;
@@ -15,7 +15,7 @@ const reach = function({ from, to, restDelta = 0.01 }) {
       return;
     }
 
-    let cacheKeys = keys.slice();
+    // let cacheKeys = keys.slice();
     for (var i = keys.length, val, key; i >= 0; i--) {
       key = keys[i];
       val = current[key] + (to[key] - current[key]) * 0.1;
@@ -34,16 +34,16 @@ const reach = function({ from, to, restDelta = 0.01 }) {
     raf.current = requestAnimationFrame(_update);
   };
   return {
-    start: function({ update, complete }) {
+    start: function ({ update, complete }) {
       _update = _update.bind(null, update, complete);
       raf.current = requestAnimationFrame(_update);
       return {
-        stop: function() {
+        stop: function () {
           cancelAnimationFrame(raf.current);
           raf.current = null;
-        }
+        },
       };
-    }
+    },
   };
 };
 

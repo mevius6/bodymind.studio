@@ -1,0 +1,36 @@
+//- https://wicg.github.io/local-font-access/
+append vars
+  -
+    let pathName = 'fonts'
+    let typeName = 'font'
+    let fontFaces = [
+      {
+        'fullName': 'GrtskVariable',
+        'varAxes': true
+      },
+    ]
+
+each fontFace in fontFaces
+  - let format = !fontFace.varAxes ? 'woff2' : 'woff2-variations'
+  link(
+    rel="preload"
+    href=`./${pathName}/${fontFace.fullName}.woff2` as=typeName
+    type=`${typeName}/${format}`
+    crossorigin
+  )
+
+//- https://drafts.csswg.org/css-fonts-4/#font-face-src-parsing
+style.
+  @font-face {
+    font-display: swap;
+    font-family: Grtsk Variable;
+    font-stretch: 190% 530%;
+    font-style: oblique 0deg 15deg;
+    font-synthesis: none;
+    font-weight: 100 700;
+    src:
+      local(Grtsk Variable),
+      local(Grtsk-Variable),
+      url(./fonts/GrtskVariable.woff2) format('woff2 supports variations'),
+      url(./fonts/GrtskVariable.woff2) format('woff2-variations');
+  }

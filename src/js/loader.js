@@ -1,3 +1,5 @@
+import '../scss/loader.scss';
+
 window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
 

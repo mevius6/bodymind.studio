@@ -1,0 +1,60 @@
+@use '../config';
+
+button {
+  position: relative;
+  display: inline-flex;
+  min-block-size: 44px; // 2.75rem
+  padding: 1ch 2ex; // 0.5rem
+  overflow: hidden;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--btn-text-color, var(--foreground));
+  background: var(--btn-background, hsl(var(--white)));
+  border-radius: var(--btn-border-radius, var(--radius-1)); // 1ch
+  will-change: transform, box-shadow;
+  box-shadow: 0 8px 24px var(--shadow);
+  transition:
+    transform 150ms ease-in-out,
+    box-shadow var(--duration) var(--easing);
+  align-items: center;
+  justify-content: space-around;
+
+  &:is(:hover, :focus) {
+    text-decoration: none;
+    outline: none;
+  }
+
+  &:active:not([disabled]) {
+    box-shadow:
+      transparent 0 0 0 1px inset,
+      0 0 0 var(--shadow);
+    transform: translateY(1px);
+  }
+
+  &[class$='cta'] {
+    @include config.directional-clipping();
+
+    // text-shadow: 0 1px 1px hsl(210 13% 12% / 0.25);
+    // background-image:
+    //   linear-gradient(
+    //     135deg,
+    //     var(--magenta-30),
+    //     var(--purple-40)
+    //   );
+    box-shadow:
+      var(--accent) 0 0 0 1px inset,
+      0 4px 8px var(--shadow);
+  }
+
+  &[disabled] {
+    background-image:
+      repeating-linear-gradient(
+        -24deg,
+        transparent,
+        transparent 4px,
+        var(--purple-40) 0,
+        var(--purple-40) 5px
+      );
+    box-shadow: var(--purple-40) 0 0 0 0.5px inset;
+  }
+}

@@ -1,0 +1,54 @@
+include ./mixins
+
+block vars
+
+doctype html
+html(class="no-js" dir="ltr" lang="ru")
+  head
+    include ./_meta
+    include ./_fonts
+    include ./_ym
+    block head
+
+    if page.id !== 'schedule' && page.id !== 'account'
+      prepend head
+        link(rel="stylesheet" type="text/css" href="./scss/main.scss")
+    else
+      prepend head
+        link(rel="stylesheet" type="text/css" href="./scss/_reset.scss")
+
+    //- link(
+    //-   rel="stylesheet"
+    //-   href="./scss/loader.scss"
+    //-   media="print"
+    //-   onload="this.media='all'"
+    //- )
+
+  body.page.page--loading(itemscope itemtype="https://schema.org/WebPage")
+    noscript
+      | #[h2 В вашем браузере необходимо включить JavaScript.]
+
+    if page.id === 'index'
+      #loader
+
+    //- #loader
+    if page.id !== 'schedule' && page.id !== 'account'
+      include ./_header
+      main(data-id=page.id)
+        //- .a2hs.hidden
+          +cta({
+            base: 'a2hs',
+            type: 'button',
+            text: 'Установить'
+          })
+        block content
+      include ./_cursor
+      script(src="./js/index.js")
+    else
+      block content
+
+    block scripts
+    include ./_ga
+
+//- prepend scripts
+  script(src="./a2hs.js")

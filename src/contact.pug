@@ -1,0 +1,64 @@
+extends ./pug/page
+
+append head
+  script(src="https://www.google.com/recaptcha/api.js?render=6LchYK0UAAAAAMRflt6o0V_1imaH5KDnH5XVjWjB&onload=initRecaptcha&render=explicit")
+  script(type="text/javascript").
+    var initRecaptcha = function() {
+      grecaptcha.ready(function() {
+        grecaptcha.execute("6LchYK0UAAAAAMRflt6o0V_1imaH5KDnH5XVjWjB", {action: "homepage"}).then(function(token) {
+        document.getElementById('recaptcha_token').value = token;
+        });
+      });
+    }
+
+block vars
+  - let page = data.pages.contact;
+  -
+    let meta = {
+      'trader': 'ИП Аветисян Карине Николаевна',
+      'number': 'ИНН 532116619131 / ОГРНИП 320532100023894',
+      'adds': [
+        '173014, Великий Новгород, Студенческая улица, 17',
+        '173021, Новгородский р-н, д. Плетниха, улица Чапаева, 20'
+      ],
+      'email': `${data.meta.email}`,
+      'phone': ['+7 (921) 025-08-98', '92-02-20']
+    }
+
+block content
+  mixin unorderedList(heading)
+    p= heading
+    ul: block
+
+  section.contact
+    .form-wrapper
+      h1.h2.headline Пишите нам!
+      //- p
+        | Укажите, пожалуйста, Ваши контактные данные.
+      //- small &ast; Обязательно
+      +form({
+        endpoint: 'd4267741',
+        email: data.meta.email,
+        phone: '+7 (921) 025-08-98',
+      })
+    #map
+
+    .meta
+      section
+        +unorderedList('Контакты:')
+          li
+            | Фактический адрес: #{meta.adds[0]}
+          li
+            | Электронная почта: #{meta.email}
+          li
+            | Телефоны:
+            | #[+link({ 'phone': meta.phone[0] })], #[+link({ 'phone': meta.phone[1] })]
+      section
+        +unorderedList('Реквизиты:')
+          li= meta.trader
+          li= meta.number
+          li
+            | Юридический адрес: #{meta.adds[1]}
+
+block scripts
+  script(type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0cbaaf418c0e87df2938d943cc21ee7dbdd948a7fa75b86b25c16e9fbf15b847&amp;id=map&amp;width=100%25&amp;height=100%25&amp;lang=ru_RU&amp;scroll=true&amp;apikey=<b606c37d-c0a3-4f3c-86bf-dd82ccceefac>")

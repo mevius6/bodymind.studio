@@ -8,7 +8,7 @@
   "pages": {
     "privacy": {
       "id": "privacy",
-      "path": ["/privacy.pug", "/privacy"],
+      "path": ["./privacy.pug", "/privacy"],
       "title": [
         "Конфиденциальность",
         ""
@@ -18,7 +18,7 @@
     },
     "offer": {
       "id": "offer",
-      "path": ["/offer.pug", "/offer"],
+      "path": ["./offer.pug", "/offer"],
       "title": [
         "Оферта",
         ""
@@ -28,7 +28,7 @@
     },
     "payment": {
       "id": "payment",
-      "path": ["/payment.pug", "/payment"],
+      "path": ["./payment.pug", "/payment"],
       "title": [
         "Оплата",
         ""
@@ -38,7 +38,7 @@
     },
     "contact": {
       "id": "contact",
-      "path": ["/contact.pug", "/contact"],
+      "path": ["./contact.pug", "/contact"],
       "title": [
         "Контакты",
         ""
@@ -48,7 +48,7 @@
     },
     "pricing": {
       "id": "pricing",
-      "path": ["/pricing.pug", "/pricing"],
+      "path": ["./pricing.pug", "/pricing"],
       "title": [
         "Стоимость",
         "Услуги и цены фитнес клуба Body & Mind в Великом Новгороде"
@@ -58,7 +58,7 @@
     },
     "coaches": {
       "id": "coaches",
-      "path": ["/coaches.pug", "/coaches"],
+      "path": ["./coaches.pug", "/coaches"],
       "title": [
         "Инструкторы",
         "Фитнес инструктор Наталья Королёва - студия Body & Mind Великий Новгород"
@@ -68,7 +68,7 @@
     },
     "workout": {
       "id": "workout",
-      "path": ["/workout.pug", "/workout"],
+      "path": ["./workout.pug", "/workout"],
       "title": [
         "Направления",
         "Пилатес, йога и Gyrotonic в фитнес студии Body & Mind Великий Новгород"
@@ -78,7 +78,7 @@
     },
     "schedule": {
       "id": "schedule",
-      "path": ["/schedule.pug", "/schedule"],
+      "path": ["./schedule.pug", "/schedule"],
       "title": [
         "Расписание",
         "Расписание занятий в фитнес клубе Великого Новгорода Body & Mind"
@@ -88,7 +88,7 @@
     },
     "about": {
       "id": "about",
-      "path": ["/about.pug", "/about"],
+      "path": ["./about.pug", "/about"],
       "title": [
         "Студия",
         "Фитнес студия Body & Mind: пилатес и другие тренировки в Великом Новгороде"
@@ -98,7 +98,7 @@
     },
     "account": {
       "id": "account",
-      "path": ["/account.pug", "/account"],
+      "path": ["./account.pug", "/account"],
       "title": ["Личный кабинет", "Личный кабинет"]
     },
     "index": {

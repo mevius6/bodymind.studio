@@ -1,7 +1,9 @@
+@use '../config';
+
 ::marker {
-  // https://drafts.csswg.org/css-color-4/#currentcolor-color
   color: currentcolor;
-  @extend %tabular-nums;
+  font-feature-settings: 'lnum' 1, 'tnum' 1;
+  font-variant-numeric: tabular-nums;
 }
 
 .terms {
@@ -9,35 +11,37 @@
 }
 
 .h-count {
-  color: var(--black);
+  color: hsl(var(--black));
   counter-increment: h-count;
 }
 
-[role="list"] {
-  max-width: rem(960);
-  margin-block-start: rem(16);
-  margin-block-end: rem(28);
-  padding-inline-start: rem(30);
+[role='list'] {
+  max-width: var(--container-md);
+  padding-inline-start: (--spacer-5);
+  margin-block-start: var(--spacer-3);
+  margin-block-end: var(--spacer-4);
 
   & > * + * {
-    margin-block-start: rem(10);
+    margin-block-start: var(--spacer-2);
   }
 }
 
 @supports (counter-set: count) {
   .h-count {
     display: list-item;
-    margin-inline-start: rem(20);
-    padding-inline-start: rem(4);
+    padding-inline-start: var(--spacer-1);
+    margin-inline-start: var(--spacer-4);
+
     &::marker {
-      content: counter(h-count) ".";
+      content: counter(h-count) '.';
     }
   }
 
-  [role="list"] li {
-    padding-inline-start: rem(4);
+  [role='list'] li {
+    padding-inline-start: var(--spacer-1);
+
     &::marker {
-      content: counters(list-item, ".", decimal) ".";
+      content: counters(list-item, '.', decimal) '.';
     }
   }
 }
@@ -45,25 +49,27 @@
 @supports not (counter-set: count) {
   .h-count {
     &::before {
-      content: counter(h-count) ". ";
       color: currentcolor;
+      content: counter(h-count) '. ';
     }
   }
 
-  [role="list"] {
+  [role='list'] {
     counter-reset: list-item;
+
     li {
       counter-increment: list-item;
+
       &::before {
-        content: counters(list-item, ".", decimal) ". ";
         color: currentcolor;
+        content: counters(list-item, '.', decimal) '. ';
       }
     }
   }
 }
 
-@media screen and (min-width: $tablet) {
+@include config.respond('tablet') {
   .h-count {
-    margin-inline-start: rem(28);
+    margin-inline-start: var(--spacer-4);
   }
 }

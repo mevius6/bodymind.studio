@@ -2,14 +2,18 @@
   "name": "bodymind.studio",
   "version": "1.0.0",
   "description": "bodymind.studio",
-  "main": "index.js",
   "engines": {
-    "node": "12.x"
+    "node": "15.x"
   },
   "scripts": {
-    "start": "parcel src/pages/index.pug --open -d public",
-    "build": "npm run clean && parcel build src/pages/index.pug -d public --no-cache --no-source-maps",
-    "clean": "rm -rf public && rm -rf .cache"
+    "start": "parcel src/index.pug --no-cache --dist-dir ./public",
+    "clear": "rm -rf public && rm -rf .parcel-cache",
+    "build": "npm run clear && parcel build src/index.pug --no-cache --no-source-maps --dist-dir ./public && npm run copy",
+    "lint:js": "npx eslint \"./src/js/*.js\" --fix",
+    "lint:css": "npx stylelint \"./src/scss/**/*.{css,scss}\" --fix",
+    "lint": "npm run lint:js && npm run lint:css",
+    "copy": "cp -r src/static/* ./public",
+    "report": "PARCEL_BUNDLE_ANALYZER=1 parcel build src/index.pug"
   },
   "repository": {
     "type": "git",
@@ -22,39 +26,31 @@
   },
   "homepage": "https://github.com/mevius6/bodymind.studio#readme",
   "devDependencies": {
-    "@babel/core": "^7.8.7",
-    "autoprefixer": "^9.7.5",
-    "parcel-bundler": "^1.12.4",
-    "parcel-plugin-static-files-copy": "^2.3.1",
-    "pug": "^2.0.4",
-    "sass": "^1.26.3"
+    "@babel/core": "^7.13.8",
+    "@parcel/packager-raw-url": "^2.0.0-beta.2",
+    "@parcel/transformer-image": "^2.0.0-beta.2",
+    "@parcel/transformer-pug": "^2.0.0-beta.2",
+    "@parcel/transformer-sass": "^2.0.0-beta.2",
+    "@parcel/transformer-webmanifest": "^2.0.0-beta.2",
+    "eslint": "^7.21.0",
+    "parcel": "^2.0.0-beta.2",
+    "popmotion": "^8.7.1",
+    "postcss": "^8.2.7",
+    "postcss-preset-env": "^6.7.0",
+    "pug": "^3.0.2",
+    "sass": "^1.32.8",
+    "stylelint": "^13.11.0",
+    "stylelint-order": "^4.1.0"
   },
   "dependencies": {
-    "jquery": "^3.5.0",
-    "popmotion": "^8.7.1",
-    "three": "^0.112.1"
+    "jquery": "^3.6.0",
+    "three": "^0.126.1"
   },
   "browserslist": [
-    "> 1%",
+    ">0.25%",
     "last 2 versions",
-    "Firefox ESR",
-    "not ie <= 10"
-  ],
-  "postcss": {
-    "modules": false,
-    "plugins": {
-      "autoprefixer": {
-        "grid": true,
-        "flexbox": "no-2009"
-      }
-    }
-  },
-  "staticFiles": {
-    "staticPath": [
-      {
-        "staticPath": "src/static/",
-        "staticOutDir": "/"
-      }
-    ]
-  }
+    "not ie <= 11",
+    "not dead",
+    "not op_mini all"
+  ]
 }

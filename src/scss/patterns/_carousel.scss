@@ -1,0 +1,165 @@
+@use '../config';
+
+// https://css-tricks.com/css-only-carousel/
+.carousel {
+  $init: &;
+  $imageset1: #{&}--1;
+  $imageset2: #{&}--2;
+
+  position: relative;
+  inline-size: 100%;
+  block-size: 100%;
+
+  &__container {
+    @include config.scroll-snap('x', 'mandatory', '.carousel__item');
+
+    display: flex;
+    margin-inline: auto;
+
+    // &::before,
+    // &::after {
+    //   position: sticky;
+    //   z-index: 1;
+    //   display: inline-block;
+    //   min-width: calc(var(--side-fade) * 1px);
+    //   height: 100%;
+    //   content: '';
+    //   background: var(--bg-image);
+    // }
+
+    // &::before {
+    //   --bg-image:
+    //     linear-gradient(
+    //       to left,
+    //       hsl(0 0% 95.7% / 0),
+    //       hsl(0 0% 95.7% / 1)
+    //     );
+    //   left: 0;
+    //   // display: none;
+    // }
+
+    // &::after {
+    //   --bg-image:
+    //     linear-gradient(
+    //       to right,
+    //       hsl(0 0% 95.7% / 0),
+    //       hsl(0 0% 95.7% / 1)
+    //     );
+    //   right: 0;
+    // }
+  }
+
+  &__control {
+    --dot-size: 1rem;
+
+    position: fixed;
+    bottom: var(--spacer-4);
+    left: 50%;
+    display: none;
+    transform: translate(-50%, -50%);
+
+    & > * + * { margin-inline-start: var(--dot-size); }
+
+    a {
+      display: block;
+      inline-size: var(--dot-size);
+      block-size: var(--dot-size);
+      flex: 0 0 auto;
+      background-color: var(--gray-70);
+      border-radius: 50%;
+      opacity: var(--alpha, 0.5);
+
+      transition-timing-function: var(--easing);
+      transition-duration: var(--duration);
+      transition-property: opacity, transform;
+      transform: scale(var(--sx, 1));
+
+      &:hover {
+        --sx: 1.1;
+        --alpha: 0.75;
+      }
+
+      &:focus {
+        --sx: 0.9;
+        --alpha: 1;
+        outline: none;
+      }
+    }
+  }
+
+  &__item {
+    position: relative;
+    display: grid;
+    grid-template-columns:
+      repeat(
+        auto-fit,
+        minmax(calc(42.5% + 2.5rem), 1fr)
+      );
+    grid-template-columns:
+      repeat(
+        auto-fit,
+        minmax(min(var(--mobile), 100%), 1fr)
+      );
+    grid-auto-rows: minmax(min-content, 1fr);
+    min-inline-size: 100vw;
+    block-size: 100%;
+
+    overflow-y: scroll;
+    scrollbar-width: inherit;
+
+    #{$imageset1} & {
+      @include config.bg-images('set-1');
+    }
+
+    #{$imageset2} & {
+      @include config.bg-images('set-2');
+    }
+  }
+
+  &__text-wrapper {
+    padding-block: var(--spacer-4);
+    padding-inline: var(--spacer-2);
+  }
+
+  &__image-wrapper {
+    grid-row-start: 1;
+    display: flex;
+    justify-content: center;
+
+    > figure {
+      inline-size: 100%;
+      block-size: 100%;
+      min-block-size: 60vh;
+      background-repeat: no-repeat;
+      background-attachment: var(--bg-attachment, local);
+      background-position: var(--bg-position, top);
+      background-size: cover;
+
+      #{$imageset1} & {
+        max-inline-size: 42rem;
+      }
+
+      #{$imageset2} & {
+        --bg-attachment: fixed;
+        --bg-position: center;
+      }
+    }
+  }
+
+  @include config.respond('tablet') {
+    &__control {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    &__text-wrapper {
+      padding-block: var(--spacer-5);
+      padding-inline: var(--spacer-3);
+      margin: 0 auto;
+
+      // p { min-block-size: 12ex; }
+    }
+
+    &__image-wrapper { grid-column-start: 2; }
+  }
+}

@@ -1,0 +1,38 @@
+//- phone || email || plain
+mixin link(props)
+  if props.phone
+    - let tel = props.phone.replace(/[^\d+]/g, '')
+    a(
+      class=`${props.base}__link`
+      href=`tel:${tel}`
+    )
+      if props.icon
+        span(data-icon= props.icon)
+      else if props.text
+        span(class=`${props.base}__link-text`)
+          | #{props.text} #{props.phone}
+      else
+        span(class=`${props.base}__link-text` itemprop="telephone")
+          | #{props.phone}
+
+  else if props.email
+    -
+      let field1 = props.email.subject ? `?subject=${props.email.subject}` : ''
+      let field2 = props.email.body ? `&body=${props.email.body}` : ''
+    a(
+      class=`${props.base}__link`
+      href=`mailto:${props.email.to}${field1}${field1 ? field2 : ''}`
+    )
+      if props.icon
+        span(data-icon= props.icon)
+      else
+        span(class=`${props.base}__link-text` itemprop="email")
+          | #{props.email.to}
+
+  else
+    a(href= props.href target="_blank" rel="noopener noreferrer")
+      if props.icon
+        span(data-icon= props.icon)
+      else
+        span(class=`${props.base}__link-text`)
+          | #{props.text}

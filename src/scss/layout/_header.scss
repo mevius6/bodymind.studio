@@ -1,0 +1,104 @@
+@use '../config';
+
+.page__header {
+  --offset: calc(var(--gutter) / 2);
+
+  // position: fixed;
+  // top: var(--offset);
+  position: relative;
+  left: 50%;
+  z-index: 1010;
+  display: flex;
+  width: 100%;
+  // max-width: calc(100vw - var(--gutter) * 2);
+  height: min-content; // <= 60–64px
+  background-color: hsl(var(--white) / 0.95);
+  // border-radius: var(--radius-1);
+  // box-shadow: 0 10px 20px hsl(var(--black) / 0.5);
+  transition: transform 200ms ease-in-out, opacity 200ms ease-out;
+  transform: translateX(-50%);
+  align-items: center;
+  justify-content: space-between;
+
+  &--hidden {
+    transform: translate(-50%, calc(-100% - var(--offset)));
+
+    li ul { opacity: 0; }
+  }
+
+  [itemprop='name'] {
+    @include config.typeset('sans', 'medium', 'zetta');
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-1);
+  }
+
+  ul { margin-inline-start: auto; }
+
+  > div:nth-child(1) {
+    padding: var(--spacer-2) var(--spacer-3);
+    flex: 1 0 min-content;
+
+    > *:not([itemprop='name']) { font-size: 0.875rem; }
+
+    > span + span,
+    > span + div {
+      margin-inline-start: var(--spacer-2);
+    }
+
+    @include config.respond('tablet') {
+      justify-content: start;
+    }
+  }
+
+  > div:nth-child(1),
+  > div:nth-child(1) > ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .contacts {
+    --arrow: '';
+    padding-block: var(--spacer-2);
+    // margin-inline-start: auto;
+    font-size: 0.75rem;
+    gap: 0;
+
+    & > * + * { padding-inline-start: var(--spacer-3); }
+  }
+
+  .logo {
+    --arrow: '';
+
+    inline-size: calc(112px + 0.25vw);
+    padding-block: var(--spacer-2);
+    margin-inline-end: var(--spacer-3);
+  }
+
+  @include config.respond('tablet') {
+    & {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  @include config.respond('laptop') {
+    & {
+      flex-direction: row;
+    }
+
+    .logo { padding: 0; }
+  }
+}
+
+.social {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+
+  > * + * {
+    padding-inline-start: var(--spacer-1);
+    border-inline-start: 1px solid hsl(var(--white) / 0.25);
+  }
+
+  li { align-items: center; }
+}
