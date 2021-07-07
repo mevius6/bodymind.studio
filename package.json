@@ -44,7 +44,7 @@
     "three": "^0.129.0"
   },
   "browserslist": [
-    ">0.25%",
+    ">0.5%",
     "last 2 versions",
     "not ie <= 11",
     "not dead",
