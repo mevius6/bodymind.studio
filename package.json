@@ -23,25 +23,25 @@
   },
   "homepage": "https://github.com/mevius6/bodymind.studio#readme",
   "devDependencies": {
-    "@babel/core": "^7.13.8",
-    "@parcel/packager-raw-url": "^2.0.0-beta.2",
-    "@parcel/transformer-image": "^2.0.0-beta.2",
-    "@parcel/transformer-pug": "^2.0.0-beta.2",
-    "@parcel/transformer-sass": "^2.0.0-beta.2",
-    "@parcel/transformer-webmanifest": "^2.0.0-beta.2",
-    "eslint": "^7.21.0",
-    "parcel": "^2.0.0-beta.2",
-    "popmotion": "^8.7.1",
-    "postcss": "^8.2.7",
+    "@babel/core": "^7.14.6",
+    "@parcel/packager-raw-url": "^2.0.0-beta.3.1",
+    "@parcel/transformer-image": "^2.0.0-beta.3.1",
+    "@parcel/transformer-pug": "^2.0.0-beta.3.1",
+    "@parcel/transformer-sass": "^2.0.0-beta.3.1",
+    "@parcel/transformer-webmanifest": "^2.0.0-beta.3.1",
+    "eslint": "^7.29.0",
+    "parcel": "^2.0.0-beta.3.1",
+    "popmotion": "^9.4.0",
+    "postcss": "^8.3.5",
     "postcss-preset-env": "^6.7.0",
     "pug": "^3.0.2",
-    "sass": "^1.32.8",
-    "stylelint": "^13.11.0",
+    "sass": "^1.35.1",
+    "stylelint": "^13.13.1",
     "stylelint-order": "^4.1.0"
   },
   "dependencies": {
     "jquery": "^3.6.0",
-    "three": "^0.126.1"
+    "three": "^0.129.0"
   },
   "browserslist": [
     ">0.25%",
