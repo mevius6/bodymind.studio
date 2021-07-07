@@ -2,5 +2,4 @@
 .cache
 .now
 node_modules/
-package-lock.json
 puplic/
