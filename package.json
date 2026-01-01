@@ -30,7 +30,7 @@
     "@parcel/transformer-sass": "^2.0.0-beta.3.1",
     "@parcel/transformer-webmanifest": "^2.0.0-beta.3.1",
     "eslint": "^7.29.0",
-    "parcel": "^2.0.0-beta.3.1",
+    "parcel": "^2.16.3",
     "popmotion": "^9.4.0",
     "postcss": "^8.3.5",
     "postcss-preset-env": "^6.7.0",
